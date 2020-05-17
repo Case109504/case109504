@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-6">
-        <h5>Entities</h5>
+        <h5>判斷結果</h5>
         <hr>
         <ol>
             <?php foreach ($web->entities() as $key => $entity): ?>
@@ -9,7 +9,7 @@
         </ol>
     </div>
     <div class="col-6">
-        <h5>Matched Images</h5>
+        <h5>相符圖片</h5>
         <hr>
         <ol>
             <?php foreach ($web->matchingImages() as $key => $matchImage): ?>
@@ -17,7 +17,7 @@
             <?php endforeach ?>
         </ol>
         <br><hr><hr>
-        <h5>Partially Matched Images</h5>
+        <h5>相似圖片</h5>
         <hr>
         <ol>
             <?php foreach ($web->partialMatchingImages() as $key => $partialMatchingImage): ?>
@@ -25,7 +25,7 @@
             <?php endforeach ?>
         </ol>
         <br><hr><hr>
-        <h5>Pages</h5>
+        <h5>相關網頁</h5>
         <hr>
         <ol>
             <?php foreach ($web->pages() as $key => $page): ?>
