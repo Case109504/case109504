@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+    <head>
+        <title>圖片搜尋</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <script src="https://kit.fontawesome.com/028c714c47.js" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $(function(){
+                $(".icon-1").click(function(){
+                $(".input").toggleClass("active");
+                $(".container-img").toggleClass("active");
+                })
+            });
+        </script>
+    </head>
+
+    <body>
+        <!-- Header -->
+			<header id="header">
+				<div class="logo"><a href="home.html">明察秋毫 <span></span></a></div>
+				<a href="#menu"></a>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="home.html">首頁</a></li>
+					<li><a href="generic.html">登入/註冊</a></li>
+					<li><a href="photosearch.html">圖片搜尋</a></li>
+					<li><a href="elements.html">關於我們</a></li>
+				</ul>
+            </nav>
+
+        <!-- SearchBar-->    
+            <div class = "container">
+                <div class="wrapper-img">
+                    <div class="container-img">
+                        <div id = "icon-search" class="icon-items icon-items-1">
+                            <i class="fas fa-camera fa-2x"></i>
+                        </div>
+                        
+                        <div class="icon-items">
+                            <i class="far fa-image fa-2x"></i>
+                        </div>
+                        
+                        <div class="search-box">
+                        <input type="text" class="input">
+                        </div>
+                        
+                        <div class="icon-items icon-1">
+                            <i class="fas fa-search fa-2x"></i>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="container">
+					<ul class="icons">
+						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+					</ul>
+				</div>
+				<div class="copyright">
+					&copy; Untitled. All rights reserved.
+				</div>
+			</footer>
+
+        <!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+            <script src="assets/js/main.js"></script>
+            <script src="main.js"></script>
+    </body>
+</html>
