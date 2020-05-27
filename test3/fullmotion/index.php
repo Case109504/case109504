@@ -38,7 +38,7 @@
 		left join testdb.area on Video.area_id = area.area_id
 		left join testdb.awards on Video.video_id = awards.video_id
 		left join testdb.film_source on Video.video_id = film_source.video_id
-		";   
+		";
 		mysqli_query($cn,$sql);    //傳入資料庫連線引數，sql字串。
 		$res=$cn->query($sql);    //接收查詢產生的結果集
 		    //將結果集賦值給陣列物件
@@ -130,14 +130,14 @@
 									<a href="https://youtu.be/c189RrFzY8w" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
 									<div class="inner">
 										<h3><a href="#">'.$row["video_name"].'</a></h3>
-										<p>主演： '.$row["actor_name"].'<br /><br />以官閥家高中生生活為背景，故事核心為富家子跟貧家女的故事。講述了佔韓國0.1%上流社會的高中生富家子弟們的故事。</p>
-										<a href="https://youtu.be/c189RrFzY8w" class="button fit" data-poptrox="youtube,800x400">搶先看</a>
+										<p>主演： '.$row["actor_name"].'<br /><br /></p>
+										<a href="introduction.php?video_name='.$row["video_name"].'" class="button fit" data-poptrox="youtube,800x400">影片介紹</a>
 									</div>
 								</div>';
 								}
 							//}
 							$cn->close();
-			?>
+							?>
 							
 
 						</div>
