@@ -69,67 +69,14 @@
 					<!-- Boxes -->
 						<div class="thumbnails">
 
-							<div class="box">
-								<a href="https://youtu.be/c189RrFzY8w" class="image fit"><img src="images/pic01.jpg" alt="" /></a>
-								<div class="inner">
-									<h3><a href="#">太陽的後裔</a> </h3>
-									<p>主演： 宋仲基 / 宋慧喬 / 晉久 / 金智媛<br /><br />以美麗的南國風光為背景展開，通過處在陌生且惡劣環境中渴望愛情和成功的年輕軍人和醫生的生活，展現生命意義的治愈系羅曼史。</p>
-									<a href="https://youtu.be/c189RrFzY8w" class="button fit" data-poptrox="youtube,800x400">搶先看</a>
-								</div>
-							</div>
-
-							<div class="box">
-								<a href="https://youtu.be/c189RrFzY8w" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
-								<div class="inner">
-									<h3><a href="#">鬼怪</a></h3>
-									<p>主演： 孔劉 / 金高銀 / 李棟旭 / 劉仁娜 / 陸星材<br /><br />想結束永生的鬼怪作為不死之身守護者的鬼怪要結束永生，需要一名人類新娘與陰間使者一起迎接來自人間的亡者的故事。</p>
-									<a href="https://youtu.be/c189RrFzY8w" class="button style2 fit" data-poptrox="youtube,800x400">搶先看</a>
-								</div>
-							</div>
-
-							<div class="box">
-								<a href="https://youtu.be/c189RrFzY8w" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
-								<div class="inner">
-									<h3><a href="#">德魯納酒店</a></h3>
-									<p>主演： 呂珍九 / IU<br /><br />這間在繁華的韓國首爾市中心，擁有陳舊外觀的「德魯納酒店」，只向無法離開的靈魂們展示其華麗的真面目的點點滴滴。</p>
-									<a href="https://youtu.be/c189RrFzY8w" class="button style3 fit" data-poptrox="youtube,800x400">搶先看</a>
-								</div>
-							</div>
-
-							<div class="box">
-								<a href="https://youtu.be/c189RrFzY8w" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
-								<div class="inner">
-									<h3><a href="#">他人即地獄</a></h3>
-									<p>主演： 任時完 / 李棟旭 / 李姃垠<br /><br />來自鄉下的男主角尹鍾宇首次到首爾後住進考試院，然而考試院的左右鄰居全是怪人，也因此發展出一系列驚悚故事。</p>
-									<a href="https://youtu.be/c189RrFzY8w" class="button style2 fit" data-poptrox="youtube,800x400">搶先看</a>
-								</div>
-							</div>
-
-							<div class="box">
-								<a href="https://youtu.be/c189RrFzY8w" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
-								<div class="inner">
-									<h3><a href="#">主君的太陽</a></h3>
-									<p>主演： 蘇志燮 / 孔曉振 / 徐仁國 / 金釉利 <br /><br />一個一直以來只接受自己所聽所看到的，傲慢放肆且以自我為中心的男人，與能夠看見鬼的女人和守護在她身邊的男人之間的故事。</p>
-									<a href="https://youtu.be/c189RrFzY8w" class="button style3 fit" data-poptrox="youtube,800x400">搶先看</a>
-								</div>
-							</div>
-
-							<div class="box">
-								<a href="https://youtu.be/c189RrFzY8w" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
-								<div class="inner">
-									<h3><a href="#">繼承者們</a></h3>
-									<p>主演： 李敏鎬 / 朴信惠 / 金宇彬 / 鄭秀晶<br /><br />以官閥家高中生生活為背景，故事核心為富家子跟貧家女的故事。講述了佔韓國0.1%上流社會的高中生富家子弟們的故事。</p>
-									<a href="https://youtu.be/c189RrFzY8w" class="button fit" data-poptrox="youtube,800x400">搶先看</a>
-								</div>
-							</div>
 							<?php 
 							//while($res->num_rows > 0){可改if
 								while($row = $res->fetch_assoc()) {
 									// echo '<td>'.$row["video_id"]."".$row["video_name"]."".$row["time"].'</td></br>';   //輸出結果
 									echo '<div class="box">
-									<a href="https://youtu.be/c189RrFzY8w" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
+									<a href="https://youtu.be/c189RrFzY8w" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
 									<div class="inner">
-										<h3><a href="#">'.$row["video_name"].'</a></h3>
+										<h3>'.$row["video_name"].'</h3>
 										<p>主演： '.$row["actor_name"].'<br /><br /></p>
 										<a href="introduction.php?video_name='.$row["video_name"].'" class="button fit" data-poptrox="youtube,800x400">影片介紹</a>
 									</div>
