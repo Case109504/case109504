@@ -14,59 +14,6 @@
 
                      ?>
                     <br><br>                    
-                    <li>
-                        <strong style="color: rgb(<?php echo "$faceColorR, $faceColorG, $faceColorB"; ?>);">Face <?php echo $key + 1 ?></strong>
-                        <hr>
-
-                        <div class="row">
-                            <div class="col-6">
-                                <strong>Joy</strong>
-                            </div>
-                            <div class="col-6">
-                                <strong><?php echo $face->info()['joyLikelihood'] ?></strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <strong>Sorrow</strong>
-                            </div>
-                            <div class="col-6">
-                                <strong><?php echo $face->info()['sorrowLikelihood'] ?></strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <strong>Angry</strong>
-                            </div>
-                            <div class="col-6">
-                                <strong><?php echo $face->info()['angerLikelihood'] ?></strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <strong>Surprised</strong>
-                            </div>
-                            <div class="col-6">
-                                <strong><?php echo $face->info()['surpriseLikelihood'] ?></strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <strong>Blurred</strong>
-                            </div>
-                            <div class="col-6">
-                                <strong><?php echo $face->info()['blurredLikelihood'] ?></strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <strong>Headwear</strong>
-                            </div>
-                            <div class="col-6">
-                                <strong><?php echo $face->info()['headwearLikelihood'] ?></strong>
-                            </div>
-                        </div>
-                    </li>
                 <?php endforeach ?>
             <?php endif ?>
         </ol>

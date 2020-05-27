@@ -77,30 +77,20 @@ $web = $result->web();
                         <ul class="nav nav-pills nav-fill mb-3" id="pills-tab" role="tablist">
                             
                             <li class="nav-item">
-                                <a href="#pills-face" role="tab" class="nav-link active" id="pills-face-tab" data-toggle="pill" aria-controls="pills-face" aria-selected="true">Faces</a>
+                                <a href="#pills-web" role="tab" class="nav-link active" id="pills-web-tab" data-toggle="pill" aria-controls="pills-web" aria-selected="true">Web</a>
                             </li>
 
-                            <li class="nav-item">
-                                <a href="#pills-web" role="tab" class="nav-link" id="pills-web-tab" data-toggle="pill" aria-controls="pills-web" aria-selected="true">Web</a>
-                            </li>
                         </ul>
                         <hr>
 
 
                         <div class="tab-content" id="pills-tabContent">
                            
-                            <div class="tab-pane fade show active" id="pills-face" role="tabpanel" aria-labelledby="pills-face-tab">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <?php include "faces.php" ;?>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane fade show" id="pills-web" role="tabpanel" aria-labelledby="pills-web-tab">
+                            <div class="tab-pane fade show active" id="pills-web" role="tabpanel" aria-labelledby="pills-web-tab">
                                 <div class="row">
                                     <div class="col-12">
                                         <?php include "web.php" ;?>
+                                        <?php include "faces.php" ;?>
                                     </div>
                                 </div>
                             </div>
