@@ -74,7 +74,7 @@
 								while($row = $res->fetch_assoc()) {
 									// echo '<td>'.$row["video_id"]."".$row["video_name"]."".$row["time"].'</td></br>';   //輸出結果
 									echo '<div class="box">
-									<a href="https://youtu.be/c189RrFzY8w" class="image fit"><img src="'.$row["videopicture"].'" alt="" /></a>
+									<a href="introduction.php?video_name='.$row["video_name"].'" class="image fit"><img src="'.$row["videopicture"].'" alt="" /></a>
 									<div class="inner">
 										<h3>'.$row["video_name"].'</h3>
 										<p>主演： '.$row["actor_name"].'<br /><br /></p>
