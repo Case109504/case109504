@@ -23,7 +23,7 @@
 		$cn->query("SET NAMES utf8");//設定 字符集為utf8格式
 		$cn->select_db("Video");//選擇要操作的資料表
 
-		$sql="select Video.video_name , type.type_name , director.director_name, actor_name, screenwriter_name, source_name, plot_name, area_name, awards_name, film_source ,type_name from testdb.Video
+		$sql="select Video.video_name , Video.videopicture , type.type_name , director.director_name, actor_name, screenwriter_name, source_name, plot_name, area_name, awards_name, film_source ,type_name from testdb.Video
 		left join testdb.type on Video.type_id = type.type_id 
 		left join testdb.director_record on Video.video_id = director_record.video_id
 		left join testdb.director on director.director_id = director_record.director_id
@@ -74,7 +74,7 @@
 								while($row = $res->fetch_assoc()) {
 									// echo '<td>'.$row["video_id"]."".$row["video_name"]."".$row["time"].'</td></br>';   //輸出結果
 									echo '<div class="box">
-									<a href="https://youtu.be/c189RrFzY8w" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
+									<a href="https://youtu.be/c189RrFzY8w" class="image fit"><img src="'.$row["videopicture"].'" alt="" /></a>
 									<div class="inner">
 										<h3>'.$row["video_name"].'</h3>
 										<p>主演： '.$row["actor_name"].'<br /><br /></p>
