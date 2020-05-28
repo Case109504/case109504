@@ -23,7 +23,7 @@
 		$cn->query("SET NAMES utf8");//設定 字符集為utf8格式
 		$cn->select_db("Video");//選擇要操作的資料表
 
-		$sql="select Video.video_name , type.type_name , director.director_name, actor_name, screenwriter_name, source_name, plot_name, area_name, awards_name, film_source ,type_name from testdb.Video
+		$sql="select Video.video_name , Video.videopicture , type.type_name , director.director_name, actor_name, screenwriter_name, source_name, plot_name, area_name, awards_name, film_source ,type_name from testdb.Video
 		left join testdb.type on Video.type_id = type.type_id 
 		left join testdb.director_record on Video.video_id = director_record.video_id
 		left join testdb.director on director.director_id = director_record.director_id
@@ -57,7 +57,7 @@
 						<header>
 							<h1>韓劇</h1>
 							<p>各劇種介紹與推薦欄位<br />
-							透過 <a href="index.html">明察秋毫</a> 享受追劇的樂趣</p>
+							透過 <a href="index.html">搜劇Film Seeker</a> 享受追劇的樂趣</p>
 						</header>
 						<a href="#main" class="more">更多推薦</a>
 					</div>
@@ -70,14 +70,38 @@
 					<!-- Boxes -->
 						<div class="thumbnails">
 
-							
+							<div class="inner">
 							<?php 
-							echo $_GET["video_name"]."<br />";
+							while($row=mysqli_fetch_array($res)){
+							echo '<div class="image fit">
+									<img src="'.$row["videopicture"].'" alt="" /></a>
+								</div>';
+							}
+							?>
+							<header>
+							<?php 
+							echo '<h1>'.$_GET["video_name"].'</h1><br />';
 							while($row=mysqli_fetch_array($res)){
 							echo $row["actor_name"]."<br />".$row["plot_name"];
+							echo '<div class="box">
+									<a href="https://youtu.be/c189RrFzY8w" class="image fit"><img src="'.$row["videopicture"].'" alt="" /></a>
+									<div class="inner">
+										<h3>'.$row["video_name"].'</h3>
+										<p>主演： '.$row["actor_name"].'<br /><br /></p>
+										<a href="introduction.php?video_name='.$row["video_name"].'" class="button fit" data-poptrox="youtube,800x400">影片介紹</a>
+									</div>
+								</div>';
 							}
 							$cn->close();
 							?>
+							
+							<p class="info">主演：(actor_name)</p>
+							</header>
+							<h3>簡介</h3>
+							<p>
+							(plot_name)
+							</p></div>
+							
 							
 
 						</div>
@@ -88,7 +112,7 @@
 			<!-- Footer -->
 				<footer id="footer">
 					<div class="inner">
-						<h2>明察秋毫</h2>
+						<h2>搜劇Film Seeker</h2>
 						<p>您搜尋及評價影劇的最好夥伴 </p>
 
 						<ul class="icons">
