@@ -57,51 +57,28 @@
 						<header>
 							<h1>韓劇</h1>
 							<p>各劇種介紹與推薦欄位<br />
-							透過 <a href="index.html">搜劇Film Seeker</a> 享受追劇的樂趣</p>
+							透過 <a href="index.php">搜劇Film Seeker</a> 享受追劇的樂趣</p>
 						</header>
 						<a href="#main" class="more">更多推薦</a>
 					</div>
 				</section>
 
 			<!-- Main -->
-				<div id="main">
+			<div id="main">
 					<div class="inner">
 
 					<!-- Boxes -->
 						<div class="thumbnails">
-
-							<div class="inner">
 							<?php 
 							while($row=mysqli_fetch_array($res)){
 							echo '<div class="image fit">
-									<img src="'.$row["videopicture"].'" alt="" /></a>
+								<img src="'.$row["videopicture"].'" alt="" /></a>
 								</div>';
-							}
-							?>
-							<header>
-							<?php 
-							echo '<h1>'.$_GET["video_name"].'</h1><br />';
-							while($row=mysqli_fetch_array($res)){
-							echo $row["actor_name"]."<br />".$row["plot_name"];
-							echo '<div class="box">
-									<a href="https://youtu.be/c189RrFzY8w" class="image fit"><img src="'.$row["videopicture"].'" alt="" /></a>
-									<div class="inner">
-										<h3>'.$row["video_name"].'</h3>
-										<p>主演： '.$row["actor_name"].'<br /><br /></p>
-										<a href="introduction.php?video_name='.$row["video_name"].'" class="button fit" data-poptrox="youtube,800x400">影片介紹</a>
-									</div>
-								</div>';
+							echo $_GET["video_name"]."<br />";
+							echo $row["actor_name"]."<br />".$row["plot_name"]."<br />".$row["type_name"].$row["director_name"]."<br />".$row["screenwriter_name"]."<br />".$row["source_name"]."<br />".$row["area_name"]."<br />".$row["film_source"]."<br />".$row["type_name"]."<br />";
 							}
 							$cn->close();
 							?>
-							
-							<p class="info">主演：(actor_name)</p>
-							</header>
-							<h3>簡介</h3>
-							<p>
-							(plot_name)
-							</p></div>
-							
 							
 
 						</div>
