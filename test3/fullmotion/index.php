@@ -78,6 +78,7 @@
 									<div class="inner">
 										<h3>'.$row["video_name"].'</h3>
 										<p>主演： '.$row["actor_name"].'<br /><br /></p>
+										<p>評分：9.5 <br /><br /></p>
 										<a href="introduction.php?video_name='.$row["video_name"].'" class="button fit" data-poptrox="youtube,800x400">影片介紹</a>
 									</div>
 								</div>';
