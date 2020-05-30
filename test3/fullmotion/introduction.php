@@ -75,8 +75,8 @@
 							echo '<div class="image fit">
 								<img src="'.$row["videopicture"].'" alt="" /></a>
 								</div>';
-							echo $_GET["video_name"]."<br />";
-							echo $row["actor_name"]."<br />".$row["plot_name"]."<br />".$row["type_name"].$row["director_name"]."<br />".$row["screenwriter_name"]."<br />".$row["source_name"]."<br />".$row["area_name"]."<br />".$row["film_source"]."<br />".$row["type_name"]."<br />".$row["score"]."<br />";
+							echo "<p>影片名稱：" .$_GET["video_name"]."</p><br/>";
+							echo $row["actor_name"]."<br/>".$row["plot_name"]."<br/>".$row["type_name"].$row["director_name"]."<br/>".$row["screenwriter_name"]."<br/>".$row["source_name"]."<br/>".$row["area_name"]."<br/>".$row["film_source"]."<br/>".$row["type_name"]."<br/>".$row["score"]."<br/>";
 							}
 							$cn->close();
 							?>
