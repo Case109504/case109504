@@ -23,7 +23,7 @@
 		$cn->query("SET NAMES utf8");//設定 字符集為utf8格式
 		$cn->select_db("Video");//選擇要操作的資料表
 
-		$sql="select Video.video_name , Video.videopicture , type.type_name , director.director_name, actor_name, screenwriter_name, source_name, plot_name, area_name, awards_name, film_source ,type_name,score from testdb.Video
+		$sql="select Video.video_name , Video.videopicture , type.type_name , director.director_name, actor_name, screenwriter_name, source_name, plot_name, area_name, awards_name, film_source ,type_name,score,comments_name from testdb.Video
 		left join testdb.type on Video.type_id = type.type_id 
 		left join testdb.director_record on Video.video_id = director_record.video_id
 		left join testdb.director on director.director_id = director_record.director_id
@@ -39,6 +39,7 @@
 		left join testdb.awards on Video.video_id = awards.video_id
 		left join testdb.film_source on Video.video_id = film_source.video_id
 		left join testdb.score on Video.video_id = score.video_id
+		left join testdb.comments on Video.video_id = comments.video_id
 		where video_name = '" . $_GET["video_name"]."'";   
 		mysqli_query($cn,$sql);    //傳入資料庫連線引數，sql字串。
 		$res=$cn->query($sql);    //接收查詢產生的結果集
@@ -72,12 +73,16 @@
 						<div class="thumbnails">
 							<?php 
 							while($row=mysqli_fetch_array($res)){
-							echo '<div class="image fit">
-								<img src="'.$row["videopicture"].'" alt="" /></a>
-								</div>';
-							echo "<p>影片名稱：" .$_GET["video_name"]."</p><br/>";
-							echo $row["actor_name"]."<br/>".$row["plot_name"]."<br/>".$row["type_name"].$row["director_name"]."<br/>".$row["screenwriter_name"]."<br/>".$row["source_name"]."<br/>".$row["area_name"]."<br/>".$row["film_source"]."<br/>".$row["type_name"]."<br/>".$row["score"]."<br/>";
+								echo '<div class="image fit">
+									<img src="'.$row["videopicture"].'" alt="" /></a>
+									</div>';
+								echo "<p>影片名稱：" .$_GET["video_name"]."<br/>主演：" .$row["actor_name"]."<br/>主演：" .$row["plot_name"]."<br/>類型：" .$row["type_name"]."<br/>導演：" .$row["director_name"]."<br/>編劇：" .$row["screenwriter_name"]."<br/>劇別：" .$row["source_name"]."<br/>區域：" .$row["area_name"]."<br/>影片來源：" .$row["film_source"]."<br/>評分：" .$row["score"]."</p>";
+								echo "<p>評論：" .$row["comments_name"]."</p>";
+								while($row=mysqli_fetch_array($res)){
+									echo "<p>評論：" .$row["comments_name"]."</P>";
+								}
 							}
+							
 							$cn->close();
 							?>
 							
