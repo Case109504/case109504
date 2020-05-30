@@ -23,7 +23,7 @@
 		$cn->query("SET NAMES utf8");//設定 字符集為utf8格式
 		$cn->select_db("Video");//選擇要操作的資料表
 
-		$sql="select Video.video_name , Video.videopicture , type.type_name , director.director_name, actor_name, screenwriter_name, source_name, plot_name, area_name, awards_name, film_source ,type_name from testdb.Video
+		$sql="select Video.video_name , Video.videopicture , type.type_name , director.director_name, actor_name, screenwriter_name, source_name, plot_name, area_name, awards_name, film_source ,type_name,score from testdb.Video
 		left join testdb.type on Video.type_id = type.type_id 
 		left join testdb.director_record on Video.video_id = director_record.video_id
 		left join testdb.director on director.director_id = director_record.director_id
@@ -38,6 +38,7 @@
 		left join testdb.area on Video.area_id = area.area_id
 		left join testdb.awards on Video.video_id = awards.video_id
 		left join testdb.film_source on Video.video_id = film_source.video_id
+		left join testdb.score on Video.video_id = score.video_id
 		";
 		mysqli_query($cn,$sql);    //傳入資料庫連線引數，sql字串。
 		$res=$cn->query($sql);    //接收查詢產生的結果集
@@ -77,8 +78,8 @@
 									<a href="introduction.php?video_name='.$row["video_name"].'" class="image fit"><img src="'.$row["videopicture"].'" alt="" /></a>
 									<div class="inner">
 										<h3>'.$row["video_name"].'</h3>
-										<p>主演： '.$row["actor_name"].'<br /><br /></p>
-										<p>評分：9.5 <br /><br /></p>
+										<p>主演： '.$row["actor_name"].'<br /></p>
+										<p>評分： '.$row["score"].' <br /></p>
 										<a href="introduction.php?video_name='.$row["video_name"].'" class="button fit" data-poptrox="youtube,800x400">影片介紹</a>
 									</div>
 								</div>';
