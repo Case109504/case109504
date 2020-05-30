@@ -23,7 +23,7 @@
 		$cn->query("SET NAMES utf8");//設定 字符集為utf8格式
 		$cn->select_db("Video");//選擇要操作的資料表
 
-		$sql="select Video.video_name , Video.videopicture , type.type_name , director.director_name, actor_name, screenwriter_name, source_name, plot_name, area_name, awards_name, film_source ,type_name from testdb.Video
+		$sql="select Video.video_name , Video.videopicture , type.type_name , director.director_name, actor_name, screenwriter_name, source_name, plot_name, area_name, awards_name, film_source ,type_name,score from testdb.Video
 		left join testdb.type on Video.type_id = type.type_id 
 		left join testdb.director_record on Video.video_id = director_record.video_id
 		left join testdb.director on director.director_id = director_record.director_id
@@ -38,6 +38,7 @@
 		left join testdb.area on Video.area_id = area.area_id
 		left join testdb.awards on Video.video_id = awards.video_id
 		left join testdb.film_source on Video.video_id = film_source.video_id
+		left join testdb.score on Video.video_id = score.video_id
 		where video_name = '" . $_GET["video_name"]."'";   
 		mysqli_query($cn,$sql);    //傳入資料庫連線引數，sql字串。
 		$res=$cn->query($sql);    //接收查詢產生的結果集
@@ -75,7 +76,7 @@
 								<img src="'.$row["videopicture"].'" alt="" /></a>
 								</div>';
 							echo $_GET["video_name"]."<br />";
-							echo $row["actor_name"]."<br />".$row["plot_name"]."<br />".$row["type_name"].$row["director_name"]."<br />".$row["screenwriter_name"]."<br />".$row["source_name"]."<br />".$row["area_name"]."<br />".$row["film_source"]."<br />".$row["type_name"]."<br />";
+							echo $row["actor_name"]."<br />".$row["plot_name"]."<br />".$row["type_name"].$row["director_name"]."<br />".$row["screenwriter_name"]."<br />".$row["source_name"]."<br />".$row["area_name"]."<br />".$row["film_source"]."<br />".$row["type_name"]."<br />".$row["score"]."<br />";
 							}
 							$cn->close();
 							?>
