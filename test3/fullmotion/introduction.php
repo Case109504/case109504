@@ -28,7 +28,7 @@
 		left join testdb.director_record on Video.video_id = director_record.video_id
 		left join testdb.director on director.director_id = director_record.director_id
 		left join testdb.actor_record on Video.video_id = actor_record.video_id
-		left join testdb.actor on actor.actor_id = actor_record.director_id
+		left join testdb.actor on actor.actor_id = actor_record.actor_id
 		left join testdb.screenwriter_record on Video.video_id = screenwriter_record.video_id
 		left join testdb.screenwriter on screenwriter.screenwriter_id = screenwriter_record.screenwriter_id
 		left join testdb.access on Video.video_id = access.video_id
