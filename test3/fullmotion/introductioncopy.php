@@ -71,19 +71,31 @@
 					<section id="main">
 				<div class="inner">
 					<div class="image fit">
-						<img src="https://miro.medium.com/max/800/1*Ust_TOeY93h6tiT4Nc8hbg.jpeg" alt="" />
+						<img src="images/pic11.jpg" alt="" />
 					</div>
 					<header>
-						<h1><?php 
-							echo $_GET["video_name"]."<br />";?>
-						</h1>
-						<p class="info">主演：<?php echo $row["actor_name"]."<br />";?></p>
+						<h1>(video_name)</h1>
+						<p class="info">主演：(actor_name)</p>
 					</header>
 					<h3>簡介</h3>
 					<p>
-						<?php echo $row["plot_name"]."<br />";?>
+						(plot_name)
 					</p></div>
 			</section>
+
+						<div class="thumbnails">
+
+							
+							<?php 
+							echo $_GET["video_name"]."<br />";
+							while($row=mysqli_fetch_array($res)){
+							echo $row["actor_name"]."<br />".$row["plot_name"];
+							}
+							$cn->close();
+							?>
+							
+
+						</div>
 
 					</div>
 				</div>
