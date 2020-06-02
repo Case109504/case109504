@@ -23,7 +23,7 @@
 		$cn->query("SET NAMES utf8");//設定 字符集為utf8格式
 		$cn->select_db("Video");//選擇要操作的資料表
 
-		$sql="select Video.video_name , Video.videopicture , type.type_name , director.director_name, actor_name, screenwriter_name, source_name, plot_name, area_name, awards_name, film_source ,type_name,score,comments_name from testdb.Video
+		$sql="select Video.video_name , Video.videopicture , type.type_name , director.director_name, actor_name, screenwriter_name, source_name, plot_name, area_name, awards_name, film_source ,type_name,score,comments_name,videourl from testdb.Video
 		left join testdb.type on Video.type_id = type.type_id 
 		left join testdb.director_record on Video.video_id = director_record.video_id
 		left join testdb.director on director.director_id = director_record.director_id
@@ -81,6 +81,7 @@
 								while($row=mysqli_fetch_array($res)){
 									echo "<p>評論：" .$row["comments_name"]."</p>";
 								}
+								echo "<a href = '".$row["videourl"]."'>影片來源（愛奇藝）</a>";
 							}
 							
 							$cn->close();
