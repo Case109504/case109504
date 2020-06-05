@@ -77,11 +77,12 @@
 									<img src="'.$row["videopicture"].'" alt="" /></a>
 									</div>';
 								echo "<p>影片名稱：" .$_GET["video_name"]."<br/>主演：" .$row["actor_name"]."<br/>簡介：" .$row["plot_name"]."<br/>類型：" .$row["type_name"]."<br/>導演：" .$row["director_name"]."<br/>編劇：" .$row["screenwriter_name"]."<br/>劇別：" .$row["source_name"]."<br/>區域：" .$row["area_name"]."<br/>影片來源：" .$row["film_source"]."<br/>評分：" .$row["score"]."</p>";
+								echo '<a href = "'.$row["videourl"].'" data-poptrox="ignore">影片來源（愛奇藝）</a>';
 								echo "<p>評論：" .$row["comments_name"]."</p>";
 								while($row=mysqli_fetch_array($res)){
 									echo "<p>評論：" .$row["comments_name"]."</p>";
 								}
-								echo "<a href = '".$row["videourl"]."'>影片來源（愛奇藝）</a>";
+								
 							}
 							
 							$cn->close();
