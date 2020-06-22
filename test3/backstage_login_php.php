@@ -80,7 +80,7 @@
 								}
 								$cn->close();
 							?></h2>
-							<a href="vedio_select.php">資料查詢</a>
+							<a href="video_select.php">資料查詢</a>
 							</body>
 						</div>
 					</div>

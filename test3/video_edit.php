@@ -60,31 +60,29 @@
 					<div class="box">
 						<div class="content">
 						<head>
-							<meta charset="UTF-8">
-							<style>
-								table{
-									border-collapse: collapse;
-								}
-								th,td{
-									border:1px solid #ccccff;
-									padding: 5px;
-								}
-								td{
-									text-align: center;
-								}
-							</style>
+							
 						</head>
 						<body>
-						<a href="adduser.html">新增使用者</a>
-						<table>
-							<tr><th>video_id</th><th>video_name</th><th>time</th><th>修改/刪除</th></tr>
 						<?php
-						while($row = $res->fetch_assoc()) {
-							echo "<tr><td>".$row["video_id"]."</td><td>".$row["video_name"]."</td><td>".$row["time"]."</td><td><a href='edituser.php?id=$id'>修改</a> <a href='deleteuser.php?id=$id'>刪除</a></td></tr>";
-						}
-						$cn->close();
+							if(!empty($_GET['video_id'])){
+								//查詢id
+								$video_id=intval($_GET['video_id']);
+								$result=mysqli_query("SELECT * FROM Video WHERE video_id=$video_id");
+								if(mysqli_error()){
+									die('can not connect db');
+								}
+								//獲取結果陣列
+								$result_arr=mysqli_fetch_assoc($result);
+							}else{
+								die('id not define');
+							}
 						?>
-						</table>
+						<form action="video_.php" method="post">
+							<label>使用者ID：</label><input type="text" name="id" value="<?php echo $result_arr['id']?>">
+							<label>使用者名稱：</label><input type="text" name="name" value="<?php echo $result_arr['name']?>">
+							<label>使用者年齡：</label><input type="text" name="age" value="<?php echo $result_arr['age']?>">
+							<input type="submit" value="提交修改">
+						</form>
 						</body>
 						</div>
 					</div>
@@ -115,3 +113,36 @@
 
 	</body>
 </html>
+<?php
+require_once 'functions.php';
+if(empty($_POST['id'])){
+    die('id is empty');
+}
+if(empty($_POST['name'])){
+    die('name is empty');
+}
+if(empty($_POST['age'])){
+    die('age is empty');
+}
+
+
+$id=intval($_POST['id']);
+$name=$_POST['name'];
+$age=intval($_POST['age']);
+
+
+//連線資料庫
+connnetDb();
+
+
+//修改指定資料
+mysql_query("UPDATE users SET name='$name',age=$age WHERE id=$id");
+
+
+//排錯並返回
+if(mysql_error()){
+    echo mysql_error();
+}else{
+    header("Location:allusers.php");
+}
+?>
