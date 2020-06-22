@@ -23,7 +23,7 @@
 			$cn->query("SET NAMES utf8");//設定 字符集為utf8格式
 			$cn->select_db("Video");//選擇要操作的資料表
 
-			$sql="select * from testdb.Video";   
+			$sql="select * from testdb.Video where video_id = '" . $_GET["video_id"]."'";   
 			mysqli_query($cn,$sql);    //傳入資料庫連線引數，sql字串。
 			$res=$cn->query($sql);    //接收查詢產生的結果集
 		?>
