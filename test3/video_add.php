@@ -21,16 +21,11 @@
 			die("連線錯誤: " . mysqli_connect_error());//連線失敗 列印錯誤日誌
 			}
 			$cn->query("SET NAMES utf8");//設定 字符集為utf8格式
-			$cn->select_db("backstage");//選擇要操作的資料表
+			$cn->select_db("Video");//選擇要操作的資料表
 
-			$account=$_POST['backstage_account'];
-			$password=$_POST['backstage_password'];
-
-			$sql="select * from testdb.backstage where backstage_account = '$account' and backstage_password = '$password'";   
+			$sql="select * from testdb.Video ORDER BY video_id";   
 			mysqli_query($cn,$sql);    //傳入資料庫連線引數，sql字串。
 			$res=$cn->query($sql);    //接收查詢產生的結果集
-			
-				//將結果集賦值給陣列物件
 		?>
 
 		<!-- Header -->
@@ -64,24 +59,36 @@
 				<div class="inner">
 					<div class="box">
 						<div class="content">
-							<header class="align-center">
-								<p>登入成功</p>
-								<h2>管理員登入</h2>
-							</header>
-							<body>
-							<h2><?php
-								header('Content-Type: text/html; charset=utf-8');
-								
-								$result1=mysqli_query($cn,$sql) or die("查詢失敗");
-								if(mysqli_num_rows($result1)){
-									echo"登入成功";
-								}else{
-									echo"登入失敗";
+						<head>
+							<meta charset="UTF-8">
+							<style>
+								table{
+									border-collapse: collapse;
 								}
-								$cn->close();
-							?></h2>
-							<a href="vedio_select.php">資料查詢</a>
-							</body>
+								th,td{
+									border:1px solid #ccccff;
+									padding: 5px;
+								}
+								td{
+									text-align: center;
+								}
+							</style>
+						</head>
+						<body>
+						<a href="video_add.html">新增使用者</a>
+						<table>
+							<tr><th>video_id</th><th>video_name</th><th>time</th><th>修改/刪除</th></tr>
+						<?php
+						while($row = $res->fetch_assoc()) {
+							echo "<tr><td>".$row["video_id"]."</td>
+							<td>".$row["video_name"]."</td>
+							<td>".$row["time"]."</td>
+							<td><a href='video_edit.php?video_id=".$row["video_id"]."'>修改</a> <a href='video_delete.php?video_id=".$row["video_id"]."'>刪除</a></td></tr>";
+						}
+						$cn->close();
+						?>
+						</table>
+						</body>
 						</div>
 					</div>
 				</div>
