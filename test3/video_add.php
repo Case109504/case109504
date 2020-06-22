@@ -85,7 +85,7 @@
 							if(mysqli_error()){
 								echo mysqli_error();
 							}else{
-								header("Location:vedio_select.php");
+								header("Location:video_select.php");
 							}
 						?>
 						</body>
