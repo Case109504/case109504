@@ -60,34 +60,34 @@
 					<div class="box">
 						<div class="content">
 						<head>
-							<meta charset="UTF-8">
-							<style>
-								table{
-									border-collapse: collapse;
-								}
-								th,td{
-									border:1px solid #ccccff;
-									padding: 5px;
-								}
-								td{
-									text-align: center;
-								}
-							</style>
 						</head>
 						<body>
-						<a href="video_add.html">新增使用者</a>
-						<table>
-							<tr><th>video_id</th><th>video_name</th><th>time</th><th>修改/刪除</th></tr>
 						<?php
-						while($row = $res->fetch_assoc()) {
-							echo "<tr><td>".$row["video_id"]."</td>
-							<td>".$row["video_name"]."</td>
-							<td>".$row["time"]."</td>
-							<td><a href='video_edit.php?video_id=".$row["video_id"]."'>修改</a> <a href='video_delete.php?video_id=".$row["video_id"]."'>刪除</a></td></tr>";
-						}
-						$cn->close();
+							//首先進行非空排錯
+							if(!isset($_POST['video_name'])){
+								die('video_name is not define');
+							}
+							if(!isset($_POST['time'])){
+								die('time is not define');
+							}
+							$video_name=$_POST['video_name'];
+							$time=$_POST['time'];
+							if(empty($video_name)){
+								die('name is empty');
+							}
+							if(empty($time)){
+								die('time is empty');
+							}
+							
+							//插入資料
+							mysqli_query("INSERT INTO video(video_name,time) VALUES ('$video_name','$time')");
+							//返回列表頁面
+							if(mysqli_error()){
+								echo mysqli_error();
+							}else{
+								header("Location:vedio_select.php");
+							}
 						?>
-						</table>
 						</body>
 						</div>
 					</div>
