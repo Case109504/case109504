@@ -7,6 +7,31 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
 	<body class="subpage">
+		<?php
+			$hostname = "140.131.115.87:3306";
+			$username = "root";
+			$password = "109504109504";
+			$databasename = "testdb";
+			
+			// 創建連接
+			$cn = new mysqli($hostname,$username,$password,$databasename);
+			
+			if (!$cn)//判斷連線是否為空
+			{
+			die("連線錯誤: " . mysqli_connect_error());//連線失敗 列印錯誤日誌
+			}
+			$cn->query("SET NAMES utf8");//設定 字符集為utf8格式
+			$cn->select_db("member");//選擇要操作的資料表
+
+			$account=$_POST['account'];
+			$password=$_POST['password'];
+
+			$sql="select * from testdb.member where account = '$account' and password = '$password'";   
+			mysqli_query($cn,$sql);    //傳入資料庫連線引數，sql字串。
+			$res=$cn->query($sql);    //接收查詢產生的結果集
+			
+				//將結果集賦值給陣列物件
+		?>
 
 		<!-- Header -->
 			<header id="header">
@@ -40,15 +65,21 @@
 					<div class="box">
 						<div class="content">
 							<header class="align-center">
-								<p>請輸入帳號、密碼</p>
+								<p>登入成功</p>
 								<h2>會員登入</h2>
 							</header>
 							<body>
-								<form method="POST" action="member_login_php.php">
-									請輸入帳號：<input type="text" name="account"/><br>
-									請輸入密碼：<input type="Password" name="password"/><br>
-									<input type="submit" value="登入"/>
-								</form>
+							<h2><?php
+								header('Content-Type: text/html; charset=utf-8');
+								
+								$result1=mysqli_query($cn,$sql) or die("查詢失敗");
+								if(mysqli_num_rows($result1)){
+									echo"登入成功";
+								}else{
+									echo"登入失敗";
+								}
+								$cn->close();
+							?></h2>
 							</body>
 						</div>
 					</div>
