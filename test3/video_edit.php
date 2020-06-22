@@ -23,7 +23,7 @@
 			$cn->query("SET NAMES utf8");//設定 字符集為utf8格式
 			$cn->select_db("Video");//選擇要操作的資料表
 
-			$sql="select * from testdb.Video ORDER BY video_id";   
+			$sql="select * from testdb.Video";   
 			mysqli_query($cn,$sql);    //傳入資料庫連線引數，sql字串。
 			$res=$cn->query($sql);    //接收查詢產生的結果集
 		?>
@@ -67,22 +67,19 @@
 							if(!empty($_GET['video_id'])){
 								//查詢id
 								$video_id=intval($_GET['video_id']);
-								$result=mysqli_query("SELECT * FROM Video WHERE video_id=$video_id");
-								if(mysqli_error()){
-									die('can not connect db');
-								}
 								//獲取結果陣列
-								$result_arr=mysqli_fetch_assoc($result);
+								$row = $res->fetch_assoc();
 							}else{
-								die('id not define');
+								die('video_id not define');
 							}
 						?>
-						<form action="video_.php" method="post">
-							<label>使用者ID：</label><input type="text" name="id" value="<?php echo $result_arr['id']?>">
-							<label>使用者名稱：</label><input type="text" name="name" value="<?php echo $result_arr['name']?>">
-							<label>使用者年齡：</label><input type="text" name="age" value="<?php echo $result_arr['age']?>">
+						<form action="video_edit.php" method="post">
+							<label>影片ID：</label><input type="text" name="video_id" value="<?php echo $row['video_id']?>">
+							<label>影片名稱：</label><input type="text" name="video_name" value="<?php echo $row['video_name']?>">
+							<label>影片時間：</label><input type="date" name="time" value="<?php echo $row['time']?>">
 							<input type="submit" value="提交修改">
 						</form>
+						
 						</body>
 						</div>
 					</div>
@@ -114,35 +111,29 @@
 	</body>
 </html>
 <?php
-require_once 'functions.php';
-if(empty($_POST['id'])){
-    die('id is empty');
+if(empty($_POST['video_id'])){
+    die('video_id is empty');
 }
-if(empty($_POST['name'])){
-    die('name is empty');
+if(empty($_POST['video_name'])){
+    die('video_name is empty');
 }
-if(empty($_POST['age'])){
-    die('age is empty');
+if(empty($_POST['time'])){
+    die('time is empty');
 }
 
 
-$id=intval($_POST['id']);
-$name=$_POST['name'];
-$age=intval($_POST['age']);
-
-
-//連線資料庫
-connnetDb();
-
+$video_id=intval($_POST['video_id']);
+$video_name=$_POST['video_name'];
+$time=intval($_POST['time']);
 
 //修改指定資料
-mysql_query("UPDATE users SET name='$name',age=$age WHERE id=$id");
+mysqli_query("UPDATE video SET video_name='$video_name',time=$time WHERE video_id=$video_id");
 
 
 //排錯並返回
-if(mysql_error()){
-    echo mysql_error();
+if(mysqli_error()){
+    echo mysqli_error();
 }else{
-    header("Location:allusers.php");
+    header("Location:video_select.php");
 }
 ?>
