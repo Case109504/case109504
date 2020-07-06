@@ -4,7 +4,7 @@
 		<title>搜劇Film Seeker 首頁</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="css/main.css" />
 		<script src="https://kit.fontawesome.com/028c714c47.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
@@ -105,7 +105,7 @@
 									</header>
 									<p> 去年有以無差別殺人事件點題的社會寫實劇《我們與惡的距離》成為台劇新天花板，今年一開始，則由推理懸疑愛情劇《想見你》殺出重圍，用穿越劇包裝青春期的自我價值認同與矛盾脆弱的人生軌跡，故事情節反轉再反轉，劇中主角許光漢與柯佳嬿，分別一人分飾兩角，細膩而精湛的演技讓人相當驚豔，也透出近年來台劇逐漸展露全新創造力的光暈。</p>
 									<footer class="align-center">
-										<a href="fullmotion/index.php" class="button alt">更多推薦</a>
+										<a href="{{ route( 'index') }}" class="button alt">更多推薦</a>
 									</footer>
 								</div>
 							</div>
@@ -125,7 +125,7 @@
 										
 										</p>
 									<footer class="align-center">
-										<a href="fullmotion/index.php" class="button alt">更多推薦</a>
+										<a href="{{ route( 'index') }}" class="button alt">更多推薦</a>
 									</footer>
 								</div>
 							</div>
@@ -143,7 +143,7 @@
 									</header>
 									<p>2020韓劇追劇清單來了～繼《李屍朝鮮2》、《梨泰院Class》劇終後現在最熱門的絕對是《鬼媽媽》、《夫婦的世界》莫屬，劇中後也別擔心劇荒《永遠的君主》由李敏鎬由主演也超令人期待！今年還有燒腦神劇回歸《信號2》，以及許多韓劇男神都退伍回歸電視劇～2020年也是好劇追不完，2020最新韓劇持續更新中～</p>
 									<footer class="align-center">
-										<a href="fullmotion/index.php" class="button alt">更多推薦</a>
+										<a href="{{ route( 'index') }}" class="button alt">更多推薦</a>
 									</footer>
 								</div>
 							</div>
@@ -161,7 +161,7 @@
 									</header>
 									<p>踏入 2020 年，又有新一輪日劇要上映啦！2020 年精彩日劇真的數之不盡，除了第一季大熱的《戀愛可以持續到天長地久》外，各個電視台紛紛派出天王天后迎戰，包括堺雅人《半澤直樹》、木村拓哉《搏命保鑣》、篠原涼子《超級特派員》、織田裕二與鈴木保奈美《金裝律師》都會推出第二季，大家又有好劇可追了。</p>
 									<footer class="align-center">
-										<a href="fullmotion/index.php" class="button alt">更多推薦</a>
+										<a href="{{ route( 'index') }}" class="button alt">更多推薦</a>
 									</footer>
 								</div>
 							</div>
@@ -230,11 +230,11 @@
 			</footer>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<script src="js/jquery.min.js"></script>
+			<script src="js/jquery.scrollex.min.js"></script>
+			<script src="js/skel.min.js"></script>
+			<script src="js/util.js"></script>
+			<script src="js/main.js"></script>
 
 	</body>
 </html>
