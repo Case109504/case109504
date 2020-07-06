@@ -31,3 +31,19 @@ Route::get('index', function () {
 Route::get('introduction', function () {
     return view('introduction');
 })->name('introduction');
+
+Route::get('generic', function () {
+    return view('generic');
+})->name('generic');
+
+Route::get('member_login_php', function () {
+    return view('member_login_php');
+})->name('member_login_php');
+
+Route::get('backstage', function () {
+    return view('backstage');
+})->name('backstage');
+
+Route::get('backstage_login_php', function () {
+    return view('backstage_login_php');
+})->name('backstage_login_php');

@@ -31,11 +31,11 @@
 		<!-- Nav -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="home.html">首頁</a></li>
-					<li><a href="generic.html">登入/註冊</a></li>
-					<li><a href="imageSearch.html">圖片搜尋</a></li>
-					<li><a href="elements.html">關於我們</a></li>
-					<li><a href="backstage.html">管理員</a></li>
+					<li><a href="home">首頁</a></li>
+					<li><a href="generic">登入/註冊</a></li>
+					<li><a href="imageSearch">圖片搜尋</a></li>
+					<li><a href="elements">關於我們</a></li>
+					<li><a href="backstage">管理員</a></li>
 				</ul>
 			</nav>
 
