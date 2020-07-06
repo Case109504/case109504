@@ -77,19 +77,18 @@
 								while($row = $res->fetch_assoc()) {
 									// echo '<td>'.$row["video_id"]."".$row["video_name"]."".$row["time"].'</td></br>';   //輸出結果
 									echo '<div class="box">
-									<a href="{{ route(  '.'introduction'.') }}?video_name='.$row["video_name"].'" class="image fit" data-poptrox="ignore"><img src="'.$row["videopicture"].'" alt="" /></a>
+									<a href="introduction?video_name='.$row["video_name"].'" class="image fit" data-poptrox="ignore"><img src="'.$row["videopicture"].'" alt="" /></a>
 									<div class="inner">
 										<h3>'.$row["video_name"].'</h3>
 										<p>主演： '.$row["actor_name"].'<br /></p>
 										<p>評分： '.$row["score"].' <br /></p>
-										<a href="{{ route( "introduction") }}?video_name='.$row["video_name"].'" class="button fit" data-poptrox="ignore">影片介紹</a>
+										<a href="introduction?video_name='.$row["video_name"].'" class="button fit" data-poptrox="ignore">影片介紹</a>
 									</div>
 								</div>';
 								}
 							//}
 							$cn->close();
 							?>
-							
 
 						</div>
 
