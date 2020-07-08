@@ -83,8 +83,8 @@ for i, link in enumerate( video_links ):
             'type': video_types, #
             'area': area, #
             'time': video_time,
-            'introduction':info
-            
+            'introduction':info,
+            'link':video_links[i]
         }
         time.sleep( random.random() * 0.5 + 0.5 )
     
