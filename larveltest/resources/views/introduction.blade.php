@@ -4,7 +4,7 @@
 		<title>Full Motion</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="css/main.css" />
+		<link rel="stylesheet" href="css/main2.css" />
 	</head>
 	<body id="top">
 	<?php
@@ -116,7 +116,7 @@
 			<script src="js/jquery.poptrox.min.js"></script>
 			<script src="js/skel.min.js"></script>
 			<script src="js/util.js"></script>
-			<script src="js/main.js"></script>
+			<script src="js/main2.js"></script>
 
 
 
