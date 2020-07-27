@@ -1,3 +1,12 @@
+<?php
+use Illuminate\Support\Facades\DB;
+$Video = DB::table('Video')->get();
+
+foreach ($Video as $Video)
+{
+    echo $Video->video_id.$Video->video_name.'<br>';
+}
+?>
 <!DOCTYPE HTML>
 <html lang = "zh-tw">
 	<head>
