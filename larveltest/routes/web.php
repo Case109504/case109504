@@ -21,8 +21,8 @@ Route::get('welcome', function () {
 })->name('welcome');
 
 Route::get('/', function () {
-    return view('home');
-})->name('home');
+    return view('home1');
+})->name('home1');
 
 Route::get('index', function () {
     return view('index');
@@ -47,3 +47,6 @@ Route::get('backstage', function () {
 Route::get('backstage_login_php', function () {
     return view('backstage_login_php');
 })->name('backstage_login_php');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
