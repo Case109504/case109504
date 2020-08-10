@@ -7,47 +7,6 @@
 		<link rel="stylesheet" href="css/main2.css" />
 	</head>
 	<body id="top">
-	<?php
-		$hostname = "140.131.115.87:3306";
-		$username = "root";
-		$password = "109504109504";
-		$databasename = "testdb";
-		
-		// 創建連接
-		$cn = new mysqli($hostname,$username,$password,$databasename);
-		
-		if (!$cn)//判斷連線是否為空
-		{
-		die("連線錯誤: " . mysqli_connect_error());//連線失敗 列印錯誤日誌
-		}
-		$cn->query("SET NAMES utf8");//設定 字符集為utf8格式
-		$cn->select_db("Video");//選擇要操作的資料表
-
-		$sql="select Video.video_name , Video.videopicture , type.type_name , director.director_name, actor_name, screenwriter_name, source_name, plot_name, area_name, awards_name, film_source ,type_name,score,comments_name,videourl from testdb.Video
-		left join testdb.type on Video.type_id = type.type_id 
-		left join testdb.director_record on Video.video_id = director_record.video_id
-		left join testdb.director on director.director_id = director_record.director_id
-		left join testdb.actor_record on Video.video_id = actor_record.video_id
-		left join testdb.actor on actor.actor_id = actor_record.actor_id
-		left join testdb.screenwriter_record on Video.video_id = screenwriter_record.video_id
-		left join testdb.screenwriter on screenwriter.screenwriter_id = screenwriter_record.screenwriter_id
-		left join testdb.access on Video.video_id = access.video_id
-		left join testdb.sources on sources.source_id = access.source_id
-		left join testdb.plot_record on Video.video_id = plot_record.video_id
-		left join testdb.plot on plot.plot_id = plot_record.plot_id
-		left join testdb.area on Video.area_id = area.area_id
-		left join testdb.awards on Video.video_id = awards.video_id
-		left join testdb.film_source on Video.video_id = film_source.video_id
-		left join testdb.score on Video.video_id = score.video_id
-		left join testdb.comments on Video.video_id = comments.video_id
-		where video_name = '" . $_GET["video_name"]."'";   
-		mysqli_query($cn,$sql);    //傳入資料庫連線引數，sql字串。
-		$res=$cn->query($sql);    //接收查詢產生的結果集
-		
-		    //將結果集賦值給陣列物件
-		
-
-?>
 			<!-- Banner -->
 			<!--
 				To use a video as your background, set data-video to the name of your video without
@@ -72,20 +31,49 @@
 					<!-- Boxes -->
 						<div class="thumbnails">
 							<?php 
-							while($row=mysqli_fetch_array($res)){
-								echo '<div class="image fit">
-									<img src="'.$row["videopicture"].'" alt="" /></a>
-									</div>';
-								echo "<p>影片名稱：" .$_GET["video_name"]."<br/>主演：" .$row["actor_name"]."<br/>簡介：" .$row["plot_name"]."<br/>類型：" .$row["type_name"]."<br/>導演：" .$row["director_name"]."<br/>編劇：" .$row["screenwriter_name"]."<br/>劇別：" .$row["source_name"]."<br/>區域：" .$row["area_name"]."<br/>影片來源：" .$row["film_source"]."<br/>評分：" .$row["score"]."</p>";
-								echo '<a href = "'.$row["videourl"].'" data-poptrox="ignore">影片來源（愛奇藝）</a>';
-								echo "<p>評論：" .$row["comments_name"]."</p>";
-								while($row=mysqli_fetch_array($res)){
-									echo "<p>評論：" .$row["comments_name"]."</p>";
-								}
-								
+							use Illuminate\Support\Facades\DB;
+							$Video = DB::table('Video')
+							->leftJoin('type', 'Video.type_id', '=', 'type.type_id')
+							->leftJoin('director_record', 'Video.video_id', '=', 'director_record.video_id')
+							->leftJoin('director', 'director.director_id', '=', 'director_record.director_id')
+							->leftJoin('actor_record', 'Video.video_id', '=', 'actor_record.video_id')
+							->leftJoin('actor', 'actor.actor_id', '=', 'actor_record.actor_id')
+							->leftJoin('screenwriter_record', 'Video.video_id', '=', 'screenwriter_record.video_id')
+							->leftJoin('screenwriter', 'screenwriter.screenwriter_id', '=', 'screenwriter_record.screenwriter_id')
+							->leftJoin('access', 'Video.video_id', '=', 'access.video_id')
+							->leftJoin('sources', 'sources.source_id', '=', 'access.source_id')
+							->leftJoin('plot_record', 'Video.video_id', '=', 'plot_record.video_id')
+							->leftJoin('plot', 'plot.plot_id', '=', 'plot_record.plot_id')
+							->leftJoin('area', 'Video.area_id', '=', 'area.area_id')
+							->leftJoin('awards', 'Video.video_id', '=', 'awards.video_id')
+							->leftJoin('film_source', 'Video.video_id', '=', 'film_source.video_id')
+							->leftJoin('score', 'Video.video_id', '=', 'score.video_id')
+							->where('video_name', '=', $_GET['video_name'])
+							->get();
+							$comment_s = DB::table('Video')
+							->leftJoin('comments', 'Video.video_id', '=', 'comments.video_id')
+							->where('video_name', '=', $_GET['video_name'])
+							->get();
+							/*foreach ($Video as $Video)
+							{
+								echo $Video->video_id.$Video->video_name.'<br>';
 							}
-							
-							$cn->close();
+							foreach ($comment_s as $comment_s)
+							{
+								echo $comment_s->comments_name.'<br>';
+							}*/
+							foreach ($Video as $Video)
+							{
+								echo '<div class="image fit">
+									<img src="'.$Video->videopicture.'" alt="" /></a>
+									</div>';
+								echo "<p>影片名稱：" .$Video->video_name."<br/>主演：" .$Video->actor_name."<br/>簡介：" .$Video->plot_name."<br/>類型：" .$Video->type_name."<br/>導演：" .$Video->director_name."<br/>編劇：" .$Video->screenwriter_name."<br/>劇別：" .$Video->source_name."<br/>區域：" .$Video->area_name."<br/>影片來源：" .$Video->film_source."<br/>評分：" .$Video->score."</p>";
+								echo '<a href = "'.$Video->videourl.'" data-poptrox="ignore">影片來源（愛奇藝）</a>';
+							}
+							foreach ($comment_s as $comment_s)
+							{
+								echo "<p>評論：" .$comment_s->comments_name."</p>";
+							}
 							?>
 							
 
