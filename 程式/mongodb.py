@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import requests
 from lxml import etree
 import re
@@ -39,11 +40,12 @@ def get_movie_info(url):
         #screemwriter = info_items[1].find( 'span', class_ = 'attrs' ).find( 'a' ).text
         for s in info_items[1].find_all( 'span', class_ = 'attrs' ):
             screemwriter.append( s.text )
-        # actor = info_items[2].find( 'span', class_ = 'attrs' ).find( 'a' ).text
+        # actor = info_items[2].find( 'span', class_ = 'attrs' ).find( 'a' ).text            
         for a in info_items[2].find_all( 'span', class_ = 'attrs' ):
             actor.append( a.text )
         type = re.findall('<span property="v:genre">(.*?)</span>',html.text,re.S)
         score = re.findall('<strong class="ll rating_num" property="v:average">(.*?)</strong>',html.text,re.S)
+        plot = re.findall('<span property="v:summary" class="">(.*?)</span>',html.text,re.S)
         area = re.findall('制片国家/地区:</span>(.*?)<br/>',html.text,re.S)
         # video_time = re.findall('上映日期:</span>(.*?)<br/>',div_info.text,re.S)
         
@@ -63,6 +65,7 @@ def get_movie_info(url):
         'actor': actor,
         'type': type,
         'score': score,
+        'plot': plot,
         'area': area,
         'time': '/'.join( video_time )
         
