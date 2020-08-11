@@ -27,7 +27,7 @@ require "vendor/autoload.php";
 
 use Google\Cloud\Vision\VisionClient;
 //$vision = new VisionClient(['keyFile' => json_decode(file_get_contents("key.json"), true)]);
-$vision = export GOOGLE_APPLICATION_CREDENTIALS="/htdocs/test3/key.json";
+$vision = export GOOGLE_APPLICATION_CREDENTIALS="/opt/lampp/htdocs/case109504/test3/key.json";
 
 $familyPhotoResource = fopen($_FILES['image']['tmp_name'], 'r');
 
