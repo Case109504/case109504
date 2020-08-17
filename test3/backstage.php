@@ -1,4 +1,8 @@
 <!DOCTYPE HTML>
+<?php
+session_start();
+include 'php/FindOrder.php';
+?>
 <html>
 	<head>
 		<title>明察秋毫 搜尋</title>
@@ -7,9 +11,28 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
 	<body class="subpage">
+		<?php
+			if(isset($_SESSION["unLog"])){
+				if($_SESSION["unLog"]){
+					echo '<script>  swal({
+					text: "未登入或登入逾時！",
+					icon: "error",
+					button: false,
+					timer: 2000,
+					}); </script>';
+					session_unset();
+				}   
+			}
+			
 
+			
+			
+			if (isset($_POST["next"])) {
+				findUser($_POST["account"], $_POST["password"]);
+			}
+        ?>
 		<!-- Header -->
-			<header id="header">
+		<header id="header">
 				<div class="logo"><a href="home.html">明察秋毫 <span></span></a></div>
 				<a href="#menu"></a>
 			</header>
@@ -44,10 +67,27 @@
 								<h2>管理員登入</h2>
 							</header>
 							<body>
-								<form method="POST" action="backstage_login_php.php">
-									請輸入帳號：<input type="text" name="backstage_account"/><br>
-									請輸入密碼：<input type="Password" name="backstage_password"/><br>
-									<input type="submit" value="登入"/>
+								<form method="post" action="">
+
+									<div class="6u 12u$(small)" style="margin-left: 20%"> 
+										<h1>帳號：</h1>
+										<input type="text" name="account" id="account" value="" placeholder="" required>
+									</div>
+									<br/>
+									<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
+										<h1>密碼：</h1>									
+										<input type="password" name="password" id="password" value="" placeholder="" required>
+									</div>  
+
+									<div class="12u$">
+										<ul class="actions">
+											<div align="right"  style="margin-right: 5%">
+
+												<li><input type="submit" name="next" value="登入"></li>
+
+											</div>
+										</ul>
+									</div>
 								</form>
 							</body>
 						</div>
