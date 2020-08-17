@@ -56,6 +56,7 @@ if ($_SESSION["acc"] == "") {
 								<h2>歡迎<?php echo $_SESSION["acc"]; ?></h2>
 								<h3><?php echo date('Y-M-D'); ?></h3>
 								<a href="video_select.php">資料查詢</a>
+								<a href="php/logOut.php">登出</a>
 							</body>
 						</div>
 					</div>
