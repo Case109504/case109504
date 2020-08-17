@@ -47,6 +47,19 @@ Route::get('backstage', function () {
 Route::get('backstage_login_php', function () {
     return view('backstage_login_php');
 })->name('backstage_login_php');
+
+Route::get('FindOrder', function () {
+    return view('FindOrder');
+})->name('FindOrder');
+Route::get('DataBase', function () {
+    return view('DataBase');
+})->name('DataBase');
+Route::get('deleteFile', function () {
+    return view('deleteFile');
+})->name('deleteFile');
+Route::get('logOut', function () {
+    return view('logOut');
+})->name('logOut');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
