@@ -1,4 +1,8 @@
 <!DOCTYPE HTML>
+<?php
+session_start();
+include 'php/FindOrder.php';
+?>
 <html>
 	<head>
 		<title>明察秋毫 搜尋</title>
@@ -8,25 +12,25 @@
 	</head>
 	<body class="subpage">
 		<?php
-			$hostname = "140.131.115.87:3306";
-			$username = "root";
-			$password = "109504109504";
-			$databasename = "testdb";
-			
-			// 創建連接
-			$cn = new mysqli($hostname,$username,$password,$databasename);
-			
-			if (!$cn)//判斷連線是否為空
-			{
-			die("連線錯誤: " . mysqli_connect_error());//連線失敗 列印錯誤日誌
+			if(isset($_SESSION["unLog"])){
+				if($_SESSION["unLog"]){
+					echo '<script>  swal({
+					text: "未登入或登入逾時！",
+					icon: "error",
+					button: false,
+					timer: 2000,
+					}); </script>';
+					session_unset();
+				}   
 			}
-			$cn->query("SET NAMES utf8");//設定 字符集為utf8格式
-			$cn->select_db("Video");//選擇要操作的資料表
+			
 
-			$sql="select * from testdb.Video ORDER BY video_id";   
-			mysqli_query($cn,$sql);    //傳入資料庫連線引數，sql字串。
-			$res=$cn->query($sql);    //接收查詢產生的結果集
-		?>
+			
+			
+			if (isset($_POST["next"])) {
+				AddVideo($_POST["video_id"], $_POST["video_name"]);
+			}
+        ?>
 
 		<!-- Header -->
 			<header id="header">
@@ -62,32 +66,24 @@
 						<head>
 						</head>
 						<body>
-						<?php
-							//首先進行非空排錯
-							if(!isset($_POST['video_name'])){
-								die('video_name is not define');
-							}
-							if(!isset($_POST['time'])){
-								die('time is not define');
-							}
-							$video_name=$_POST['video_name'];
-							$time=$_POST['time'];
-							if(empty($video_name)){
-								die('name is empty');
-							}
-							if(empty($time)){
-								die('time is empty');
-							}
-							
-							//插入資料
-							mysqli_query("INSERT INTO video(video_name,time) VALUES ('$video_name','$time')");
-							//返回列表頁面
-							if(mysqli_error()){
-								echo mysqli_error();
-							}else{
-								header("Location:video_select.php");
-							}
-						?>
+							<form method="post" action="">
+								<div class="6u 12u$(small)" style="margin-left: 20%"> 
+									<h1>影片編號：</h1>
+									<input type="text" name="video_id" id="video_id" value="" placeholder="" required>
+								</div>
+								<br/>
+								<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
+									<h1>影片名稱：</h1>									
+									<input type="text" name="video_name" id="video_name" value="" placeholder="" required>
+								</div>  
+								<div class="12u$">
+									<ul class="actions">
+										<div align="right"  style="margin-right: 5%">
+											<li><input type="submit" name="next" value="新增"></li>
+										</div>
+									</ul>
+								</div>
+							</form>
 						</body>
 						</div>
 					</div>

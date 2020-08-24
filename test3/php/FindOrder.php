@@ -2,49 +2,11 @@
 
 include 'DataBase.php';
 
-function FindbyId($id) {
+function AddVideo($video_id, $video_name) {
     $db = DB();
-    $sql = "SELECT A\n" .
-            "	.會員編號,\n" .
-            "	A.\"會員帳號\",\n" .
-            "	A.\"行程編號\",\n" .
-            "	a1.\"行程名稱\",\n" .
-            "	a1.\"行程日期\",\n" .
-            "FROM\n" .
-            "	\"會員資料\" A,\n" .
-            "	\"行程資料\" a1 \n" .
-            "WHERE\n" .
-            "	A.\"行程編號\" = '" . $id . "' \n" .
-            "	AND A.\"會員編號\" = a1.\"會員編號\" \n" .
-            "ORDER BY\n" .
-            "	a1.\"會員編號\";";
-    $result = $db->query($sql);
-    $out = false;
-    while ($row = $result->fetch(PDO::FETCH_OBJ)) {
-//PDO::FETCH_OBJ 指定取出資料的型態
-//        echo '<tr>';
-//        echo '<td>' . $row->會員編號 . "</td><td>" . $row->會員帳號 . "</td>";
-//        echo '</tr>';
-        $schedule = $row->行程編號;
-        echo '
-        <hr/>
-        <p>	編號：' . $row->會員編號. '</p>
-        <p>     帳號：' . $row->會員帳號 . '</p>
-        <p>     行程編號：' . $row->行程編號 . '</p>
-        <p>     行程名稱：' . $row->行程名稱 . '</p>
-        <P>     行程日期:' . $row->行程日期 . '</p>';
-        $out = true;
-    }
-    if (!$out) {
-        echo '<div class ="Err" style="color:red;">
-        查不到資料！  請檢查輸入資料是否正確！</div>';
-        echo '<script>  swal({
-            text: "查不到資料！  請檢查輸入資料是否正確！",
-            icon: "error",
-            button: false,
-            timer: 3000,
-        }); </script>';
-    }
+    $sql = "INSERT INTO Video(video_id,video_name) VALUES ('$video_id','$video_name')";
+    mysqli_query($db,$sql)or die ("無法新增".mysqli_error($db)); //執行sql語法
+    header("Location:video_select.php");
 }
 
 function FindbyName($name) {
@@ -171,7 +133,7 @@ function FindUser ($acc , $password){
         //     timer: 2000,
         // }); </script>';
         
-        header('Location: ../maneger.php');
+        header('Location: backstage.php');
         $_SESSION["unLog"] = true;
         // echo '<meta http-equiv="refresh" content="2;url=../maneger.php" />';
     }
