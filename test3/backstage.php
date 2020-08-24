@@ -51,8 +51,8 @@ include 'php/FindOrder.php';
 			<section id="One" class="wrapper style3">
 				<div class="inner">
 					<header class="align-center">
-						<p>Eleifend vitae urna</p>
-						<h2>Generic Page Template</h2>
+						<p>你好，管理員</p>
+						<h2>歡迎來到管理頁面</h2>
 					</header>
 				</div>
 			</section>

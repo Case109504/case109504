@@ -27,7 +27,9 @@ if ($_SESSION["acc"] == "") {
 			<nav id="menu">
 				<ul class="links">
 					<li><a href="home.html">首頁</a></li>
-					<li><a href="generic.html">登入/註冊</a></li>
+					<li><a href="generic.html">登入/註冊</a>
+						<ul class="links"><li><a href="home.html">首頁</a></li></ul>
+					</li>
 					<li><a href="imageSearch.html">圖片搜尋</a></li>
 					<li><a href="elements.html">關於我們</a></li>
 				</ul>
@@ -37,8 +39,8 @@ if ($_SESSION["acc"] == "") {
 			<section id="One" class="wrapper style3">
 				<div class="inner">
 					<header class="align-center">
-						<p>Eleifend vitae urna</p>
-						<h2>Generic Page Template</h2>
+						<p>你好，管理員<?php echo $_SESSION["acc"]; ?></p>
+						<h2>歡迎來到管理頁面</h2>
 					</header>
 				</div>
 			</section>
@@ -56,7 +58,7 @@ if ($_SESSION["acc"] == "") {
 								<h2>歡迎<?php echo $_SESSION["acc"]; ?></h2>
 								<h3><?php echo date('Y-M-D'); ?></h3>
 								<a href="video_select.php">資料查詢</a>
-								<a href="php/logOut.php">登出</a>
+								<input name="submit" type="button" id="submit" onclick="location.href='php/logOut.php'" value="登出" />
 							</body>
 						</div>
 					</div>
