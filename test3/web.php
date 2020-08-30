@@ -13,13 +13,4 @@
             <?php endforeach ?>
         </ol>
     </div>
-    <div class="col-6">
-        <h5>相關網頁</h5>
-        <hr>
-        <ol>
-            <?php foreach ($web->pages() as $key => $page): ?>
-                <li><a href="<?php echo $page->info()['url'] ?>"><?php echo $page->info()['url']; ?></a></li>
-            <?php endforeach ?>
-        </ol>
-    </div>
 </div>
