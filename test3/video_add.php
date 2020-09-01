@@ -28,7 +28,7 @@ include 'php/FindOrder.php';
 			
 			
 			if (isset($_POST["next"])) {
-				AddVideo($_POST["video_id"], $_POST["video_name"]);
+				AddVideo($_POST["video_id"], $_POST["video_name"], $_POST["type_id"], $_POST["area_id"]);
 			}
         ?>
 
@@ -75,6 +75,14 @@ include 'php/FindOrder.php';
 								<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
 									<h1>影片名稱：</h1>									
 									<input type="text" name="video_name" id="video_name" value="" placeholder="" required>
+								</div>  
+								<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
+									<h1>影片類型：</h1>									
+									<input type="text" name="type_id" id="type_id" value="" placeholder="" required>
+								</div>  
+								<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
+									<h1>影片國家：</h1>									
+									<input type="text" name="area_id" id="area_id" value="" placeholder="" required>
 								</div>  
 								<div class="12u$">
 									<ul class="actions">
