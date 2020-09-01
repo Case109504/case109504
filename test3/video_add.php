@@ -2,6 +2,10 @@
 <?php
 session_start();
 include 'php/FindOrder.php';
+if ($_SESSION["acc"] == "") {
+    header('Location: backstage.php');
+    $_SESSION["unLog"] = true;
+}
 ?>
 <html>
 	<head>
@@ -52,8 +56,8 @@ include 'php/FindOrder.php';
 			<section id="One" class="wrapper style3">
 				<div class="inner">
 					<header class="align-center">
-						<p>Eleifend vitae urna</p>
-						<h2>Generic Page Template</h2>
+						<p>你好，管理員<?php echo $_SESSION["acc"]; ?></p>
+						<h2>新增影片</h2>
 					</header>
 				</div>
 			</section>

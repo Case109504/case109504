@@ -3,7 +3,7 @@
 session_start();
 include 'php/FindOrder.php';
 if ($_SESSION["acc"] == "") {
-    header('Location: maneger.php');
+    header('Location: backstage.php');
     $_SESSION["unLog"] = true;
 }
 ?>

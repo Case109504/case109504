@@ -1,4 +1,12 @@
 <!DOCTYPE HTML>
+<?php
+session_start();
+include 'php/FindOrder.php';
+if ($_SESSION["acc"] == "") {
+    header('Location: backstage.php');
+    $_SESSION["unLog"] = true;
+}
+?>
 <html>
 	<head>
 		<title>明察秋毫 搜尋</title>
@@ -65,8 +73,8 @@
 			<section id="One" class="wrapper style3">
 				<div class="inner">
 					<header class="align-center">
-						<p>Eleifend vitae urna</p>
-						<h2>Generic Page Template</h2>
+						<p>你好，管理員<?php echo $_SESSION["acc"]; ?></p>
+						<h2>影片總覽</h2>
 					</header>
 				</div>
 			</section>
@@ -92,7 +100,9 @@
 							</style>
 						</head>
 						<body>
-						<a href="video_add.php">新增影片</a>
+						<input name="submit" type="button" id="submit" onclick="location.href='video_add.php'" value="新增影片" />
+						<input name="submit" type="button" id="submit" onclick="location.href='php/logOut.php'" value="登出" />
+						<P></P>
 						<table>
 							<tr><th>影片編號</th><th>影片名稱</th><th>主演</th><th>類型</th><th>導演</th><th>編劇</th><th>修改/刪除</th></tr>
 						<?php
