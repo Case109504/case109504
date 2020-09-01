@@ -123,6 +123,28 @@ function FindUser ($acc , $password){
 
 }
 
+function FindMember ($acc , $password){
+    $db = DB();
+    $sql = "SELECT * FROM testdb.member WHERE account='".$acc."' and password='".$password."'";
+    $result = $db->query($sql);
+    $row = $result->fetch(PDO::FETCH_ASSOC);
+    if($row>1){
+        $_SESSION["acc"] = $acc;
+        $_SESSION["password"] = $password;
+        
+        
+        header('Location: home.html');
+    }else{
+        echo '<script>  swal({
+            text: "查不到資料！  請檢查輸入資料是否正確！",
+            icon: "error",
+            button: false,
+            timer: 3000,
+        }); </script>';
+    }
+
+}
+
 
 	function logInSure(){
     if($_SESSION["acc"] == ""){

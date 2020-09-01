@@ -1,4 +1,8 @@
 <!DOCTYPE HTML>
+<?php
+session_start();
+include 'php/FindOrder.php';
+?>
 <html>
 	<head>
 		<title>明察秋毫 搜尋</title>
@@ -8,33 +12,27 @@
 	</head>
 	<body class="subpage">
 		<?php
-			$hostname = "140.131.115.87:3306";
-			$username = "root";
-			$password = "109504109504";
-			$databasename = "testdb";
-			
-			// 創建連接
-			$cn = new mysqli($hostname,$username,$password,$databasename);
-			
-			if (!$cn)//判斷連線是否為空
-			{
-			die("連線錯誤: " . mysqli_connect_error());//連線失敗 列印錯誤日誌
+			if(isset($_SESSION["unLog"])){
+				if($_SESSION["unLog"]){
+					echo '<script>  swal({
+					text: "未登入或登入逾時！",
+					icon: "error",
+					button: false,
+					timer: 2000,
+					}); </script>';
+					session_unset();
+				}   
 			}
-			$cn->query("SET NAMES utf8");//設定 字符集為utf8格式
-			$cn->select_db("member");//選擇要操作的資料表
-
-			$account=$_POST['account'];
-			$password=$_POST['password'];
-
-			$sql="select * from testdb.member where account = '$account' and password = '$password'";   
-			mysqli_query($cn,$sql);    //傳入資料庫連線引數，sql字串。
-			$res=$cn->query($sql);    //接收查詢產生的結果集
 			
-				//將結果集賦值給陣列物件
-		?>
 
+			
+			
+			if (isset($_POST["next"])) {
+				FindMember($_POST["account"], $_POST["password"]);
+			}
+        ?>
 		<!-- Header -->
-			<header id="header">
+		<header id="header">
 				<div class="logo"><a href="home.html">明察秋毫 <span></span></a></div>
 				<a href="#menu"></a>
 			</header>
@@ -53,8 +51,8 @@
 			<section id="One" class="wrapper style3">
 				<div class="inner">
 					<header class="align-center">
-						<p>Eleifend vitae urna</p>
-						<h2>Generic Page Template</h2>
+						<p>親愛的會員您好</p>
+						<h2>歡迎來到會員登入頁面</h2>
 					</header>
 				</div>
 			</section>
@@ -65,21 +63,32 @@
 					<div class="box">
 						<div class="content">
 							<header class="align-center">
-								<p>登入成功</p>
+								<p>請輸入帳號、密碼</p>
 								<h2>會員登入</h2>
 							</header>
 							<body>
-							<h2><?php
-								header('Content-Type: text/html; charset=utf-8');
-								
-								$result1=mysqli_query($cn,$sql) or die("查詢失敗");
-								if(mysqli_num_rows($result1)){
-									echo"登入成功";
-								}else{
-									echo"登入失敗";
-								}
-								$cn->close();
-							?></h2>
+								<form method="post" action="">
+
+									<div class="6u 12u$(small)" style="margin-left: 20%"> 
+										<h1>帳號：</h1>
+										<input type="text" name="account" id="account" value="" placeholder="" required>
+									</div>
+									<br/>
+									<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
+										<h1>密碼：</h1>									
+										<input type="password" name="password" id="password" value="" placeholder="" required>
+									</div>  
+
+									<div class="12u$">
+										<ul class="actions">
+											<div align="right"  style="margin-right: 5%">
+
+												<li><input type="submit" name="next" value="登入"></li>
+
+											</div>
+										</ul>
+									</div>
+								</form>
 							</body>
 						</div>
 					</div>
