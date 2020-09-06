@@ -26,10 +26,10 @@ require "vendor/autoload.php";
             //將結果集賦值給陣列物件
 
 
-use Google\Cloud\Vision\VisionClient;
+use \Google\Cloud\Vision\VisionClient;
 //$vision = new VisionClient(['keyFile' => json_decode(file_get_contents("key.json"), true)]);
 export GOOGLE_APPLICATION_CREDENTIALS = "/opt/lampp/htdocs/case109504/test3/key.json";
-$vision = 
+$vision = new VisionClient(['keyFile' => json_decode(file_get_contents("key.json"), true)]);
 
 $familyPhotoResource = fopen($_FILES['image']['tmp_name'], 'r');
 
