@@ -80,7 +80,7 @@ if ($_SESSION["acc"] == "") {
 				<div class="inner">
 					<header class="align-center">
 						<p>你好，管理員<?php echo $_SESSION["acc"]; ?></p>
-						<h2>新增影片</h2>
+						<h2>更新影片</h2>
 					</header>
 				</div>
 			</section>
