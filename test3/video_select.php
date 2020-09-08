@@ -114,7 +114,7 @@ if ($_SESSION["acc"] == "") {
 							<td width='10%'>".$row["type_name"]."</td>
 							<td width='10%'>".$row["director_name"]."</td>
 							<td width='10%'>".$row["screenwriter_name"]."</td>
-							<td width='10%'><a href='video_edit.php?video_id=".$row["video_id"]."'>修改</a> <a href='video_delete.php?video_id=".$row["video_id"]."'>刪除</a></td></tr>";
+							<td width='10%'><a href='video_update.php?video_id=".$row["video_id"]."'>修改</a> <a href='video_delete.php?video_id=".$row["video_id"]."'>刪除</a></td></tr>";
 						}
 						$cn->close();
 						?>
