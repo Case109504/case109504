@@ -9,6 +9,13 @@ function AddVideo($video_id, $video_name, $type_id, $area_id) {
     header("Location:video_select.php");
 }
 
+function UpdateVideo($video_id, $video_name, $type_id, $area_id) {
+    $db = DB();
+    $sql = "UPDATE Video SET video_name = '$video_name' WHERE (video_id = '$video_id')";
+    $db->exec($sql)or die ("無法更新".mysqli_error($db)); //執行sql語法
+    header("Location:video_select.php");
+}
+
 function FindbyName($name) {
     $db = DB();
     $sql = "SELECT A\n" .

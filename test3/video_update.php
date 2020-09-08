@@ -1,4 +1,12 @@
 <!DOCTYPE HTML>
+<?php
+session_start();
+include 'php/FindOrder.php';
+if ($_SESSION["acc"] == "") {
+    header('Location: backstage.php');
+    $_SESSION["unLog"] = true;
+}
+?>
 <html>
 	<head>
 		<title>明察秋毫 搜尋</title>
@@ -8,25 +16,47 @@
 	</head>
 	<body class="subpage">
 		<?php
-			$hostname = "140.131.115.87:3306";
-			$username = "root";
-			$password = "109504109504";
-			$databasename = "testdb";
-			
-			// 創建連接
-			$cn = new mysqli($hostname,$username,$password,$databasename);
-			
-			if (!$cn)//判斷連線是否為空
-			{
-			die("連線錯誤: " . mysqli_connect_error());//連線失敗 列印錯誤日誌
+			if(isset($_SESSION["unLog"])){
+				if($_SESSION["unLog"]){
+					echo '<script>  swal({
+					text: "未登入或登入逾時！",
+					icon: "error",
+					button: false,
+					timer: 2000,
+					}); </script>';
+					session_unset();
+				}   
 			}
-			$cn->query("SET NAMES utf8");//設定 字符集為utf8格式
-			$cn->select_db("Video");//選擇要操作的資料表
+			
 
-			$sql="select * from testdb.Video where video_id = '" . $_GET["video_id"]."'";   
-			mysqli_query($cn,$sql);    //傳入資料庫連線引數，sql字串。
-			$res=$cn->query($sql);    //接收查詢產生的結果集
-		?>
+			
+			
+			if (isset($_POST["next"])) {
+				UpdateVideo($_POST["video_id"], $_POST["video_name"], $_POST["type_id"], $_POST["area_id"]);
+			}
+
+			$db = DB();
+			$sql="select * from testdb.Video
+			left join testdb.type on Video.type_id = type.type_id 
+			left join testdb.director_record on Video.video_id = director_record.video_id
+			left join testdb.director on director.director_id = director_record.director_id
+			left join testdb.actor_record on Video.video_id = actor_record.video_id
+			left join testdb.actor on actor.actor_id = actor_record.actor_id
+			left join testdb.screenwriter_record on Video.video_id = screenwriter_record.video_id
+			left join testdb.screenwriter on screenwriter.screenwriter_id = screenwriter_record.screenwriter_id
+			left join testdb.access on Video.video_id = access.video_id
+			left join testdb.sources on sources.source_id = access.source_id
+			left join testdb.plot_record on Video.video_id = plot_record.video_id
+			left join testdb.plot on plot.plot_id = plot_record.plot_id
+			left join testdb.area on Video.area_id = area.area_id
+			left join testdb.awards on Video.video_id = awards.video_id
+			left join testdb.film_source on Video.video_id = film_source.video_id
+			left join testdb.score on Video.video_id = score.video_id
+			left join testdb.comments on Video.video_id = comments.video_id
+			where Video.video_id = '" . $_GET["video_id"]."'";   
+			$result = $db->query($sql);
+    		$row = $result->fetch(PDO::FETCH_ASSOC);
+        ?>
 
 		<!-- Header -->
 			<header id="header">
@@ -38,9 +68,10 @@
 			<nav id="menu">
 				<ul class="links">
 					<li><a href="home.html">首頁</a></li>
-					<li><a href="generic.html">登入/註冊</a></li>
+					<li><a href="member_login_php.php">登入/註冊</a></li>
 					<li><a href="imageSearch.html">圖片搜尋</a></li>
 					<li><a href="elements.html">關於我們</a></li>
+					<li><a href="backstage.php">管理員</a></li>
 				</ul>
 			</nav>
 
@@ -48,8 +79,8 @@
 			<section id="One" class="wrapper style3">
 				<div class="inner">
 					<header class="align-center">
-						<p>Eleifend vitae urna</p>
-						<h2>Generic Page Template</h2>
+						<p>你好，管理員<?php echo $_SESSION["acc"]; ?></p>
+						<h2>新增影片</h2>
 					</header>
 				</div>
 			</section>
@@ -60,26 +91,34 @@
 					<div class="box">
 						<div class="content">
 						<head>
-							
 						</head>
 						<body>
-						<?php
-							if(!empty($_GET['video_id'])){
-								//查詢id
-								$video_id=intval($_GET['video_id']);
-								//獲取結果陣列
-								$row = $res->fetch_assoc();
-							}else{
-								die('video_id not define');
-							}
-						?>
-						<form action="video_edit.php" method="post">
-							<label>影片ID：</label><input type="text" name="video_id" value="<?php echo $row['video_id']?>">
-							<label>影片名稱：</label><input type="text" name="video_name" value="<?php echo $row['video_name']?>">
-							<label>影片時間：</label><input type="date" name="time" value="<?php echo $row['time']?>">
-							<input type="submit" value="提交修改">
-						</form>
-						
+							<form method="post" action="">
+								<div class="6u 12u$(small)" style="margin-left: 20%"> 
+									<h1>影片編號：</h1>
+									<input type="text" name="video_id" id="video_id" value="<?php echo $_GET['video_id']?>" placeholder="" required>
+								</div>
+								<br/>
+								<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
+									<h1>影片名稱：</h1>									
+									<input type="text" name="video_name" id="video_name" value="<?php echo $row['video_name']?>" placeholder="" required>
+								</div>  
+								<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
+									<h1>影片類型：</h1>									
+									<input type="text" name="type_id" id="type_id" value="<?php echo $row['type_id']?>" placeholder="" required>
+								</div>  
+								<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
+									<h1>影片國家：</h1>									
+									<input type="text" name="area_id" id="area_id" value="<?php echo $row['area_id']?>" placeholder="" required>
+								</div>  
+								<div class="12u$">
+									<ul class="actions">
+										<div align="right"  style="margin-right: 5%">
+											<li><input type="submit" name="next" value="更新"></li>
+										</div>
+									</ul>
+								</div>
+							</form>
 						</body>
 						</div>
 					</div>
@@ -110,30 +149,3 @@
 
 	</body>
 </html>
-<?php
-if(empty($_POST['video_id'])){
-    die('video_id is empty');
-}
-if(empty($_POST['video_name'])){
-    die('video_name is empty');
-}
-if(empty($_POST['time'])){
-    die('time is empty');
-}
-
-
-$video_id=intval($_POST['video_id']);
-$video_name=$_POST['video_name'];
-$time=intval($_POST['time']);
-
-//修改指定資料
-mysqli_query("UPDATE video SET video_name='$video_name',time=$time WHERE video_id=$video_id");
-
-
-//排錯並返回
-if(mysqli_error()){
-    echo mysqli_error();
-}else{
-    header("Location:video_select.php");
-}
-?>
