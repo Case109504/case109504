@@ -17,6 +17,13 @@ include '../php/DataBase.php';
 		where area_name = '" . $_GET["area_name"]."'";
 		$result = $db->query($sql);
 		$row = $result->fetch(PDO::FETCH_ASSOC);
+		$sql2="SELECT * FROM testdb1.video
+		left join testdb1.area on video.area_id = area.area_id
+		left join testdb1.actor_record on video.video_id = actor_record.video_id
+		left join testdb1.actor on actor_record.actor_id = actor.actor_id
+		where area_name = '" . $_GET["area_name"]."' and video_name = '" . $row["video_name"]."'";
+		$result2 = $db->query($sql2);
+		$row2 = $result2->fetch(PDO::FETCH_ASSOC);
 	?>
 			<!-- Banner -->
 			<!--
@@ -58,11 +65,12 @@ include '../php/DataBase.php';
 										$row2 = $result2->fetch(PDO::FETCH_ASSOC);
 								while($row2 = $result2->fetch()){ 
 								echo $row2["actor_name"].'<br />';
+								}
 								echo '</p>
 										<a href="introduction.php?video_name='.$row["video_name"].'" class="button fit" data-poptrox="ignore">影片介紹</a>
 									</div>
 								</div>';
-								}
+								
 							}
 							?>
 							
