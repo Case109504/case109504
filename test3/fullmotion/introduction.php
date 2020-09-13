@@ -48,7 +48,8 @@ include '../php/DataBase.php';
 
 					<!-- Boxes -->
 						<div class="thumbnails">
-							<?php 
+
+							<?php /*
                                 while($row = $result->fetch()){ 
                                     echo '<div class="image fit">
 									<img src="'.$row["video_id"].'" alt="" /></a>
@@ -89,9 +90,13 @@ include '../php/DataBase.php';
 								echo "<p>評論：" .$row["video_id"]."</p>";
 								while($row = $result->fetch()){
 									echo "<p>評論：" .$row["video_id"]."</p>";
-                                }}
+                                }}*/
 							?>
-							<!---
+							<div class="image fit">
+								<img src="<?php echo $row['video_id']?>" alt="" /></a>
+							</div>
+							<p>影片名稱：<?php echo $row['video_name']?><br/>主演：<?php echo $row['actor_name']?><br/>簡介：<?php echo $row['introduction']?><br/>類型：<?php echo $row['vtype_name']?><br/>導演：<?php echo $row['director_name']?><br/>編劇：<?php echo $row['video_id']?><br/>劇別：<?php echo $row['video_id']?><br/>區域：<?php echo $row['area_name']?><br/><a href = "<?php echo $row['vlink']?>" data-poptrox="ignore">影片來源：<?php echo $row["vfrom"]?></a><br/>評分：<?php echo $row['video_id']?></p>
+							<p>評論：<?php echo $row['video_id']?></p>
 							<?php 
 							/*while($row=mysqli_fetch_array($res)){
 								echo '<div class="image fit">
@@ -107,7 +112,7 @@ include '../php/DataBase.php';
 							}
 							
 							$cn->close();*/
-							?>--->
+							?>
 						</div>
 
 					</div>
