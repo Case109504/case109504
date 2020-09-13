@@ -21,7 +21,7 @@ include '../php/DataBase.php';
 		left join testdb1.video_from on video.vfrom_id = video_from.vfrom_id
 		left join testdb1.vtype_record on video.video_id = vtype_record.video_id
 		left join testdb1.vtype on vtype_record.vtype_id = vtype.vtype_id
-		where area_name = '" . $_GET["area_name"]."' and video_name = '" . $_GET["video_name"]."'";   
+		where video_name = '" . $_GET["video_name"]."'";   
 		$result = $db->query($sql);
 		$row = $result->fetch(PDO::FETCH_ASSOC);
 	?>
@@ -34,7 +34,7 @@ include '../php/DataBase.php';
 				<section id="banner" data-video="images/banner">
 					<div class="inner">
 						<header>
-							<h1>韓劇</h1>
+							<?php echo "<h1>".$row["area_name"]."</h1>"?>
 							<p>各劇種介紹與推薦欄位<br />
 							透過 <a href="index.php">搜劇Film Seeker</a> 享受追劇的樂趣</p>
 						</header>
@@ -53,7 +53,7 @@ include '../php/DataBase.php';
                                     echo '<div class="image fit">
 									<img src="'.$row["video_id"].'" alt="" /></a>
 									</div>';
-								echo "<p>影片名稱：" .$_GET["video_name"]."<br/>主演：" .$row["actor_name"]."<br/>簡介：" .$row["introduction"]."<br/>類型：" .$row["vtype_name"]."<br/>導演：" .$row["director_name"]."<br/>編劇：" .$row["video_id"]."<br/>劇別：" .$row["video_id"]."<br/>區域：" .$_GET["area_name"]."<br/><a href = '".$row["vlink"]."' data-poptrox='ignore'>影片來源：" .$row["vfrom"]."</a><br/>評分：" .$row["video_id"]."</p>";
+								echo "<p>影片名稱：" .$_GET["video_name"]."<br/>主演：" .$row["actor_name"]."<br/>簡介：" .$row["introduction"]."<br/>類型：" .$row["vtype_name"]."<br/>導演：" .$row["director_name"]."<br/>編劇：" .$row["video_id"]."<br/>劇別：" .$row["video_id"]."<br/>區域：" .$row["area_name"]."<br/><a href = '".$row["vlink"]."' data-poptrox='ignore'>影片來源：" .$row["vfrom"]."</a><br/>評分：" .$row["video_id"]."</p>";
 								echo "<p>評論：" .$row["video_id"]."</p>";
 								while($row = $result->fetch()){
 									echo "<p>評論：" .$row["video_id"]."</p>";

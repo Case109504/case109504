@@ -68,7 +68,7 @@ include '../php/DataBase.php';
 								}
 								echo '</p>
 										<p>評分： '.$row["video_name"].' <br /></p>
-										<a href="introduction.php?video_name='.$row["video_name"].'&area_name='.$row["area_name"].'" class="button fit" data-poptrox="ignore">影片介紹</a>
+										<a href="introduction.php?video_name='.$row["video_name"].'" class="button fit" data-poptrox="ignore">影片介紹</a>
 									</div>
 								</div>';
 								
