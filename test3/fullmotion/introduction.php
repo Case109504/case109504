@@ -53,7 +53,39 @@ include '../php/DataBase.php';
                                     echo '<div class="image fit">
 									<img src="'.$row["video_id"].'" alt="" /></a>
 									</div>';
-								echo "<p>影片名稱：" .$_GET["video_name"]."<br/>主演：" .$row["actor_name"]."<br/>簡介：" .$row["introduction"]."<br/>類型：" .$row["vtype_name"]."<br/>導演：" .$row["director_name"]."<br/>編劇：" .$row["video_id"]."<br/>劇別：" .$row["video_id"]."<br/>區域：" .$row["area_name"]."<br/><a href = '".$row["vlink"]."' data-poptrox='ignore'>影片來源：" .$row["vfrom"]."</a><br/>評分：" .$row["video_id"]."</p>";
+									echo "<p>影片名稱：" .$_GET["video_name"]."<br/>主演：";
+										$sql2="SELECT * FROM testdb1.video
+										left join testdb1.area on video.area_id = area.area_id
+										left join testdb1.actor_record on video.video_id = actor_record.video_id
+										left join testdb1.actor on actor_record.actor_id = actor.actor_id
+										where video_name = '" . $_GET["video_name"]."'";
+										$result2 = $db->query($sql2);
+										$row2 = $result2->fetch(PDO::FETCH_ASSOC);
+									while($row2 = $result2->fetch()){ 
+										echo $row2["actor_name"].'/';
+									}
+								echo "<br />簡介：" .$row["introduction"]."<br/>類型：";
+										$sql3="SELECT * FROM testdb1.video
+										left join testdb1.vtype_record on video.video_id = vtype_record.video_id
+										left join testdb1.vtype on vtype_record.vtype_id = vtype.vtype_id
+										where video_name = '" . $_GET["video_name"]."'";
+										$result3 = $db->query($sql3);
+										$row3 = $result3->fetch(PDO::FETCH_ASSOC);
+									while($row3 = $result3->fetch()){ 
+										echo $row3["vtype_name"].'/';
+									}
+								echo "<br/>導演：";
+										$sql4="SELECT * FROM testdb1.video
+										left join testdb1.area on video.area_id = area.area_id
+										left join testdb1.director_record on video.video_id = director_record.video_id
+										left join testdb1.director on director_record.director_id = director.director_id
+										where video_name = '" . $_GET["video_name"]."'";
+										$result4 = $db->query($sql4);
+										$row4 = $result4->fetch(PDO::FETCH_ASSOC);
+									while($row4 = $result4->fetch()){ 
+										echo $row4["director_name"].'/';
+									}
+								echo "<br/>編劇：" .$row["video_id"]."<br/>劇別：" .$row["video_id"]."<br/>區域：" .$row["area_name"]."<br/><a href = '".$row["vlink"]."' data-poptrox='ignore'>影片來源：" .$row["vfrom"]."</a><br/>評分：" .$row["video_id"]."</p>";
 								echo "<p>評論：" .$row["video_id"]."</p>";
 								while($row = $result->fetch()){
 									echo "<p>評論：" .$row["video_id"]."</p>";
