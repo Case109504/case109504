@@ -34,7 +34,7 @@ include '../php/DataBase.php';
 				<section id="banner" data-video="images/banner">
 					<div class="inner">
 						<header>
-							<h1>韓劇</h1>
+							<?php echo '<h1>'.$_GET["area_name"].'</h1>'?>
 							<p>各劇種介紹與推薦欄位<br />
 							透過 <a href="../home.html">搜劇Film Seeker</a> 享受追劇的樂趣</p>
 						</header>
@@ -68,7 +68,7 @@ include '../php/DataBase.php';
 								}
 								echo '</p>
 										<p>評分： '.$row["video_name"].' <br /></p>
-										<a href="introduction.php?video_name='.$row["video_name"].'" class="button fit" data-poptrox="ignore">影片介紹</a>
+										<a href="introduction.php?video_name='.$row["video_name"].'&area_name='.$row["area_name"].'" class="button fit" data-poptrox="ignore">影片介紹</a>
 									</div>
 								</div>';
 								
