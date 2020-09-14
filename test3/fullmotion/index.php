@@ -17,6 +17,7 @@ include '../php/DataBase.php';
 		where area_name = '" . $_GET["area_name"]."'";
 		$result = $db->query($sql);
 		$row = $result->fetch(PDO::FETCH_ASSOC);
+		$result->execute();
 		$sql2="SELECT * FROM testdb1.video
 		left join testdb1.area on video.area_id = area.area_id
 		left join testdb1.actor_record on video.video_id = actor_record.video_id
@@ -24,6 +25,7 @@ include '../php/DataBase.php';
 		where area_name = '" . $_GET["area_name"]."' and video_name = '" . $row["video_name"]."'";
 		$result2 = $db->query($sql2);
 		$row2 = $result2->fetch(PDO::FETCH_ASSOC);
+		$result2->execute();
 	?>
 			<!-- Banner -->
 			<!--
@@ -63,6 +65,7 @@ include '../php/DataBase.php';
 										where area_name = '" . $_GET["area_name"]."' and video_name = '" . $row["video_name"]."'";
 										$result2 = $db->query($sql2);
 										$row2 = $result2->fetch(PDO::FETCH_ASSOC);
+										$result2->execute();
 								while($row2 = $result2->fetch()){ 
 								echo $row2["actor_name"].'<br />';
 								}
