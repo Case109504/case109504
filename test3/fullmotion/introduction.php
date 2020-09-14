@@ -24,6 +24,7 @@ include '../php/DataBase.php';
 		where video_name = '" . $_GET["video_name"]."'";   
 		$result = $db->query($sql);
 		$row = $result->fetch(PDO::FETCH_ASSOC);
+		$result->execute();
 	?>
 			<!-- Banner -->
 			<!--
@@ -49,7 +50,7 @@ include '../php/DataBase.php';
 					<!-- Boxes -->
 						<div class="thumbnails">
 
-							<?php /*
+							<?php 
                                 while($row = $result->fetch()){ 
                                     echo '<div class="image fit">
 									<img src="'.$row["video_id"].'" alt="" /></a>
@@ -62,8 +63,9 @@ include '../php/DataBase.php';
 										where video_name = '" . $_GET["video_name"]."'";
 										$result2 = $db->query($sql2);
 										$row2 = $result2->fetch(PDO::FETCH_ASSOC);
+										$result2->execute();
 									while($row2 = $result2->fetch()){ 
-										echo $row2["actor_name"].'/';
+										echo $row2["actor_name"]."\n";
 									}
 								echo "<br />簡介：" .$row["introduction"]."<br/>類型：";
 										$sql3="SELECT * FROM testdb1.video
@@ -72,8 +74,9 @@ include '../php/DataBase.php';
 										where video_name = '" . $_GET["video_name"]."'";
 										$result3 = $db->query($sql3);
 										$row3 = $result3->fetch(PDO::FETCH_ASSOC);
+										$result3->execute();
 									while($row3 = $result3->fetch()){ 
-										echo $row3["vtype_name"].'/';
+										echo $row3["vtype_name"]."\n";
 									}
 								echo "<br/>導演：";
 										$sql4="SELECT * FROM testdb1.video
@@ -83,20 +86,23 @@ include '../php/DataBase.php';
 										where video_name = '" . $_GET["video_name"]."'";
 										$result4 = $db->query($sql4);
 										$row4 = $result4->fetch(PDO::FETCH_ASSOC);
+										$result4->execute();
 									while($row4 = $result4->fetch()){ 
-										echo $row4["director_name"].'/';
+										echo $row4["director_name"]."\n";
 									}
 								echo "<br/>編劇：" .$row["video_id"]."<br/>劇別：" .$row["video_id"]."<br/>區域：" .$row["area_name"]."<br/><a href = '".$row["vlink"]."' data-poptrox='ignore'>影片來源：" .$row["vfrom"]."</a><br/>評分：" .$row["video_id"]."</p>";
 								echo "<p>評論：" .$row["video_id"]."</p>";
 								while($row = $result->fetch()){
 									echo "<p>評論：" .$row["video_id"]."</p>";
-                                }}*/
+                                }}
 							?>
-							<div class="image fit">
+							<!--<div class="image fit">
 								<img src="<?php echo $row['video_id']?>" alt="" /></a>
 							</div>
-							<p>影片名稱：<?php echo $row['video_name']?><br/>主演：<?php echo $row['actor_name']?><br/>簡介：<?php echo $row['introduction']?><br/>類型：<?php echo $row['vtype_name']?><br/>導演：<?php echo $row['director_name']?><br/>編劇：<?php echo $row['video_id']?><br/>劇別：<?php echo $row['video_id']?><br/>區域：<?php echo $row['area_name']?><br/><a href = "<?php echo $row['vlink']?>" data-poptrox="ignore">影片來源：<?php echo $row["vfrom"]?></a><br/>評分：<?php echo $row['video_id']?></p>
-							<p>評論：<?php echo $row['video_id']?></p>
+							<p>影片名稱：<?php echo $row['video_name']?><br/>
+							主演：<?php echo $row['actor_name']?><br/>
+							簡介：<?php echo $row['introduction']?><br/>類型：<?php echo $row['vtype_name']?><br/>導演：<?php echo $row['director_name']?><br/>編劇：<?php echo $row['video_id']?><br/>劇別：<?php echo $row['video_id']?><br/>區域：<?php echo $row['area_name']?><br/><a href = "<?php echo $row['vlink']?>" data-poptrox="ignore">影片來源：<?php echo $row["vfrom"]?></a><br/>評分：<?php echo $row['video_id']?></p>
+							<p>評論：<?php echo $row['video_id']?></p>-->
 							<?php 
 							/*while($row=mysqli_fetch_array($res)){
 								echo '<div class="image fit">
