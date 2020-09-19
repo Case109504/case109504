@@ -21,7 +21,7 @@ include '../php/DataBase.php';
 		left join testdb1.video_from on video.vfrom_id = video_from.vfrom_id
 		left join testdb1.vtype_record on video.video_id = vtype_record.video_id
 		left join testdb1.vtype on vtype_record.vtype_id = vtype.vtype_id
-		where video_name = '" . $_GET["video_name"]."'";   
+		where video_name = '" . $_GET["video_name"]."'or video_eg_name = '" . $_GET["video_name"]."'";
 		$result = $db->query($sql);
 		$row = $result->fetch(PDO::FETCH_ASSOC);
 		$result->execute();
