@@ -7,7 +7,7 @@ require "vendor/autoload.php";
   $hostname = "140.131.115.87:3306";
   $username = "root";
   $password = "109504109504";
-  $databasename = "testdb";
+  $databasename = "testdb1";
   
   // 創建連接
   //$cn = new mysqli($hostname,$username,$password,$databasename);
