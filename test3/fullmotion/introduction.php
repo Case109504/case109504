@@ -60,7 +60,7 @@ include '../php/DataBase.php';
 										left join testdb1.area on video.area_id = area.area_id
 										left join testdb1.actor_record on video.video_id = actor_record.video_id
 										left join testdb1.actor on actor_record.actor_id = actor.actor_id
-										where video_name = '" . $_GET["video_name"]."'";
+										where video_name = '" . $_GET["video_name"]."'or video_eg_name = '" . $_GET["video_name"]."'";
 										$result2 = $db->query($sql2);
 										$row2 = $result2->fetch(PDO::FETCH_ASSOC);
 										$result2->execute();
@@ -71,7 +71,7 @@ include '../php/DataBase.php';
 										$sql3="SELECT * FROM testdb1.video
 										left join testdb1.vtype_record on video.video_id = vtype_record.video_id
 										left join testdb1.vtype on vtype_record.vtype_id = vtype.vtype_id
-										where video_name = '" . $_GET["video_name"]."'";
+										where video_name = '" . $_GET["video_name"]."'or video_eg_name = '" . $_GET["video_name"]."'";
 										$result3 = $db->query($sql3);
 										$row3 = $result3->fetch(PDO::FETCH_ASSOC);
 										$result3->execute();
@@ -83,7 +83,7 @@ include '../php/DataBase.php';
 										left join testdb1.area on video.area_id = area.area_id
 										left join testdb1.director_record on video.video_id = director_record.video_id
 										left join testdb1.director on director_record.director_id = director.director_id
-										where video_name = '" . $_GET["video_name"]."'";
+										where video_name = '" . $_GET["video_name"]."'or video_eg_name = '" . $_GET["video_name"]."'";
 										$result4 = $db->query($sql4);
 										$row4 = $result4->fetch(PDO::FETCH_ASSOC);
 										$result4->execute();
