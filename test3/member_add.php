@@ -28,7 +28,7 @@ include 'php/FindOrder.php';
 			
 			
 			if (isset($_POST["next"])) {
-				FindMember($_POST["account"], $_POST["password"]);
+				AddMember($_POST["member_name"], $_POST["birthday"], $_POST["gender"], $_POST["account"], $_POST["password"]);
 			}
         ?>
 		<!-- Header -->
@@ -52,8 +52,8 @@ include 'php/FindOrder.php';
 			<section id="One" class="wrapper style3">
 				<div class="inner">
 					<header class="align-center">
-						<p>親愛的會員您好</p>
-						<h2>歡迎來到會員登入頁面</h2>
+						<p>未來的會員您好</p>
+						<h2>歡迎來到會員註冊頁面</h2>
 					</header>
 				</div>
 			</section>
@@ -64,29 +64,43 @@ include 'php/FindOrder.php';
 					<div class="box">
 						<div class="content">
 							<header class="align-center">
-								<p>請輸入帳號、密碼</p>
-								<h2>會員登入</h2>
+								<p>請輸入名字、生日、性別、帳號、密碼</p>
+								<h2>會員註冊</h2>
 							</header>
 							<body>
 								<form method="post" action="">
 
 									<div class="6u 12u$(small)" style="margin-left: 20%"> 
+										<h1>名字：</h1>
+										<input type="text" name="member_name" id="member_name" value="" placeholder="" required>
+									</div>
+									<br/>
+									<div class="6u 12u$(small)" style="margin-left: 20%"> 
+										<h1>生日（西元年月日ex：20200101）：</h1>
+										<input type="text" name="birthday" id="birthday" value="" placeholder="" pattern="[0-9]{8}" maxlength="8" required>
+									</div>
+									<br/>
+									<div class="6u 12u$(small)" style="margin-left: 20%"> 
+										<h1>性別（男/女）：</h1>
+										<input type="text" name="gender" id="gender" value="" placeholder="" required>
+									</div>
+									<br/>
+									<div class="6u 12u$(small)" style="margin-left: 20%"> 
 										<h1>帳號：</h1>
-										<input type="text" name="account" id="account" value="" placeholder="" required>
+										<input type="text" name="account" id="account" value="" placeholder="" pattern="[a-zA-Z0-9]{,45}" maxlength="45" required>
 									</div>
 									<br/>
 									<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
 										<h1>密碼：</h1>									
-										<input type="password" name="password" id="password" value="" placeholder="" required>
+										<input type="password" name="password" id="password" value="" placeholder="" pattern="[a-zA-Z0-9]{,45}" maxlength="45" required>
 									</div>  
 
 									<div class="12u$">
 										<ul class="actions">
 											<div align="right"  style="margin-right: 5%">
 
-												<li><input type="submit" name="next" value="登入"></li>
-												<li><input name="submit" type="button" id="submit" onclick="location.href='member_add.php'" value="註冊" /></li>
-
+												<li><input type="submit" name="next" value="註冊"></li>
+												
 											</div>
 										</ul>
 									</div>
