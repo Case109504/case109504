@@ -23,6 +23,13 @@ function DeleteVideo($video_id) {
     header("Location:video_select.php");
 }
 
+function AddMember($member_name, $birthday, $gender, $account, $password) {
+    $db = DB();
+    $sql = "INSERT INTO member(member_name, birthday, gender, account, password) VALUES ('$member_name', $birthday, '$gender', '$account', '$password')";
+    $db->exec($sql)or die ("無法新增".mysqli_error($db)); //執行sql語法
+    header("Location:member_login_php.php");
+}
+
 function FindbyName($name) {
     $db = DB();
     $sql = "SELECT A\n" .
