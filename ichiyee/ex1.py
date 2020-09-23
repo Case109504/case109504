@@ -19,7 +19,7 @@ directorlist=[]
 vtypelist=[]
 video_name=''
 area=0
-year=0
+year=''
 introduction=''
 ich='https://tw.iqiyi.com/'
 vfrom=''
@@ -35,9 +35,9 @@ for item in mycol.find({},{"_id": 0,"video_name": 1,'director':1,'actors':1,'typ
             for a in v:
                 # 插入一條記錄
                 egList = []
-                for d in pinyin(v, 0):
+                for d in pinyin(a, 0):
                     for j in d:
-                        egList.append( j.title() )
+                        egList.append( j.title())
                 
                 eg = ' '.join( egList )
                 sql = "SELECT  *  FROM  testdb1.actor where  actor_name = '{}' ;".format(a)
@@ -46,8 +46,6 @@ for item in mycol.find({},{"_id": 0,"video_name": 1,'director':1,'actors':1,'typ
                     mydb.commit()
                     row = cursor.fetchone()
                     if row is not None:
-                        cursor.execute("update testdb1.actor set actor_name_eg= '{}' where actor_name='{}';".format(eg,a))
-                        mydb.commit()
                         print("已有這筆資料")
                     else:
                         cursor.execute("insert into testdb1.actor(actor_name,actor_name_eg) values ('{}','{}')".format(a,eg))
@@ -113,8 +111,6 @@ for item in mycol.find({},{"_id": 0,"video_name": 1,'director':1,'actors':1,'typ
                 mydb.commit()
                 row = cursor.fetchone()   
                 if row is not None:
-                    cursor.execute("update testdb1.director set director_name_eg= '{}' where director_name='{}';".format(eg,v))
-                    mydb.commit()
                     print("已有這筆資料")
                 else:
                     cursor.execute("insert into testdb1.director(director_name,director_name_eg) values ('{}','{}')".format(v,eg))
@@ -173,13 +169,13 @@ for item in mycol.find({},{"_id": 0,"video_name": 1,'director':1,'actors':1,'typ
                 for o in cursor:
                     vfrom=o[0]
 
-            sql = "SELECT  *  FROM  testdb1.video where  (video_name,area_id,year,introduction,vfrom_id) = ('{}',{},{},'{}',{}) ;".format(video_name,area,year,introduction,vfrom)
+            sql = "SELECT  *  FROM  testdb1.video where  (video_name,area_id,year,introduction,vfrom_id) = ('{}',{},'{}','{}',{}) ;".format(video_name,area,year,introduction,vfrom)
             try:
                 cursor.execute(sql)
                 mydb.commit()
                 row = cursor.fetchone()   
                 if row is None:
-                    cursor.execute("insert into testdb1.video(video_name,area_id,year,introduction,vlink,vfrom_id) values ('{}',{},{},'{}','{}',{})".format(video_name,area,year,introduction,v,vfrom))
+                    cursor.execute("insert into testdb1.video(video_name,area_id,year,introduction,vlink,vfrom_id) values ('{}',{},'{}','{}','{}',{})".format(video_name,area,year,introduction,v,vfrom))
                     mydb.commit()
                     print('成功新增資料') 
                 else:
@@ -230,6 +226,7 @@ for item in mycol.find({},{"_id": 0,"video_name": 1,'director':1,'actors':1,'typ
             mydb.commit()
 
     print("")
+
 mydb.close() 
 
 x = mycol.delete_many({})
