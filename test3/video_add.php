@@ -87,8 +87,7 @@ if ($_SESSION["acc"] == "") {
 												echo '<option value="'.$row["area_id"].'">'.$row["area_name"].'</option>';
 											}
 										?>
-									</select>							
-									<input type="text" name="area" id="type_id" value="" placeholder="" required>
+									</select>
 								</div>  
 								<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
 									<h1>影片介紹：</h1>									
