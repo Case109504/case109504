@@ -28,12 +28,15 @@ if ($_SESSION["acc"] == "") {
 				}   
 			}
 			
-
-			
-			
 			if (isset($_POST["next"])) {
-				AddVideo($_POST["video_name"], $_POST["type_id"], $_POST["area_id"]);
+				AddVideo($_POST["video_name"], $_POST["area_id"], $_POST["introduction"]);
 			}
+
+			$db = DB1();
+			$sql="SELECT * FROM testdb1.area";
+			$result = $db->query($sql);
+			$row = $result->fetch(PDO::FETCH_ASSOC);
+			$result->execute();
         ?>
 
 		<!-- Header -->
@@ -77,12 +80,19 @@ if ($_SESSION["acc"] == "") {
 									<input type="text" name="video_name" id="video_name" value="" placeholder="" required>
 								</div>  
 								<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
-									<h1>影片類型：</h1>									
-									<input type="text" name="type_id" id="type_id" value="" placeholder="" required>
+									<h1>影片區域：</h1>		
+									<select name="area_id">
+										<?php 
+											while($row = $result->fetch()) {
+												echo '<option value="'.$row["area_id"].'">'.$row["area_name"].'</option>';
+											}
+										?>
+									</select>							
+									<input type="text" name="area" id="type_id" value="" placeholder="" required>
 								</div>  
 								<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
-									<h1>影片國家：</h1>									
-									<input type="text" name="area_id" id="area_id" value="" placeholder="" required>
+									<h1>影片介紹：</h1>									
+									<input type="text" name="introduction" id="introduction" value="" placeholder="" required>
 								</div>  
 								<div class="12u$">
 									<ul class="actions">
