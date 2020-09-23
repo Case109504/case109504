@@ -17,8 +17,11 @@ function UpdateVideo($video_id, $video_name, $type_id, $area_id) {
 }
 
 function DeleteVideo($video_id) {
-    $db = DB();
-    $sql = "DELETE FROM Video WHERE (video_id = '$video_id')";
+    $db = DB1();
+    $sql = "DELETE FROM testdb1.video WHERE (video_id = '$video_id');
+    DELETE FROM testdb1.actor_record WHERE (video_id = '$video_id');
+    DELETE FROM testdb1.director_record WHERE (video_id = '$video_id');
+    DELETE FROM testdb1.vtype_record WHERE (video_id = '$video_id');";
     $db->exec($sql)or die ("無法刪除".mysqli_error($db)); //執行sql語法
     header("Location:video_select.php");
 }

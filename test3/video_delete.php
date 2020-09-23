@@ -29,31 +29,14 @@ if ($_SESSION["acc"] == "") {
 			}
 			
 
-			
-			
 			if (isset($_POST["next"])) {
 				DeleteVideo($_POST["video_id"]);
 			}
 
-			$db = DB();
-			$sql="select * from testdb.Video
-			left join testdb.type on Video.type_id = type.type_id 
-			left join testdb.director_record on Video.video_id = director_record.video_id
-			left join testdb.director on director.director_id = director_record.director_id
-			left join testdb.actor_record on Video.video_id = actor_record.video_id
-			left join testdb.actor on actor.actor_id = actor_record.actor_id
-			left join testdb.screenwriter_record on Video.video_id = screenwriter_record.video_id
-			left join testdb.screenwriter on screenwriter.screenwriter_id = screenwriter_record.screenwriter_id
-			left join testdb.access on Video.video_id = access.video_id
-			left join testdb.sources on sources.source_id = access.source_id
-			left join testdb.plot_record on Video.video_id = plot_record.video_id
-			left join testdb.plot on plot.plot_id = plot_record.plot_id
-			left join testdb.area on Video.area_id = area.area_id
-			left join testdb.awards on Video.video_id = awards.video_id
-			left join testdb.film_source on Video.video_id = film_source.video_id
-			left join testdb.score on Video.video_id = score.video_id
-			left join testdb.comments on Video.video_id = comments.video_id
-			where Video.video_id = '" . $_GET["video_id"]."'";   
+			$db = DB1();
+			$sql="SELECT * FROM testdb1.video
+			left join testdb1.area on video.area_id = area.area_id
+			where video.video_id = '" . $_GET["video_id"]."'";   
 			$result = $db->query($sql);
     		$row = $result->fetch(PDO::FETCH_ASSOC);
         ?>
@@ -104,12 +87,12 @@ if ($_SESSION["acc"] == "") {
 									<input type="text" name="video_name" id="video_name" value="<?php echo $row['video_name']?>" placeholder="" required>
 								</div>  
 								<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
-									<h1>影片類型：</h1>									
-									<input type="text" name="type_id" id="type_id" value="<?php echo $row['type_id']?>" placeholder="" required>
+									<h1>影片區域：</h1>									
+									<input type="text" name="area_name" id="area_name" value="<?php echo $row['area_name']?>" placeholder="" required>
 								</div>  
 								<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
-									<h1>影片國家：</h1>									
-									<input type="text" name="area_id" id="area_id" value="<?php echo $row['area_id']?>" placeholder="" required>
+									<h1>影片簡介：</h1>									
+									<textarea style="height:150px;" name="introduction" id="introduction" value="" placeholder="" required><?php echo $row['introduction']?></textarea>
                                 </div>
                                 <?php 
                                 while($row = $result->fetch()){ 
