@@ -34,6 +34,13 @@ function AddMember($member_name, $birthday, $gender, $account, $password) {
     header("Location:member_login_php.php");
 }
 
+function AddSearchRecord($acc, $video_id) {
+    $db = DB();
+    $sql = "INSERT INTO member_search_record(account,video_id) VALUES ('$acc','$video_id', NOW())";
+    $db->exec($sql)or die ("無法新增".mysqli_error($db)); //執行sql語法
+    header("Location:member_login_php.php");
+}
+
 function FindbyName($name) {
     $db = DB();
     $sql = "SELECT A\n" .
