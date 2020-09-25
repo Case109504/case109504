@@ -21,13 +21,14 @@ function DeleteVideo($video_id) {
     $sql = "DELETE FROM testdb1.video WHERE (video_id = '$video_id');
     DELETE FROM testdb1.actor_record WHERE (video_id = '$video_id');
     DELETE FROM testdb1.director_record WHERE (video_id = '$video_id');
-    DELETE FROM testdb1.vtype_record WHERE (video_id = '$video_id');";
+    DELETE FROM testdb1.vtype_record WHERE (video_id = '$video_id');
+    DELETE FROM testdb1.testdb1.score WHERE (video_id = '$video_id');";
     $db->exec($sql)or die ("無法刪除".mysqli_error($db)); //執行sql語法
     header("Location:video_select.php");
 }
 
 function AddMember($member_name, $birthday, $gender, $account, $password) {
-    $db = DB();
+    $db = DB1();
     $sql = "INSERT INTO member(member_name, birthday, gender, account, password) VALUES ('$member_name', $birthday, '$gender', '$account', '$password')";
     $db->exec($sql)or die ("無法新增".mysqli_error($db)); //執行sql語法
     header("Location:member_login_php.php");
@@ -126,7 +127,7 @@ function FindOrder($id, $name) {
 }
 
 function FindUser ($acc , $password){
-    $db = DB();
+    $db = DB1();
     $sql = "SELECT * FROM testdb.manager WHERE account='".$acc."' and password='".$password."'";
     $result = $db->query($sql);
     $row = $result->fetch(PDO::FETCH_ASSOC);
@@ -148,7 +149,7 @@ function FindUser ($acc , $password){
 }
 
 function FindMember ($acc , $password){
-    $db = DB();
+    $db = DB1();
     $sql = "SELECT * FROM testdb.member WHERE account='".$acc."' and password='".$password."'";
     $result = $db->query($sql);
     $row = $result->fetch(PDO::FETCH_ASSOC);
