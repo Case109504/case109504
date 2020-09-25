@@ -62,7 +62,8 @@ include '../php/DataBase.php';
 										left join testdb1.area on video.area_id = area.area_id
 										left join testdb1.actor_record on video.video_id = actor_record.video_id
 										left join testdb1.actor on actor_record.actor_id = actor.actor_id
-										where area_name = '" . $_GET["area_name"]."' and video_name = '" . $row["video_name"]."'";
+										where area_name = '" . $_GET["area_name"]."' and video_name = '" . $row["video_name"]."'
+										limit 5";
 										$result2 = $db->query($sql2);
 										$row2 = $result2->fetch(PDO::FETCH_ASSOC);
 										$result2->execute();
@@ -70,7 +71,18 @@ include '../php/DataBase.php';
 								echo $row2["actor_name"].'<br />';
 								}
 								echo '</p>
-										<p>評分： '.$row["video_name"].' <br /></p>
+										<p>評分： ';
+										$sql3="SELECT * FROM testdb1.score
+										left join testdb1.video on score.video_id = video.video_id
+										left join testdb1.video_from on score.vfrom_id = video_from.vfrom_id
+										where video_name = '" . $row["video_name"]."'";
+										$result3 = $db->query($sql3);
+										$row3 = $result3->fetch(PDO::FETCH_ASSOC);
+										$result3->execute();
+										while($row3 = $result3->fetch()){ 
+											echo $row3["vfrom"].'：'.$row3["score"].'<br />';
+											}		
+								echo ' <br /></p>
 										<a href="introduction.php?video_name='.$row["video_name"].'" class="button fit" data-poptrox="ignore">影片介紹</a>
 									</div>
 								</div>';
