@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <?php
+session_start();
 include '../php/DataBase.php';
 ?>
 <html lang = "zh-tw">
@@ -11,23 +12,18 @@ include '../php/DataBase.php';
 	</head>
 	<body id="top">
 	<?php
-		if (isset($_GET["video_id"])) {
+		/*if (isset($_GET["video_id"])) {
+			$acc = $_SESSION["acc"];
 			$video_id = $_GET["video_id"];
             $db = DB();
-    		$sql = "INSERT INTO member_search_record(account,video_id,search_time) VALUES ('ggg','$video_id', NOW())";
+    		$sql = "INSERT INTO member_search_record(account,video_id,search_time) VALUES ('$acc','$video_id', NOW())";
 			$db->exec($sql)or die ("無法新增".mysqli_error($db)); //執行sql語法
-		}
+		}*/
 
 		$db = DB1();
 		$sql="SELECT * FROM testdb1.video
 		left join testdb1.area on video.area_id = area.area_id
-		left join testdb1.actor_record on video.video_id = actor_record.video_id
-		left join testdb1.actor on actor_record.actor_id = actor.actor_id
-		left join testdb1.director_record on video.video_id = director_record.video_id
-		left join testdb1.director on director_record.director_id = director.director_id
 		left join testdb1.video_from on video.vfrom_id = video_from.vfrom_id
-		left join testdb1.vtype_record on video.video_id = vtype_record.video_id
-		left join testdb1.vtype on vtype_record.vtype_id = vtype.vtype_id
 		where video_name = '" . $_GET["video_name"]."'or video_eg_name = '" . $_GET["video_name"]."'or video_ch_name = '" . $_GET["video_name"]."'";
 		$result = $db->query($sql);
 		$row = $result->fetch(PDO::FETCH_ASSOC);
@@ -107,11 +103,18 @@ include '../php/DataBase.php';
 										$result5->execute();
 										while($row5 = $result5->fetch()){ 
 											echo $row5["vfrom"].'：'.$row5["score"].'<br />';
-											}
-								echo "</p><p>評論：" .$row["video_id"]."</p>";
-								while($row = $result->fetch()){
-									echo "<p>評論：" .$row["video_id"]."</p>";
-                                }}
+										}
+										$sql6="SELECT * FROM testdb1.video_comment
+										left join testdb1.video on video_comment.video_id = video.video_id
+										left join testdb1.video_from on video_comment.vfrom_id = video_from.vfrom_id
+										where video_name = '" . $row["video_name"]."'";
+										$result6 = $db->query($sql6);
+										$row6 = $result6->fetch(PDO::FETCH_ASSOC);
+										$result6->execute();
+										while($row6 = $result6->fetch()){ 
+											echo '</p><p>來自'.$row6["vfrom"].'的評論：　'.$row6["video_comment"].'<br />';
+										}
+								}
 							?>
 							<!--<div class="image fit">
 								<img src="<?php echo $row['video_id']?>" alt="" /></a>

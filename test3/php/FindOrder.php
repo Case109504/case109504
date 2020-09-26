@@ -22,7 +22,8 @@ function DeleteVideo($video_id) {
     DELETE FROM testdb1.actor_record WHERE (video_id = '$video_id');
     DELETE FROM testdb1.director_record WHERE (video_id = '$video_id');
     DELETE FROM testdb1.vtype_record WHERE (video_id = '$video_id');
-    DELETE FROM testdb1.testdb1.score WHERE (video_id = '$video_id');";
+    DELETE FROM testdb1.testdb1.score WHERE (video_id = '$video_id');
+    DELETE FROM testdb1.video_comment WHERE (video_id = '$video_id');";
     $db->exec($sql)or die ("無法刪除".mysqli_error($db)); //執行sql語法
     header("Location:video_select.php");
 }
