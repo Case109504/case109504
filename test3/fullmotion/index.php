@@ -83,7 +83,7 @@ include '../php/DataBase.php';
 											echo $row3["vfrom"].'：'.$row3["score"].'<br />';
 											}		
 								echo ' <br /></p>
-										<a href="introduction.php?video_name='.$row["video_name"].'" class="button fit" data-poptrox="ignore">影片介紹</a>
+										<a href="introduction.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'" class="button fit" data-poptrox="ignore">影片介紹</a>
 									</div>
 								</div>';
 								
