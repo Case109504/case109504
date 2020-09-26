@@ -33,7 +33,7 @@ include 'php/FindOrder.php';
         ?>
 		<!-- Header -->
 		<header id="header">
-				<div class="logo"><a href="home.html">明察秋毫 <span></span></a></div>
+				<div class="logo"><a href="home.html">搜劇Film Seeker <span></span></a></div>
 				<a href="#menu"></a>
 			</header>
 
@@ -45,6 +45,7 @@ include 'php/FindOrder.php';
 					<li><a href="imageSearch.html">圖片搜尋</a></li>
 					<li><a href="elements.html">關於我們</a></li>
 					<li><a href="backstage.php">管理員</a></li>
+					<li><a href="php/logOut.php">登出</a></li>
 				</ul>
 			</nav>
 

@@ -38,6 +38,7 @@ if ($_SESSION["acc"] == "") {
 					<li><a href="imageSearch.html">圖片搜尋</a></li>
 					<li><a href="elements.html">關於我們</a></li>
 					<li><a href="backstage.php">管理員</a></li>
+					<li><a href="php/logOut.php">登出</a></li>
 				</ul>
 			</nav>
 
