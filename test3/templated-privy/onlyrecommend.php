@@ -1,4 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?php
+session_start();
+include 'php/FindOrder.php';
+if ($_SESSION["acc"] == "") {
+    header('Location: ../home.html');
+    $_SESSION["unLog"] = true;
+}
+?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -13,22 +21,35 @@
 
 </head>
 <body>
+<?php
+	if(isset($_SESSION["unLog"])){
+		if($_SESSION["unLog"]){
+			echo '<script>  swal({
+			text: "未登入或登入逾時！",
+			icon: "error",
+			button: false,
+			timer: 2000,
+			}); </script>';
+			session_unset();
+		}   
+	}
+?>
 <div id="page" class="container">
 	<div id="header">
 		<div id="logo">
 			<img src="images/pic02.jpg" alt="" />
-			<h1><a href="#">會員名稱</a></h1>
-			<span>與 <a href="http://templated.co" rel="nofollow">搜劇Film Seeker</a> 一同好劇</span>
+			<h1><a href="#"><?php echo $_SESSION["acc"]; ?></a></h1>
+			<span>與 <a href="../home.html" rel="nofollow">搜劇Film Seeker</a> 一同好劇</span>
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="membersonly.html" accesskey="1" title="">會員專區</a></li>
-				<li><a href="samerecommend.html" accesskey="2" title="">同好推薦</a></li>
-				<li><a href="onlyrecommend.html" accesskey="3" title="">客製化推薦</a></li>
-				<li><a href="videolist.html" accesskey="4" title="">個人影片清單</a></li>
-				<li><a href="share.html" accesskey="5" title="">用戶分享</a></li>
-				<li><a href="editinformation.html" accesskey="6" title="">編輯個人資料</a></li>
-				<li><a href="../home.html" accesskey="6" title="">返回首頁</a></li>
+			<li class="current_page_item"><a href="membersonly.php" accesskey="1" title="">會員專區</a></li>
+				<li><a href="samerecommend.php" accesskey="2" title="">同好推薦</a></li>
+				<li><a href="onlyrecommend.php" accesskey="3" title="">客製化推薦</a></li>
+				<li><a href="videolist.php" accesskey="4" title="">個人影片清單</a></li>
+				<li><a href="share.php" accesskey="5" title="">用戶分享</a></li>
+				<li><a href="editinformation.php" accesskey="6" title="">編輯個人資料</a></li>
+				<li><a href="../home.php" accesskey="6" title="">返回首頁</a></li>
 			</ul>
 		</div>
 	</div>
