@@ -14,7 +14,7 @@ include '../php/DataBase.php';
 		$db = DB1();
 		$sql="SELECT * FROM testdb1.video
 		left join testdb1.area on video.area_id = area.area_id
-		where area_name = '" . $_GET["area_name"]."'";
+		where video_name = '" . $_GET["video_name"]."'or video_eg_name = '" . $_GET["video_name"]."'or video_ch_name = '" . $_GET["video_name"]."'";
 		$result = $db->query($sql);
 		$row = $result->fetch(PDO::FETCH_ASSOC);
 		$result->execute();
@@ -22,7 +22,7 @@ include '../php/DataBase.php';
 		left join testdb1.area on video.area_id = area.area_id
 		left join testdb1.actor_record on video.video_id = actor_record.video_id
 		left join testdb1.actor on actor_record.actor_id = actor.actor_id
-		where area_name = '" . $_GET["area_name"]."' and video_name = '" . $row["video_name"]."'";
+		where video_name = '" . $_GET["video_name"]."'or video_eg_name = '" . $_GET["video_name"]."'or video_ch_name = '" . $_GET["video_name"]."'";
 		$result2 = $db->query($sql2);
 		$row2 = $result2->fetch(PDO::FETCH_ASSOC);
 		$result2->execute();
@@ -36,7 +36,7 @@ include '../php/DataBase.php';
 				<section id="banner" data-video="images/banner">
 					<div class="inner">
 						<header>
-							<h1>韓劇</h1>
+							<h1>搜尋結果</h1>
 							<p>各劇種介紹與推薦欄位<br />
 							透過 <a href="../home.html">搜劇Film Seeker</a> 享受追劇的樂趣</p>
 						</header>
@@ -52,22 +52,44 @@ include '../php/DataBase.php';
 						<div class="thumbnails">
 
 							<?php 
-							//while($res->num_rows > 0){可改if
-								while($row = $res->fetch_assoc()) {
-									// echo '<td>'.$row["video_id"]."".$row["video_name"]."".$row["time"].'</td></br>';   //輸出結果
-									echo '<div class="box">
-									<a href="introduction.php?video_name='.$row["video_name"].'" class="image fit" data-poptrox="ignore"><img src="'.$row["videopicture"].'" alt="" /></a>
+							while($row = $result->fetch()){ 
+								echo '<div class="box">
+									<a href="introduction.php?video_name='.$row["video_name"].'" class="image fit" data-poptrox="ignore"><img src="'.$row["video_name"].'" alt="" /></a>
 									<div class="inner">
 										<h3>'.$row["video_name"].'</h3>
-										<p>主演： '.$row["actor_name"].'<br /></p>
-										<p>評分： '.$row["score"].' <br /></p>
-										<a href="introduction.php?video_name='.$row["video_name"].'" class="button fit" data-poptrox="ignore">影片介紹</a>
+										<p>主演： ';
+										$sql2="SELECT * FROM testdb1.video
+										left join testdb1.area on video.area_id = area.area_id
+										left join testdb1.actor_record on video.video_id = actor_record.video_id
+										left join testdb1.actor on actor_record.actor_id = actor.actor_id
+										where video_name = '" . $_GET["video_name"]."'or video_eg_name = '" . $_GET["video_name"]."'or video_ch_name = '" . $_GET["video_name"]."'";
+										
+										$result2 = $db->query($sql2);
+										$row2 = $result2->fetch(PDO::FETCH_ASSOC);
+										$result2->execute();
+								while($row2 = $result2->fetch()){ 
+								echo $row2["actor_name"].'<br />';
+								}
+								echo '</p>
+										<p>評分： ';
+										$sql3="SELECT * FROM testdb1.score
+										left join testdb1.video on score.video_id = video.video_id
+										left join testdb1.video_from on score.vfrom_id = video_from.vfrom_id
+										where video_name = '" . $row["video_name"]."'";
+										$result3 = $db->query($sql3);
+										$row3 = $result3->fetch(PDO::FETCH_ASSOC);
+										$result3->execute();
+										while($row3 = $result3->fetch()){ 
+											echo $row3["vfrom"].'：'.$row3["score"].'<br />';
+											}		
+								echo ' <br /></p>
+										<a href="introduction.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="button fit" data-poptrox="ignore">影片介紹</a>
 									</div>
 								</div>';
-								}
-							//}
-							$cn->close();
+								
+							}
 							?>
+							
 							
 
 						</div>
@@ -98,6 +120,8 @@ include '../php/DataBase.php';
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script async src="https://cse.google.com/cse.js?cx=03d94254dfdc3a617"></script>
+			s<div class="gcse-searchresults-only"></div>
 
 
 
