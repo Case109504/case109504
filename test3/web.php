@@ -8,7 +8,7 @@
                 <?php 
                     if($entity->info()['score']>1){
                     echo '<div class="box">
-                    <a href="fullmotion/introduction.php?video_name='.$entity->info()['description'].'&video_eg_name='.$entity->info()['description'].'&video_ch_name='.$entity->info()['description'].'" class="button fit" data-poptrox="ignore">相關資訊</a>
+                    <a href="fullmotion/checkindex.php?video_name='.$entity->info()['description'].'&video_eg_name='.$entity->info()['description'].'&video_ch_name='.$entity->info()['description'].'" class="button fit" data-poptrox="ignore">相關資訊</a>
                     </div>';
                     echo ucfirst($entity->info()['description']) ?></h6><strong><?php number_format($entity->info()['score'] * 100 , 2);}
                     
