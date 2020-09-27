@@ -138,7 +138,7 @@ function FindOrder($id, $name) {
 
 function FindUser ($acc , $password){
     $db = DB1();
-    $sql = "SELECT * FROM testdb.manager WHERE account='".$acc."' and password='".$password."'";
+    $sql = "SELECT * FROM testdb1.manager WHERE account='".$acc."' and password='".$password."'";
     $result = $db->query($sql);
     $row = $result->fetch(PDO::FETCH_ASSOC);
     if($row>1){
@@ -160,7 +160,7 @@ function FindUser ($acc , $password){
 
 function FindMember ($acc , $password){
     $db = DB1();
-    $sql = "SELECT * FROM testdb.member WHERE account='".$acc."' and password='".$password."'";
+    $sql = "SELECT * FROM testdb1.member WHERE account='".$acc."' and password='".$password."'";
     $result = $db->query($sql);
     $row = $result->fetch(PDO::FETCH_ASSOC);
     if($row>1){
