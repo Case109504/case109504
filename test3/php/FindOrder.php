@@ -142,7 +142,7 @@ function FindUser ($acc , $password){
     $result = $db->query($sql);
     $row = $result->fetch(PDO::FETCH_ASSOC);
     if($row>1){
-        $_SESSION["acc"] = $acc;
+        $_SESSION["accU"] = $acc;
         $_SESSION["password"] = $password;
         
         
@@ -181,20 +181,29 @@ function FindMember ($acc , $password){
 }
 
 
-	function logInSure(){
-    if($_SESSION["acc"] == ""){
-        // echo '<script>  swal({
-        //     text: "未登入或登入逾時！  兩秒後跳轉至登入畫面!",
-        //     icon: "error",
-        //     button: false,
-        //     timer: 2000,
-        // }); </script>';
-        
-        header('Location: backstage.php');
-        $_SESSION["unLog"] = true;
-        // echo '<meta http-equiv="refresh" content="2;url=../maneger.php" />';
-    }
-
-
-
+function logInSure(){
+   if($_SESSION["acc"] == ""){
+       // echo '<script>  swal({
+       //     text: "未登入或登入逾時！  兩秒後跳轉至登入畫面!",
+       //     icon: "error",
+       //     button: false,
+       //     timer: 2000,
+       // }); </script>';
+       
+       header('Location: backstage.php');
+       $_SESSION["unLog"] = true;
+       // echo '<meta http-equiv="refresh" content="2;url=../maneger.php" />';
+   }
+   if($_SESSION["accU"] == ""){
+    // echo '<script>  swal({
+    //     text: "未登入或登入逾時！  兩秒後跳轉至登入畫面!",
+    //     icon: "error",
+    //     button: false,
+    //     timer: 2000,
+    // }); </script>';
+    
+    header('Location: backstage.php');
+    $_SESSION["unLog"] = true;
+    // echo '<meta http-equiv="refresh" content="2;url=../maneger.php" />';
+}
 }

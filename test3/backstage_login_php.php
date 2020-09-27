@@ -2,7 +2,7 @@
 <?php
 session_start();
 include 'php/FindOrder.php';
-if ($_SESSION["acc"] == "") {
+if ($_SESSION["accU"] == "") {
     header('Location: backstage.php');
     $_SESSION["unLog"] = true;
 }
@@ -39,7 +39,7 @@ if ($_SESSION["acc"] == "") {
 			<section id="One" class="wrapper style3">
 				<div class="inner">
 					<header class="align-center">
-						<p>你好，管理員<?php echo $_SESSION["acc"]; ?></p>
+						<p>你好，管理員<?php echo $_SESSION["accU"]; ?></p>
 						<h2>歡迎來到管理頁面</h2>
 					</header>
 				</div>
@@ -55,7 +55,7 @@ if ($_SESSION["acc"] == "") {
 								<h2>管理員登入</h2>
 							</header>
 							<body>
-								<h2>歡迎<?php echo $_SESSION["acc"]; ?></h2>
+								<h2>歡迎<?php echo $_SESSION["accU"]; ?></h2>
 								<h3><?php echo date('Y-M-D'); ?></h3>
 								<a href="video_select.php">資料查詢</a>
 								<input name="submit" type="button" id="submit" onclick="location.href='php/logOut.php'" value="登出" />

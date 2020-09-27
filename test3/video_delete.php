@@ -2,7 +2,7 @@
 <?php
 session_start();
 include 'php/FindOrder.php';
-if ($_SESSION["acc"] == "") {
+if ($_SESSION["accU"] == "") {
     header('Location: backstage.php');
     $_SESSION["unLog"] = true;
 }
@@ -62,7 +62,7 @@ if ($_SESSION["acc"] == "") {
 			<section id="One" class="wrapper style3">
 				<div class="inner">
 					<header class="align-center">
-						<p>你好，管理員<?php echo $_SESSION["acc"]; ?></p>
+						<p>你好，管理員<?php echo $_SESSION["accU"]; ?></p>
 						<h2>刪除影片，確定要刪除嗎？</h2>
 					</header>
 				</div>
