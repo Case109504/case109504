@@ -58,7 +58,7 @@ include '../php/DataBase.php';
 							<?php 
                                 while($row = $result->fetch()){ 
                                     echo '<div class="image fit">
-									<img src="'.$row["video_id"].'" alt="" /></a>
+									<img src="'.$row["picture"].'" alt="" /></a>
 									</div>';
 									echo "<p>影片名稱：" .$_GET["video_name"]."<br/>主演：";
 										$sql2="SELECT * FROM testdb1.video
