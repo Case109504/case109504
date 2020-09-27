@@ -12,7 +12,7 @@ include '../php/DataBase.php';
 	</head>
 	<body id="top">
 	<?php
-		if (isset($_SESSION["acc"])) {
+		if (isset($_SESSION["acc"])&&$_SESSION["acc"]!="") {
 			if (isset($_GET["video_id"])) {
 				$acc = $_SESSION["acc"];
 				$video_id = $_GET["video_id"];
@@ -60,6 +60,7 @@ include '../php/DataBase.php';
                                     echo '<div class="image fit">
 									<img src="'.$row["picture"].'" alt="" /></a>
 									</div>';
+									echo '<a href="../php/videoListAdd.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="button" data-poptrox="ignore" name="videoListAdd"">影片蒐藏</a>';
 									echo "<p>影片名稱：" .$_GET["video_name"]."<br/>主演：";
 										$sql2="SELECT * FROM testdb1.video
 										left join testdb1.area on video.area_id = area.area_id
