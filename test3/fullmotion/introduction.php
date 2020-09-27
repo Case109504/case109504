@@ -16,7 +16,7 @@ include '../php/DataBase.php';
 			if (isset($_GET["video_id"])) {
 				$acc = $_SESSION["acc"];
 				$video_id = $_GET["video_id"];
-            	$db = DB();
+            	$db = DB1();
     			$sql = "INSERT INTO member_search_record(account,video_id,search_time) VALUES ('$acc','$video_id', NOW())";
 				$db->exec($sql)or die ("無法新增".mysqli_error($db)); //執行sql語法
 			}
