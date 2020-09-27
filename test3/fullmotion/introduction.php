@@ -61,7 +61,7 @@ include '../php/DataBase.php';
 									<img src="'.$row["picture"].'" alt="" /></a>
 									</div>';
 									echo '<a href="../php/videoListAdd.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="button" data-poptrox="ignore" name="videoListAdd"">影片蒐藏</a>';
-									echo "<p>影片名稱：" .$_GET["video_name"]."<br/>主演：";
+									echo "<h3>影片名稱：" .$_GET["video_name"]."<br/>主演：";
 										$sql2="SELECT * FROM testdb1.video
 										left join testdb1.area on video.area_id = area.area_id
 										left join testdb1.actor_record on video.video_id = actor_record.video_id
@@ -116,7 +116,7 @@ include '../php/DataBase.php';
 										$row6 = $result6->fetch(PDO::FETCH_ASSOC);
 										$result6->execute();
 										while($row6 = $result6->fetch()){ 
-											echo '</p><p>來自'.$row6["vfrom"].'的評論：　'.$row6["video_comment"].'<br />';
+											echo '</h3><h3>來自'.$row6["vfrom"].'的評論：　'.$row6["video_comment"].'<br />';
 										}
 								}
 							?>

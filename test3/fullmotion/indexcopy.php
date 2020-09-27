@@ -80,8 +80,8 @@
 									<a href="introduction.php?video_name='.$row["video_name"].'" class="image fit" data-poptrox="ignore"><img src="'.$row["videopicture"].'" alt="" /></a>
 									<div class="inner">
 										<h3>'.$row["video_name"].'</h3>
-										<p>主演： '.$row["actor_name"].'<br /></p>
-										<p>評分： '.$row["score"].' <br /></p>
+										<h4>主演： '.$row["actor_name"].'<br /></h4>
+										<h4>評分： '.$row["score"].' <br /></h4>
 										<a href="introduction.php?video_name='.$row["video_name"].'" class="button fit" data-poptrox="ignore">影片介紹</a>
 									</div>
 								</div>';
