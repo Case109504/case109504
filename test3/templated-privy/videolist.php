@@ -66,7 +66,7 @@ if ($_SESSION["acc"] == "") {
 				<li><a href="videolist.php" accesskey="4" title="">個人影片清單</a></li>
 				<li><a href="share.php" accesskey="5" title="">用戶分享</a></li>
 				<li><a href="editinformation.php" accesskey="6" title="">編輯個人資料</a></li>
-				<li><a href="../home.php" accesskey="6" title="">返回首頁</a></li>
+				<li><a href="../home.html" accesskey="6" title="">返回首頁</a></li>
 			</ul>
 		</div>
 	</div>
