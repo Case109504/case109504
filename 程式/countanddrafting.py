@@ -7,7 +7,7 @@ import calendar
 import datetime
 # from datetime import datetime, timedelta
 # 使用 connect 方法，傳入數據庫地址，賬號密碼，數據庫名就可以得到你的數據庫對象
-mydb = pymysql.connect("127.0.0.1", "root", "jason580219", "new_schema1")
+mydb = pymysql.connect("127.0.0.1", "root", "password", "new_schema1")
 # 接著我們獲取 cursor 來操作我們的 avIdol 這個數據庫
 cursor = mydb.cursor()
 
