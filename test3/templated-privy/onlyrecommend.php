@@ -34,6 +34,17 @@ if ($_SESSION["acc"] == "") {
 		}   
 	}
 ?>
+<?php
+	$db = DB1();
+	$sql="SELECT * FROM testdb1.video
+	left join testdb1.area on video.area_id = area.area_id
+	left join testdb1.vtype_record on video.video_id = vtype_record.video_id
+	left join testdb1.vtype on vtype_record.vtype_id = vtype.vtype_id
+	where vtype_name = '劇情'";
+	$result = $db->query($sql);
+	$row = $result->fetch(PDO::FETCH_ASSOC);
+	$result->execute();
+?>
 <div id="page" class="container">
 	<div id="header">
 		<div id="logo">
@@ -72,6 +83,47 @@ if ($_SESSION["acc"] == "") {
 				<h2>Maecenas lectus sapien</h2>
 				<span class="byline">Integer sit amet aliquet pretium</span>
 			</div>
+			<?php 
+			echo '<h3>'.$row["vtype_name"].'</h3>';
+							while($row = $result->fetch()){ 
+								echo '<div class="box">
+									<a href="introduction.php?video_name='.$row["video_name"].'" class="image fit" data-poptrox="ignore"><img src="'.$row["picture"].'" alt="" /></a>
+									<div class="inner">
+										<h3>'.$row["video_name"].'</h3>
+										<h4>主演： ';
+										$sql2="SELECT * FROM testdb1.video
+										left join testdb1.area on video.area_id = area.area_id
+										left join testdb1.vtype_record on video.video_id = vtype_record.video_id
+										left join testdb1.vtype on vtype_record.vtype_id = vtype.vtype_id
+										left join testdb1.actor_record on video.video_id = actor_record.video_id
+										left join testdb1.actor on actor_record.actor_id = actor.actor_id
+										where vtype_name = '劇情' and video_name = '" . $row["video_name"]."'
+										limit 5";
+										$result2 = $db->query($sql2);
+										$row2 = $result2->fetch(PDO::FETCH_ASSOC);
+										$result2->execute();
+								while($row2 = $result2->fetch()){ 
+								echo $row2["actor_name"].'<br />';
+								}
+								echo '</h4>
+										<h4>評分： ';
+										$sql3="SELECT * FROM testdb1.score
+										left join testdb1.video on score.video_id = video.video_id
+										left join testdb1.video_from on score.vfrom_id = video_from.vfrom_id
+										where video_name = '" . $row["video_name"]."'";
+										$result3 = $db->query($sql3);
+										$row3 = $result3->fetch(PDO::FETCH_ASSOC);
+										$result3->execute();
+										while($row3 = $result3->fetch()){ 
+											echo $row3["vfrom"].'：'.$row3["score"].'<br />';
+											}		
+								echo ' <br /></h4>
+										<a href="introduction.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="button fit" data-poptrox="ignore">影片介紹</a>
+									</div>
+								</div>';
+								
+							}
+							?>
 			<ul class="style1">
 				<li class="first">
 					<p class="date"><a href="#">Jan<b>05</b></a></p>
