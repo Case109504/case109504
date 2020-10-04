@@ -35,7 +35,7 @@ if ($_SESSION["acc"] == "") {
 	}
 
 	$db = DB1();
-	$sql="SELECT * FROM testdb.member_video_list
+	$sql="SELECT * FROM testdb1.member_video_list
 	left join testdb1.video on video.video_id = member_video_list.video_id
 	left join testdb1.area on video.area_id = area.area_id
 	where account = '" . $_SESSION["acc"]."'";
