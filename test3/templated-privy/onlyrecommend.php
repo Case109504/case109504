@@ -54,9 +54,9 @@ if ($_SESSION["acc"] == "") {
 		</div>
 		<div id="menu">
 			<ul>
-			<li class="current_page_item"><a href="membersonly.php" accesskey="1" title="">會員專區</a></li>
+				<li><a href="membersonly.php" accesskey="1" title="">會員專區</a></li>
 				<li><a href="samerecommend.php" accesskey="2" title="">同好推薦</a></li>
-				<li><a href="onlyrecommend.php" accesskey="3" title="">客製化推薦</a></li>
+				<li class="current_page_item"><a href="onlyrecommend.php" accesskey="3" title="">客製化推薦</a></li>
 				<li><a href="videolist.php" accesskey="4" title="">個人影片清單</a></li>
 				<li><a href="share.php" accesskey="5" title="">用戶分享</a></li>
 				<li><a href="editinformation.php" accesskey="6" title="">編輯個人資料</a></li>
