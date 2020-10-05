@@ -54,7 +54,7 @@ include '../php/DataBase.php';
 							<?php 
 							while($row = $result->fetch()){ 
 								echo '<div class="box">
-									<a href="introduction.php?video_name='.$row["video_name"].'" class="image fit" data-poptrox="ignore"><img src="'.$row["picture"].'" alt="" /></a>
+									<a href="introduction.php?video_name='.$row["video_name"].'" class="image fit" data-poptrox="ignore"><img src="'.$row["picture"].'"  /></a>
 									<div class="inner">
 										<h3>'.$row["video_name"].'</h3>
 										<h4>主演： ';
