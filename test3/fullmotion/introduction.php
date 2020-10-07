@@ -97,7 +97,7 @@ include '../php/DataBase.php';
 									while($row4 = $result4->fetch()){ 
 										echo $row4["director_name"]."\n";
 									}
-								echo "<br/>編劇：" .$row["video_id"]."<br/>劇別：" .$row["video_id"]."<br/>區域：" .$row["area_name"]."<br/><a href = '".$row["vlink"]."' data-poptrox='ignore'>影片來源：" .$row["vfrom"]."</a><br/>評分：<br/>";
+								echo "<br/>區域：" .$row["area_name"]."<br/><a href = '".$row["vlink"]."' data-poptrox='ignore'>影片來源：" .$row["vfrom"]."</a><br/>評分：<br/>";
 										$sql5="SELECT * FROM testdb1.score
 										left join testdb1.video on score.video_id = video.video_id
 										left join testdb1.video_from on score.vfrom_id = video_from.vfrom_id
