@@ -49,7 +49,7 @@ function FindUser ($acc , $password){
         $_SESSION["password"] = $password;
         
         
-        header('Location: backstage_login_php.php');
+        header('Location: video_select.php');
     }else{
         echo '<script>  swal({
             text: "查不到資料！  請檢查輸入資料是否正確！",
