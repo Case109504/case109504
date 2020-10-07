@@ -2,9 +2,9 @@
 
 include 'DataBase.php';
 
-function AddVideo($video_name, $type_id, $area_id) {
-    $db = DB();
-    $sql = "INSERT INTO Video(video_name,type_id,area_id) VALUES ('$video_name','$type_id','$area_id')";
+function AddVideo($video_name, $area_id, $introduction) {
+    $db = DB1();
+    $sql = "INSERT INTO video(video_name,area_id,introduction) VALUES ('$video_name','$area_id','$introduction')";
     $db->exec($sql)or die ("無法新增".mysqli_error($db)); //執行sql語法
     header("Location:video_select.php");
 }
