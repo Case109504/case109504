@@ -9,10 +9,12 @@ function AddVideo($video_name, $area_id, $introduction) {
     header("Location:video_select.php");
 }
 
-function UpdateVideo($video_id, $video_name, $type_id, $area_id) {
-    $db = DB();
-    $sql = "UPDATE Video SET video_name = '$video_name' WHERE (video_id = '$video_id')";
-    $db->exec($sql)or die ("無法更新".mysqli_error($db)); //執行sql語法
+function UpdateVideo($video_id, $video_name, $area_id, $introduction) {
+    $db = DB1();
+    $sql = "UPDATE video SET video_name = '$video_name' WHERE (video_id = '$video_id');
+    UPDATE video SET area_id = '$area_id' WHERE (video_id = '$video_id');
+    UPDATE video SET introduction = '$introduction' WHERE (video_id = '$video_id');";
+    $db->exec($sql);
     header("Location:video_select.php");
 }
 
@@ -26,7 +28,7 @@ function DeleteVideo($video_id) {
     DELETE FROM actor_record WHERE video_id = $video_id;
     DELETE FROM video WHERE video_id = $video_id;
     SET FOREIGN_KEY_CHECKS = 1;";
-    $db->exec($sql)or die ("無法刪除".mysqli_error($db)); //執行sql語法
+    $db->exec($sql);
     header("Location:video_select.php");
 }
 
