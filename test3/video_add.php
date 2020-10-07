@@ -91,7 +91,7 @@ if ($_SESSION["accU"] == "") {
 								</div>  
 								<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
 									<h1>影片介紹：</h1>									
-									<input type="text" name="introduction" id="introduction" value="" placeholder="" required>
+									<textarea style="height:150px;" name="introduction" id="introduction" value="" placeholder="" required></textarea>
 								</div>  
 								<div class="12u$">
 									<ul class="actions">

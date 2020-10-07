@@ -94,15 +94,6 @@ if ($_SESSION["accU"] == "") {
 									<h1>影片簡介：</h1>									
 									<textarea style="height:150px;" name="introduction" id="introduction" value="" placeholder="" required><?php echo $row['introduction']?></textarea>
                                 </div>
-                                <?php 
-                                while($row = $result->fetch()){ 
-                                    echo
-                                        '<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
-                                            <h1>評論：</h1>									
-                                            <textarea style="height:150px;" name="comments_name" id="comments_name" value="" placeholder="" required>'.$row['comments_name'].'</textarea>
-                                        </div>'
-                                ;}
-                                ?>
 								<div class="12u$">
 									<ul class="actions">
 										<div align="right"  style="margin-right: 5%">
