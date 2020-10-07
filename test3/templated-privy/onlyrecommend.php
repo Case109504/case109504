@@ -71,17 +71,17 @@ if ($_SESSION["acc"] == "") {
 		<div id="welcome">
 			<div class="title">
 				<h2>會員專區</h2>
-				<span class="byline">Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue</span>
+				<span class="byline">自我介紹</span>
 			</div>
-			<p>This is <strong>Privy</strong>, a free, fully standards-compliant CSS template designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>. The photos in this template are from <a href="http://fotogrph.com/"> Fotogrph</a>. This free template is released under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so you're pretty much free to do whatever you want with it (even use it commercially) provided you give us credit for it. Have fun :) </p>
+			<p>這是<strong>會員介紹</strong>的空間<a href="../home.html" rel="nofollow">TEMPLATED</a>. The photos in this template are from <a href="http://fotogrph.com/"> Fotogrph</a>. This free template is released under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so you're pretty much free to do whatever you want with it (even use it commercially) provided you give us credit for it. Have fun :) </p>
 			<ul class="actions">
-				<li><a href="#" class="button">Etiam posuere</a></li>
+				<li><a href="../home.html" class="button">Etiam posuere</a></li>
 			</ul>
 		</div>
 		<div id="featured">
 			<div class="title">
-				<h2>Maecenas lectus sapien</h2>
-				<span class="byline">Integer sit amet aliquet pretium</span>
+				<h2>你可能也喜歡</h2>
+				<span class="byline">多樣影片任君挑選</span>
 			</div>
 			<?php 
 			echo '<h3>'.$row["vtype_name"].'</h3>';
