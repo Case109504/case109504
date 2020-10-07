@@ -76,7 +76,8 @@ if ($_SESSION["accU"] == "") {
 						<input name="submit" type="button" id="submit" onclick="location.href='video_add.php'" value="新增影片" />
 						<input name="submit" type="button" id="submit" onclick="location.href='php/logOut.php'" value="登出" />
 						<P></P>
-						<table>
+						<b>
+						<table style="color:black">
 							<tr><th>影片編號</th><th>影片繁中</th><th>影片英文</th><th>影片簡中</th><th>區域</th><th>介紹</th><th>修改/刪除</th></tr>
 						<?php
 						while($row = $result->fetch()) {
@@ -90,6 +91,7 @@ if ($_SESSION["accU"] == "") {
 						}
 						?>
 						</table>
+						</b>
 						</body>
 						</div>
 					</div>
