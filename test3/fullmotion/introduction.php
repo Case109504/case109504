@@ -12,16 +12,6 @@ include '../php/DataBase.php';
 	</head>
 	<body id="top">
 	<?php
-		if (isset($_SESSION["acc"])&&$_SESSION["acc"]!="") {
-			if (isset($_GET["video_id"])) {
-				$acc = $_SESSION["acc"];
-				$video_id = $_GET["video_id"];
-            	$db = DB1();
-    			$sql = "INSERT INTO member_search_record(account,video_id,search_time) VALUES ('$acc','$video_id', NOW())";
-				$db->exec($sql)or die ("無法新增".mysqli_error($db)); //執行sql語法
-			}
-		}
-
 		$db = DB1();
 		$sql="SELECT * FROM testdb1.video
 		left join testdb1.area on video.area_id = area.area_id
