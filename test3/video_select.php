@@ -86,7 +86,7 @@ if ($_SESSION["accU"] == "") {
 							<td width='5%'>".$row["video_ch_name"]."</td>
 							<td width='10%'>".$row["area_name"]."</td>
 							<td width='60%'>".$row["introduction"]."</td>
-							<td width='10%'><a href='video_update.php?video_id=".$row["video_id"]."'>修改</a> <a href='video_delete.php?video_id=".$row["video_id"]."'>刪除</a></td></tr>";
+							<td width='10%'><a href='video_update.php?video_id=".$row["video_id"]."' class='button fit'>修改</a> <a href='video_delete.php?video_id=".$row["video_id"]."'class='button fit'>刪除</a></td></tr>";
 						}
 						?>
 						</table>
