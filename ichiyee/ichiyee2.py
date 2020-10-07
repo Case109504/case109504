@@ -18,7 +18,7 @@ video_links = []
 
 Dict = {}
 
-max_page = 1
+max_page = 14
 
 for i in range( 1, max_page+1 ):
     r = requests.get( base_link[0] + str( i ) + base_link[1] )
@@ -55,6 +55,14 @@ for i, link in enumerate( video_links ):
         
         info = soup.find( 'div', class_ = 'tw-album-intro-text' ).find( 'div', class_ = 'content-intro' ).find( 'span', class_ = 'intro-txt' ).text.strip()
 
+        div1=soup.find('div',id="block-E")
+        image1=div1.find('a',itemprop='image')
+        
+        url = image1['style']
+
+        image="http:"+url[url.find("'")+1:url.rfind("'")]
+        print(image)
+
         director = ''
         actors = []
         video_types = []
@@ -84,6 +92,7 @@ for i, link in enumerate( video_links ):
             'area': area, #
             'time': video_time,
             'introduction':info,
+            'image':image,
             'link':video_links[i]
         }
         time.sleep( random.random() * 0.5 + 0.5 )

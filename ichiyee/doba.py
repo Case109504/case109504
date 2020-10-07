@@ -4,6 +4,8 @@ import re
 import pymongo
 import time
 from bs4 import BeautifulSoup
+
+
 client = pymongo.MongoClient('localhost', 27017)
 test = client['test']
 video = test['video']
@@ -21,16 +23,16 @@ def get_movie_info(url):
     soup = BeautifulSoup(html.text, 'lxml')
  
     div_info = soup.find( id='info' )
- 
+    div_info1 = soup.find( id='hot-comments' )
     selector = etree.HTML(html.text)
     video_time=[]
     director=[]
     actor=[]
     screemwriter=[]
     info_items = div_info.find_all( 'span', recursive=False )
- 
-    print( div_info )
- 
+    comment=[]
+    image=""
+
     try:
         video_name = selector.xpath('//*[@id="content"]/h1/span[1]/text()')
         # director = info_items[0].find( 'span', class_ = 'attrs' ).find( 'a' ).text
@@ -50,11 +52,18 @@ def get_movie_info(url):
         link = url
         for i in div_info.find_all( 'span', property = "v:initialReleaseDate" ):
             video_time.append( i.text )
-     
+
+        content_childs = div_info1.find_all( 'div', class_ = 'comment-item' )
+        num = min( len(content_childs), 5 )
+        for i in range(num):
+            comment.append(content_childs[i].find(class_ = 'comment' ).find( 'span', class_ = 'short' ).text.strip())
+
+        image=soup.find('img')['src']
         
- 
         
- 
+
+        print( video_name )
+
     except IndexError:
         pass
     info = {
@@ -67,9 +76,11 @@ def get_movie_info(url):
         'plot': plot,
         'area': area,
         'time': '/'.join( video_time ),
+        'comment':comment,
+        'image':image,
         'link':link
     }
-    print( info )
+    print(image)
  
     video.insert_one(info)
 if __name__ =='__main__':

@@ -13,23 +13,24 @@ conn = MongoClient('mongodb://localhost:27017/')#27017是你MongoDB的默認port
 db = conn.test   #創建一個 Idol 數據庫，如果 mongodb 沒有會自行創建
 mycol = db["ichiyee"]
 
-video=0
+
 actorlist=[]
 directorlist=[]
 vtypelist=[]
-video_name=''
-area=0
-year=''
-introduction=''
-ich='https://tw.iqiyi.com/'
-vfrom=''
 
 #用For查詢
-for item in mycol.find({},{"_id": 0,"video_name": 1,'director':1,'actors':1,'type':1,'area':1,'time':1,'introduction':1,'link':1}):
+for item in mycol.find({},{"_id": 0,"video_name": 1,'director':1,'actors':1,'type':1,'area':1,'time':1,'introduction':1,'image':1,'link':1}):
     actorlist.clear()
     directorlist.clear()
     vtypelist.clear()
-    
+    video_name=''
+    area=0
+    year=''
+    introduction=''
+    ich='https://tw.iqiyi.com/'
+    vfrom=''
+    image=''
+    video=0
     for i,v in item.items():
         if i=='actors':
             for a in v:
@@ -152,6 +153,8 @@ for item in mycol.find({},{"_id": 0,"video_name": 1,'director':1,'actors':1,'typ
 #-------------------------------------------------------------------------------------------------------------------------------
         elif i=='introduction':
             introduction=v
+        elif i=='image':
+            image=v
 #-------------------------------------------------------------------------------------------------------------------------------
         else:
             if v[0:21]==ich:
@@ -175,11 +178,13 @@ for item in mycol.find({},{"_id": 0,"video_name": 1,'director':1,'actors':1,'typ
                 mydb.commit()
                 row = cursor.fetchone()   
                 if row is None:
-                    cursor.execute("insert into testdb1.video(video_name,area_id,year,introduction,vlink,vfrom_id) values ('{}',{},'{}','{}','{}',{})".format(video_name,area,year,introduction,v,vfrom))
+                    cursor.execute("insert into testdb1.video(video_name,area_id,year,introduction,vlink,vfrom_id,picture) values ('{}',{},'{}','{}','{}',{},'{}')".format(video_name,area,year,introduction,v,vfrom,image))
                     mydb.commit()
                     print('成功新增資料') 
                 else:
-                    cursor.execute("update testdb1.video set vlink= '{}' where video_name='{}';".format(v,video_name))
+                    cursor.execute("update testdb1.video set vlink= '{}' where video_name='{}' and vfrom_id={};".format(v,video_name,vfrom))
+                    mydb.commit()
+                    cursor.execute("update testdb1.video set picture= '{}' where  video_name = '{}' and vfrom_id = {};".format(image,video_name,vfrom))
                     mydb.commit()
                     print("修改資料")
 
@@ -225,6 +230,21 @@ for item in mycol.find({},{"_id": 0,"video_name": 1,'director':1,'actors':1,'typ
             cursor.execute( "insert into testdb1.vtype_record(vtype_id,video_id) values ({}, {})".format(a3,video))
             mydb.commit()
 
+    try:
+        cursor.execute("SELECT  *  FROM  testdb1.score where (video_id,vfrom_id) = ({},{}) ;".format(video,vfrom))
+        mydb.commit()
+        row = cursor.fetchone()   
+        if row is None:
+            cursor.execute("insert into testdb1.score(video_id,vfrom_id,score) values ({},{},{})".format(video,vfrom,0))
+            mydb.commit()
+            print('成功新增資料') 
+        else:
+            cursor.execute("update testdb1.score set score= {} where video_id='{}' and vfrom_id = {};".format(0,video,vfrom))
+            mydb.commit()
+            print("修改資料")
+    except:
+        print("失敗")
+        mydb.rollback()
     print("")
 
 mydb.close() 

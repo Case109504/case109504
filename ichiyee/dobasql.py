@@ -6,7 +6,7 @@ import pypinyin
 from opencc import OpenCC
 
 
-mydb = pymysql.connect("140.131.115.87", "root", "109504109504", "testdb1")
+
 # 接著我們獲取 cursor 來操作我們的 avIdol 這個數據庫
 cursor = mydb.cursor()
 
@@ -15,21 +15,28 @@ db = conn.test#創建一個 Idol 數據庫，如果 mongodb 沒有會自行創�
 mycol = db["video"]
 
 cc = OpenCC('s2t')
-video_name=''
-year=''
-area=0
+con=0
 actorlist=[]
 directorlist=[]
 vtypelist=[]
-plot=""
-vfrom=0
-video=0
+comment=[]
 
-for item in mycol.find({},{"_id": 0,'actor':1,'director':1,'type':1,'area':1,'video_name':1,'score':1,'time':1,'plot':1,'link':1}):
+for item in mycol.find({},{"_id": 0,'actor':1,'director':1,'type':1,'area':1,'video_name':1,'score':1,'time':1,'plot':1,'comment':1,'image':1,'link':1}):
     actorlist.clear()
     directorlist.clear()
     vtypelist.clear()
-
+    comment.clear()
+    video_name=''
+    year=''
+    plot=""
+    area=0
+    vfrom=0
+    video=0
+    video_name_ch=""
+    video_name_eg=""
+    video_score=0.0
+    image=''
+    
     for i,v in item.items():
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         if i=='actor':
@@ -39,7 +46,7 @@ for item in mycol.find({},{"_id": 0,'actor':1,'director':1,'type':1,'area':1,'vi
                 egList = []
                 for q in pinyin(a, 0):
                     for j in q:
-                        egList.append( j.title())
+                        egList.append(j.title())
                 eg = ' '.join( egList )
                 a=cc.convert(a.lstrip())
                 sql = "SELECT  *  FROM  testdb1.actor where  actor_name = '{}' ;".format(a)
@@ -115,7 +122,7 @@ for item in mycol.find({},{"_id": 0,'actor':1,'director':1,'type':1,'area':1,'vi
                     mydb.commit()
                     for o in cursor:
                         directorlist.append(o[0])
-
+                        
                 except:
                     # 回滾
                     print("失敗")
@@ -160,10 +167,17 @@ for item in mycol.find({},{"_id": 0,'actor':1,'director':1,'type':1,'area':1,'vi
         elif i=='video_name':
             for a in v:
                 # 插入一條記錄
+                s=s1=a.split(' ', 1 )
+                video_name_ch=s[0]
+
                 a=cc.convert(a.lstrip())
-                s=a.split(' ', 1 )
-                video_name=s[0]
-                print(s[0])
+                s1=a.split(' ', 1)
+                video_name=s1[0]
+                try:
+                    video_name_eg=s1[1]
+                except:
+                    video_name_eg=""
+                print(s1[0])
 #-----------------------------------------------------------------------------------------------------------------------------
         elif i=='plot':
             for a in v:
@@ -183,7 +197,14 @@ for item in mycol.find({},{"_id": 0,'actor':1,'director':1,'type':1,'area':1,'vi
         elif i=='time':
             year=v[0:10]
             print(year)
-        
+
+        elif i=='comment':
+            for a in range(5):
+                comment.append(v[a])
+
+        elif i=='image':
+            image=v
+
         elif i=='link':
             cursor.execute("SELECT * FROM  testdb1.video_from where (vfrom) = ('豆瓣');")
             mydb.commit()
@@ -200,17 +221,19 @@ for item in mycol.find({},{"_id": 0,'actor':1,'director':1,'type':1,'area':1,'vi
             for o in cursor:
                 vfrom=o[0]
 
-            sql = "SELECT  *  FROM  testdb1.video where  (video_name,area_id,year,introduction,vfrom_id) = ('{}',{},{},'{}',{}) ;".format(video_name,area,year,plot,vfrom)
+            sql = "SELECT  *  FROM  testdb1.video where  (video_name,video_eg_name,video_ch_name,area_id,year,introduction,vfrom_id) = ('{}','{}','{}',{},{},'{}',{}) ;".format(video_name,video_name_eg,video_name_ch,area,year,plot,vfrom)
             try:
                 cursor.execute(sql)
                 mydb.commit()
                 row = cursor.fetchone()   
                 if row is None:
-                    cursor.execute("insert into testdb1.video(video_name,area_id,year,introduction,vlink,vfrom_id) values ('{}',{},{},'{}','{}',{})".format(video_name,area,year,plot,v,vfrom))
+                    cursor.execute("insert into testdb1.video(video_name,video_eg_name,video_ch_name,area_id,year,introduction,vlink,vfrom_id,picture) values ('{}','{}','{}',{},{},'{}','{}',{},'{}')".format(video_name,video_name_eg,video_name_ch,area,year,plot,v,vfrom,image))
                     mydb.commit()
                     print('成功新增資料') 
                 else:
-                    cursor.execute("update testdb1.video set vlink= '{}' where video_name='{}';".format(v,video_name))
+                    cursor.execute("update testdb1.video set vlink= '{}' where  video_name = '{}' and vfrom_id = {};".format(v,video_name,vfrom))
+                    mydb.commit()
+                    cursor.execute("update testdb1.video set picture= '{}' where  video_name = '{}' and vfrom_id = {};".format(image,video_name,vfrom))
                     mydb.commit()
                     print("修改資料")
 
@@ -254,10 +277,44 @@ for item in mycol.find({},{"_id": 0,'actor':1,'director':1,'type':1,'area':1,'vi
         else:
             cursor.execute( "insert into testdb1.vtype_record(vtype_id,video_id) values ({}, {})".format(a3,video))
             mydb.commit()
+    
+    for a4 in comment:
+        a4=a4.replace('"',"")
+        a4=a4.replace('\'','’')
+        cursor.execute("SELECT  *  FROM  testdb1.video_comment where (video_comment) = ('{}');".format(a4))
+        mydb.commit()
+        row = cursor.fetchone()   
+        if row is not None:
+            print("已有這筆資料")
+        else:
+            cursor.execute("insert into testdb1.video_comment(video_id,vfrom_id,video_comment) values ({},{},'{}')".format(video,vfrom,a4))
+            mydb.commit()
+            print('成功新增資料')
 
+    try:
+        cursor.execute("SELECT  *  FROM  testdb1.score where (video_id,vfrom_id) = ({},{}) ;".format(video,vfrom))
+        mydb.commit()
+        row = cursor.fetchone()   
+        if row is None:
+            cursor.execute("insert into testdb1.score(video_id,vfrom_id,score) values ({},{},{})".format(video,vfrom,video_score))
+            mydb.commit()
+            print('成功新增資料') 
+        else:
+            cursor.execute("update testdb1.score set score= {} where video_id='{}' and vfrom_id = {};".format(video_score,video,vfrom))
+            mydb.commit()
+            print("修改資料")
+    except:
+        print("失敗")
+        mydb.rollback()
+    
+    con+=1
+
+    print(con)
     print("")
 
-    a={"video_name":video_name}
-    mycol.delete_one(a)
-    print("刪除")
 mydb.close()        
+x = mycol.delete_many({})
+if x.deleted_count==0:
+    print("還沒匯入資料")
+else:
+    print(x.deleted_count, "已删除")
