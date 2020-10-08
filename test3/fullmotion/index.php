@@ -7,6 +7,7 @@ include '../php/DataBase.php';
 		<title>搜劇Film Seeker</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="referrer" content="never">
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
 	<body id="top">
@@ -54,7 +55,7 @@ include '../php/DataBase.php';
 							<?php 
 							while($row = $result->fetch()){ 
 								echo '<div class="box">
-									<a href="../php/videoClickRecord.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="image fit" data-poptrox="ignore"><img src="'.$row["picture"].'"  /></a>
+									<a href="../php/videoClickRecord.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="image fit" data-poptrox="ignore"><img src="'.$row["picture"].'" height=500px></a>
 									<div class="inner">
 										<h3>'.$row["video_name"].'</h3>
 										<h4>主演： ';
