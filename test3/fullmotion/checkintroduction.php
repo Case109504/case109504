@@ -8,6 +8,7 @@ include '../php/DataBase.php';
 		<title>Full Motion</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="referrer" content="never">
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
 	<body id="top">
@@ -53,19 +54,22 @@ include '../php/DataBase.php';
 					<div class="inner">
 
 					<!-- Boxes -->
-						<div class="thumbnails">
-
 							<?php 
                                 while($row = $result->fetch()){ 
-                                    echo '<div class="image fit">
-									<img src="'.$row["video_id"].'" alt="" /></a>
-									</div>';
-									echo "<p>影片名稱：" .$_GET["video_name"]."<br/>主演：";
+									echo '<div class="thumbnails">
+											<div class="image">
+											<img src="'.$row["picture"].'" alt="" /></a>
+											</div>
+										</div>
+										<br/>';
+									echo '<div class="thumbnails">
+										<a href="../php/videoListAdd.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="button" data-poptrox="ignore" name="videoListAdd"">影片蒐藏</a>';
+									echo "<h3>影片名稱：" .$_GET["video_name"]."<br/>主演：";
 										$sql2="SELECT * FROM testdb1.video
 										left join testdb1.area on video.area_id = area.area_id
 										left join testdb1.actor_record on video.video_id = actor_record.video_id
 										left join testdb1.actor on actor_record.actor_id = actor.actor_id
-										where video_name = '" . $_GET["video_name"]."'or video_eg_name = '" . $_GET["video_name"]."'or video_ch_name = '" . $_GET["video_name"]."'";
+										where (video_name = '" . $_GET["video_name"]."'or video_eg_name = '" . $_GET["video_name"]."'or video_ch_name = '" . $_GET["video_name"]."')and area_name = '" . $_GET["area_name"]."'";
 										$result2 = $db->query($sql2);
 										$row2 = $result2->fetch(PDO::FETCH_ASSOC);
 										$result2->execute();
@@ -77,7 +81,7 @@ include '../php/DataBase.php';
 										left join testdb1.area on video.area_id = area.area_id
 										left join testdb1.vtype_record on video.video_id = vtype_record.video_id
 										left join testdb1.vtype on vtype_record.vtype_id = vtype.vtype_id
-										where video_name = '" . $_GET["video_name"]."'or video_eg_name = '" . $_GET["video_name"]."'or video_ch_name = '" . $_GET["video_name"]."'";
+										where (video_name = '" . $_GET["video_name"]."'or video_eg_name = '" . $_GET["video_name"]."'or video_ch_name = '" . $_GET["video_name"]."')and area_name = '" . $_GET["area_name"]."'";
 										$result3 = $db->query($sql3);
 										$row3 = $result3->fetch(PDO::FETCH_ASSOC);
 										$result3->execute();
@@ -89,14 +93,14 @@ include '../php/DataBase.php';
 										left join testdb1.area on video.area_id = area.area_id
 										left join testdb1.director_record on video.video_id = director_record.video_id
 										left join testdb1.director on director_record.director_id = director.director_id
-										where video_name = '" . $_GET["video_name"]."'or video_eg_name = '" . $_GET["video_name"]."'or video_ch_name = '" . $_GET["video_name"]."'";
+										where (video_name = '" . $_GET["video_name"]."'or video_eg_name = '" . $_GET["video_name"]."'or video_ch_name = '" . $_GET["video_name"]."')and area_name = '" . $_GET["area_name"]."'";
 										$result4 = $db->query($sql4);
 										$row4 = $result4->fetch(PDO::FETCH_ASSOC);
 										$result4->execute();
 									while($row4 = $result4->fetch()){ 
 										echo $row4["director_name"]."\n";
 									}
-								echo "<br/>編劇：" .$row["video_id"]."<br/>劇別：" .$row["video_id"]."<br/>區域：" .$row["area_name"]."<br/><a href = '".$row["vlink"]."' data-poptrox='ignore'>影片來源：" .$row["vfrom"]."</a><br/>評分：<br/>";
+								echo "<br/>區域：" .$row["area_name"]."<br/><a href = '".$row["vlink"]."' data-poptrox='ignore'>影片來源：" .$row["vfrom"]."</a><br/>評分：<br/>";
 										$sql5="SELECT * FROM testdb1.score
 										left join testdb1.video on score.video_id = video.video_id
 										left join testdb1.video_from on score.vfrom_id = video_from.vfrom_id
@@ -115,9 +119,10 @@ include '../php/DataBase.php';
 										$row6 = $result6->fetch(PDO::FETCH_ASSOC);
 										$result6->execute();
 										while($row6 = $result6->fetch()){ 
-											echo '</p><p>來自'.$row6["vfrom"].'的評論：　'.$row6["video_comment"].'<br />';
+											echo '</h3><h3>來自'.$row6["vfrom"].'的評論：　'.$row6["video_comment"].'<br />';
 										}
 								}
+								echo "</div>";
 							?>
 							<!--<div class="image fit">
 								<img src="<?php echo $row['video_id']?>" alt="" /></a>
