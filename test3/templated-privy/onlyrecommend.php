@@ -13,6 +13,7 @@ if ($_SESSION["acc"] == "") {
 <title></title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
+<meta name="referrer" content="never">
 <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
 <link href="default.css" rel="stylesheet" type="text/css" media="all" />
 <link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
@@ -87,7 +88,7 @@ if ($_SESSION["acc"] == "") {
 			echo '<h3>'.$row["vtype_name"].'</h3>';
 							while($row = $result->fetch()){ 
 								echo '<div class="box">
-									<a href="introduction.php?video_name='.$row["video_name"].'" class="image fit" data-poptrox="ignore"><img src="'.$row["picture"].'" alt="" /></a>
+								<a href="../php/videoClickRecord.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="image fit" data-poptrox="ignore"><img src="'.$row["picture"].'" height=500px></a>
 									<div class="inner">
 										<h3>'.$row["video_name"].'</h3>
 										<h4>主演： ';
