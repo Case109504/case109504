@@ -37,11 +37,13 @@ if ($_SESSION["acc"] == "") {
 ?>
 <?php
 	$db = DB1();
-	$sql="SELECT * FROM testdb1.video
+	$sql="SELECT * FROM testdb1.vtype
+	left join testdb1.type_sort on type_sort.vtype_name = vtype.vtype_name
+	left join testdb1.vtype_record on vtype.vtype_id = vtype_record.vtype_id
+	left join testdb1.video on video.video_id = vtype_record.video_id
 	left join testdb1.area on video.area_id = area.area_id
-	left join testdb1.vtype_record on video.video_id = vtype_record.video_id
-	left join testdb1.vtype on vtype_record.vtype_id = vtype.vtype_id
-	where vtype_name = '劇情'";
+	where account = '" . $_SESSION["acc"]."'
+	order by sort desc";
 	$result = $db->query($sql);
 	$row = $result->fetch(PDO::FETCH_ASSOC);
 	$result->execute();
@@ -98,7 +100,7 @@ if ($_SESSION["acc"] == "") {
 										left join testdb1.vtype on vtype_record.vtype_id = vtype.vtype_id
 										left join testdb1.actor_record on video.video_id = actor_record.video_id
 										left join testdb1.actor on actor_record.actor_id = actor.actor_id
-										where vtype_name = '劇情' and video_name = '" . $row["video_name"]."'
+										where vtype_name = '" . $row["vtype_name"]."' and video_name = '" . $row["video_name"]."'
 										limit 5";
 										$result2 = $db->query($sql2);
 										$row2 = $result2->fetch(PDO::FETCH_ASSOC);
