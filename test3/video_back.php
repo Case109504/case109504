@@ -11,14 +11,14 @@ if ($_SESSION["accU"] == "") {
 	<head>
 		<title>明察秋毫 搜尋</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="referrer" content="never">
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
 	<body class="subpage">
 		<?php
 			$db = DB1();
-			$sql="SELECT * FROM testdb1.video
-			left join testdb1.area on video.area_id = area.area_id";
+			$sql="SELECT * FROM testdb1.analy_pic";
 			$result = $db->query($sql);
 			$row = $result->fetch(PDO::FETCH_ASSOC);
 			$result->execute();
@@ -73,23 +73,12 @@ if ($_SESSION["accU"] == "") {
 							</style>
 						</head>
 						<body>
-						<input name="submit" type="button" id="submit" onclick="location.href='video_add.php'" value="新增影片" />
-						<input name="submit" type="button" id="submit" onclick="location.href='video_back.php'" value="分析總覽" />
-						<input name="submit" type="button" id="submit" onclick="location.href='php/logOut.php'" value="登出" />
-						<P></P>
-						<b>
-						<table style="color:black">
-							<tr><th>影片編號</th><th>影片繁中</th><th>影片英文</th><th>影片簡中</th><th>區域</th><th>介紹</th><th>修改/刪除</th></tr>
 						<?php
 						while($row = $result->fetch()) {
-							echo "<tr><td width='5%'>".$row["video_id"]."</td>
-							<td width='5%'>".$row["video_name"]."</td>
-							<td width='5%'>".$row["video_eg_name"]."</td>
-							<td width='5%'>".$row["video_ch_name"]."</td>
-							<td width='10%'>".$row["area_name"]."</td>
-							<td width='60%'>".$row["introduction"]."</td>
-							<td width='10%'><a href='video_update.php?video_id=".$row["video_id"]."' class='button fit'>修改</a> <a href='video_delete.php?video_id=".$row["video_id"]."'class='button fit'>刪除</a></td></tr>";
-						}
+                            echo '<div class="image fit">
+                            <img src="'.$row["analy_pic"].'" alt="" /></a>
+                            </div>';
+                        }
 						?>
 						</table>
 						</b>
