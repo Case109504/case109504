@@ -47,7 +47,7 @@ if ($_SESSION["accU"] == "") {
 				<div class="inner">
 					<header class="align-center">
 						<p>你好，管理員<?php echo $_SESSION["accU"]; ?></p>
-						<h2>影片總覽</h2>
+						<h2>影片分析圖表</h2>
 					</header>
 				</div>
 			</section>
