@@ -10,7 +10,7 @@ if ($_SESSION["acc"] == "") {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title></title>
+<title>搜劇Film Seeker</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta name="referrer" content="never">
@@ -76,9 +76,9 @@ if ($_SESSION["acc"] == "") {
 				<h2>會員專區</h2>
 				<span class="byline">自我介紹</span>
 			</div>
-			<p>這是<strong>會員介紹</strong>的空間<a href="../home.html" rel="nofollow">TEMPLATED</a>. The photos in this template are from <a href="http://fotogrph.com/"> Fotogrph</a>. This free template is released under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so you're pretty much free to do whatever you want with it (even use it commercially) provided you give us credit for it. Have fun :) </p>
+			<p>這是<strong>會員介紹</strong>的空間<a href="../home.html" rel="nofollow"></a><a href="http://fotogrph.com/"> </a></p>
 			<ul class="actions">
-				<li><a href="../home.html" class="button">Etiam posuere</a></li>
+				<li><a href="../home.html" class="button"></a></li>
 			</ul>
 		</div>
 		<div id="featured">

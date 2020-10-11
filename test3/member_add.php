@@ -5,7 +5,7 @@ include 'php/FindOrder.php';
 ?>
 <html>
 	<head>
-		<title>明察秋毫 搜尋</title>
+		<title>搜劇Film Seeker</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -33,7 +33,7 @@ include 'php/FindOrder.php';
         ?>
 		<!-- Header -->
 		<header id="header">
-				<div class="logo"><a href="home.html">明察秋毫 <span></span></a></div>
+				<div class="logo"><a href="home.html">搜劇Film Seeker <span></span></a></div>
 				<a href="#menu"></a>
 			</header>
 

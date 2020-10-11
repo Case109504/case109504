@@ -10,7 +10,7 @@ if ($_SESSION["acc"] == "") {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title></title>
+<title>搜劇Film Seeker</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta name="referrer" content="never">
@@ -77,18 +77,18 @@ if ($_SESSION["acc"] == "") {
 		</div>
 		<div id="welcome">
 			<div class="title">
-				<h2>Fusce ultrices fringilla metus</h2>
-				<span class="byline">Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue</span>
+				<h2></h2>
+				<span class="byline"></span>
 			</div>
-			<p>This is <strong>Privy</strong>, a free, fully standards-compliant CSS template designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>. The photos in this template are from <a href="http://fotogrph.com/"> Fotogrph</a>. This free template is released under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so you're pretty much free to do whatever you want with it (even use it commercially) provided you give us credit for it. Have fun :) </p>
+			<p><strong></strong><a href="http://templated.co" rel="nofollow"></a><a href="http://fotogrph.com/"> </a></p>
 			<ul class="actions">
-				<li><a href="#" class="button">Etiam posuere</a></li>
+				<li><a href="#" class="button"></a></li>
 			</ul>
 		</div>
 		<div id="featured">
 			<div class="title">
-				<h2>Maecenas lectus sapien</h2>
-				<span class="byline">Integer sit amet aliquet pretium</span>
+				<h2>個人影片清單</h2>
+				<span class="byline">這裡存放您所收藏的所有影片</span>
 			</div>
 			<?php 
 							while($row = $result->fetch()){ 
