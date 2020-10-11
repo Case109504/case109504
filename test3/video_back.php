@@ -75,9 +75,12 @@ if ($_SESSION["accU"] == "") {
 						<body>
 						<?php
 						while($row = $result->fetch()) {
-                            echo '<div class="image fit">
-                            <img src="'.$row["analy_pic"].'" alt="" /></a>
-                            </div>';
+							echo '<div class="thumbnails">
+							<br/><h2>'.$row["discription"].'：</h2><br/>
+							<div class="image">
+                            <img src="'.$row["analyPic"].'" alt="" />
+							</div>
+							</div>';
                         }
 						?>
 						</table>
