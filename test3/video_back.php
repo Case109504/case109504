@@ -77,7 +77,7 @@ if ($_SESSION["accU"] == "") {
 						while($row = $result->fetch()) {
 							echo '<div class="thumbnails">
 							<br/><h2>'.$row["discription"].'：</h2><br/>
-							<div class="image">
+							<div class="image fit">
                             <img src="'.$row["analyPic"].'" alt="" />
 							</div>
 							</div>';
