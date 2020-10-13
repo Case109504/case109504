@@ -100,7 +100,7 @@ if ($_SESSION["acc"] == "") {
 							$sql="SELECT * FROM testdb1.member_video_list
 							left join testdb1.video on video.video_id = member_video_list.video_id
 							left join testdb1.area on video.area_id = area.area_id
-							where account != '" . $_SESSION["acc"]."'";
+							where account != '" . $_SESSION["acc"]."' and account = '" . $row5["account"]."'";
 							$result = $db->query($sql);
 							$row = $result->fetch(PDO::FETCH_ASSOC);
 							$result->execute();
