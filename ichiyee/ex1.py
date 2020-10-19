@@ -29,7 +29,7 @@ for item in mycol.find({},{"_id": 0,"video_name": 1,'director':1,'actors':1,'typ
     introduction=''
     ich='https://tw.iqiyi.com/'
     vfrom=''
-    image=''
+    image='https://www.xn--0vqpnip88bm47lwta.tw/wp-content/uploads/2015/03/%E6%9A%AB%E7%84%A1%E5%9C%96%E7%89%87.jpg'
     video=0
     for i,v in item.items():
         if i=='actors':
@@ -235,11 +235,11 @@ for item in mycol.find({},{"_id": 0,"video_name": 1,'director':1,'actors':1,'typ
         mydb.commit()
         row = cursor.fetchone()   
         if row is None:
-            cursor.execute("insert into testdb1.score(video_id,vfrom_id,score) values ({},{},{})".format(video,vfrom,0))
+            cursor.execute("insert into testdb1.score(video_id,vfrom_id,score) values ({},{},'{}')".format(video,vfrom,'暫無評分'))
             mydb.commit()
             print('成功新增資料') 
         else:
-            cursor.execute("update testdb1.score set score= {} where video_id='{}' and vfrom_id = {};".format(0,video,vfrom))
+            cursor.execute("update testdb1.score set score= {} where video_id='{}' and vfrom_id = {};".format('暫無評分',video,vfrom))
             mydb.commit()
             print("修改資料")
     except:
