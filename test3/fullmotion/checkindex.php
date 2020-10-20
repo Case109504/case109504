@@ -80,8 +80,12 @@ include '../php/DataBase.php';
 										$row3 = $result3->fetch(PDO::FETCH_ASSOC);
 										$result3->execute();
 										while($row3 = $result3->fetch()){ 
-											echo $row3["vfrom"].'：'.$row3["score"].'<br />';
-											}		
+											if($row3["vfrom"]=='愛奇藝'){
+												echo '暫無評分';
+											}else{
+												echo $row3["vfrom"].'：'.$row3["score"].'<br />';
+											}
+										}		
 								echo ' <br /></p>
 										<a href="introduction.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="button fit" data-poptrox="ignore">影片介紹</a>
 									</div>

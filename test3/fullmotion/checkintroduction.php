@@ -109,7 +109,11 @@ include '../php/DataBase.php';
 										$row5 = $result5->fetch(PDO::FETCH_ASSOC);
 										$result5->execute();
 										while($row5 = $result5->fetch()){ 
-											echo $row5["vfrom"].'：'.$row5["score"].'<br />';
+											if($row5["vfrom"]=='愛奇藝'){
+												echo '暫無評分';
+											}else{
+												echo $row5["vfrom"].'：'.$row5["score"].'<br />';
+											}
 										}
 										$sql6="SELECT * FROM testdb1.video_comment
 										left join testdb1.video on video_comment.video_id = video.video_id
