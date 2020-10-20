@@ -98,14 +98,16 @@ if ($_SESSION["acc"] == "") {
 						//echo "2<br/>".$row4["vtype_name"].$row5["vtype_name"];
 						if($row4["vtype_id"]==$row5["vtype_id"]){
 							$sql="SELECT * FROM testdb1.member_video_list
+							left join testdb1.member on member.account = member_video_list.account
 							left join testdb1.video on video.video_id = member_video_list.video_id
 							left join testdb1.area on video.area_id = area.area_id
-							where account != '" . $_SESSION["acc"]."' and account = '" . $row5["account"]."'";
+							where member_video_list.account != '" . $_SESSION["acc"]."' and member_video_list.account = '" . $row5["account"]."'";
 							$result = $db->query($sql);
 							$row = $result->fetch(PDO::FETCH_ASSOC);
 							$result->execute();
 							while($row = $result->fetch()){ 
 								//echo "3<br/>";
+								echo '<h1>來自「'.$row["member_name"].'」的收藏</h1>';
 								echo '<div class="box">
 								<a href="../php/videoClickRecord.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="image fit" data-poptrox="ignore"><img src="'.$row["picture"].'" height=500px></a>
 									<div class="inner">
@@ -133,10 +135,13 @@ if ($_SESSION["acc"] == "") {
 										$row3 = $result3->fetch(PDO::FETCH_ASSOC);
 										$result3->execute();
 										while($row3 = $result3->fetch()){ 
-											echo $row3["vfrom"].'：'.$row3["score"].'<br />';
-											}		
+											if($row3["vfrom"]=='愛奇藝'){
+												echo '暫無評分';
+											}else{
+												echo $row3["vfrom"].'：'.$row3["score"].'<br />';
+											}	
+										}	
 								echo ' <br /></h4>
-										<a href="../fullmotion/introduction.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="button fit" data-poptrox="ignore">影片介紹</a>
 									</div>
 								</div>';
 								
