@@ -39,6 +39,16 @@ function AddMember($member_name, $birthday, $gender, $account, $password) {
     header("Location:member_login_php.php");
 }
 
+function UpdateMember($member_name, $birthday, $gender, $account, $password) {
+    $db = DB1();
+    $sql = "UPDATE member SET video_name = '$member_name' WHERE (account = '$account');
+    UPDATE member SET birthday = '$birthday' WHERE (account = '$account');
+    UPDATE member SET gender = '$gender' WHERE (account = '$account');
+    UPDATE member SET password = '$password' WHERE (account = '$account');";
+    $db->exec($sql); //執行sql語法
+    header("Location:editinformation.php");
+}
+
 function FindUser ($acc , $password){
     $db = DB1();
     $sql = "SELECT * FROM testdb1.manager WHERE account='".$acc."' and password='".$password."'";
