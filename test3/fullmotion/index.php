@@ -126,9 +126,6 @@ include '../php/DataBase.php';
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script async src="https://cse.google.com/cse.js?cx=03d94254dfdc3a617"></script>
-			s<div class="gcse-searchresults-only"></div>
-
-
-
+			<div class="gcse-searchresults-only"></div>
 	</body>
 </html>
