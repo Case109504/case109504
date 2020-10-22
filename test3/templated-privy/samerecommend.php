@@ -35,22 +35,26 @@ if ($_SESSION["acc"] == "") {
 		}   
 	}
 
-	
+	$db = DB1();
+	$sql6="SELECT * FROM testdb1.member
+	where member.account = '" . $_SESSION["acc"]."'";
+	$result6 = $db->query($sql6);
+	$row6 = $result6->fetch(PDO::FETCH_ASSOC);
+	$result6->execute();
 ?>
 <div id="page" class="container">
 	<div id="header">
 		<div id="logo">
 			<img src="images/pic02.jpg" alt="" />
-			<h1><a href="#"><?php echo $_SESSION["acc"]; ?></a></h1>
+			<h1><a href="#"><?php echo $row6["member_name"]; ?></a></h1>
 			<span>與 <a href="../home.html" rel="nofollow">搜劇Film Seeker</a> 一同好劇</span>
 		</div>
 		<div id="menu">
 			<ul>
 				<li><a href="membersonly.php" accesskey="1" title="">會員專區</a></li>
 				<li class="current_page_item"><a href="samerecommend.php" accesskey="2" title="">同好推薦</a></li>
-				<li><a href="onlyrecommend.php" accesskey="3" title="">客製化推薦</a></li>
-				<li><a href="videolist.php" accesskey="4" title="">個人影片清單</a></li>
-				<li><a href="share.php" accesskey="5" title="">用戶分享</a></li>
+				<li><a href="onlyrecommend.php" accesskey="3" title="">個人推薦</a></li>
+				<li><a href="videolist.php" accesskey="4" title="">我的收藏</a></li>
 				<li><a href="editinformation.php" accesskey="6" title="">編輯個人資料</a></li>
 				<li><a href="../home.html" accesskey="7" title="">返回首頁</a></li>
 			</ul>
@@ -61,14 +65,6 @@ if ($_SESSION["acc"] == "") {
 			<img src="images/pic01.jpg" alt="" class="image-full" />
 		</div>
 		<div id="welcome">
-			<div class="title">
-				<h2></h2>
-				<span class="byline"></span>
-			</div>
-			<p><strong></strong><a href="http://templated.co" rel="nofollow"></a><a href="http://fotogrph.com/"> </a></p>
-			<ul class="actions">
-				<li><a href="#" class="button"></a></li>
-			</ul>
 		</div>
 		<div id="featured">
 			<div class="title">
@@ -76,7 +72,6 @@ if ($_SESSION["acc"] == "") {
 				<span class="byline">可能出現不同的類型影片</span>
 			</div>
 			<?php 
-				$db = DB1();
 				$sql4="SELECT * FROM testdb1.type_sort
 				left join testdb1.vtype on type_sort.vtype_name = vtype.vtype_name
 				where account = '" . $_SESSION["acc"]."'
