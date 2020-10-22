@@ -41,8 +41,8 @@ function AddMember($member_name, $birthday, $gender, $account, $password) {
 
 function UpdateMember($member_name, $birthday, $gender, $account, $password) {
     $db = DB1();
-    $sql = "UPDATE member SET video_name = '$member_name' WHERE (account = '$account');
-    UPDATE member SET birthday = '$birthday' WHERE (account = '$account');
+    $sql = "UPDATE member SET member_name = '$member_name' WHERE (account = '$account');
+    UPDATE member SET birthday = $birthday WHERE (account = '$account');
     UPDATE member SET gender = '$gender' WHERE (account = '$account');
     UPDATE member SET password = '$password' WHERE (account = '$account');";
     $db->exec($sql); //執行sql語法
