@@ -61,7 +61,7 @@ $web = $result->web();
         body, html {
             height: 100%;
         }
-        header, menu{
+        header {
             margin: 0;
             padding: 0;
             border: 0;
@@ -71,7 +71,7 @@ $web = $result->web();
             font-family: arial,"Microsoft JhengHei","微軟正黑體",sans-serif !important;
         }
 
-        header, menu{
+        header {
 		display: block;
 	    }
         /* Header */
@@ -286,174 +286,22 @@ $web = $result->web();
                 }
 
             }        
-
-        /* Menu */
-
-        #menu {
-                -moz-transform: translateX(20rem);
-                -webkit-transform: translateX(20rem);
-                -ms-transform: translateX(20rem);
-                transform: translateX(20rem);
-                -moz-transition: -moz-transform 0.5s ease, box-shadow 0.5s ease, visibility 0.5s;
-                -webkit-transition: -webkit-transform 0.5s ease, box-shadow 0.5s ease, visibility 0.5s;
-                -ms-transition: -ms-transform 0.5s ease, box-shadow 0.5s ease, visibility 0.5s;
-                transition: transform 0.5s ease, box-shadow 0.5s ease, visibility 0.5s;
-                -webkit-overflow-scrolling: touch;
-                background: rgba(0, 0, 0, 0.95);
-                box-shadow: none;
-                color: #000;
-                height: 100%;
-                max-width: 80%;
-                overflow-y: auto;
-                padding: 3rem 2rem;
-                position: fixed;
-                right: 0;
-                top: 0;
-                visibility: hidden;
-                width: 20rem;
-                z-index: 10002;
-        }
-
-        #menu > ul {
-            margin: 0 0 1rem 0;
-        }
-
-        #menu > ul.links {
-            list-style: none;
-            padding: 0;
-        }
-
-        #menu > ul.links > li {
-            padding: 0;
-        }
-
-        #menu > ul.links > li > a:not(.button) {
-            border: 0;
-            border-top: solid 1px rgba(255, 255, 255, 0.125);
-            color: rgba(255, 255, 255, 0.5);
-            display: block;
-            line-height: 3.5rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        #menu > ul.links > li > a:not(.button):hover {
-            color: #FFF;
-        }
-
-                            #menu > ul.links > li > .button {
-                                display: block;
-                                margin: 0.5rem 0 0 0;
-                            }
-
-                            #menu > ul.links > li:first-child > a:not(.button) {
-                                border-top: 0 !important;
-                            }
-
-                #menu .close {
-                    text-decoration: none;
-                    -moz-transition: color 0.2s ease-in-out;
-                    -webkit-transition: color 0.2s ease-in-out;
-                    -ms-transition: color 0.2s ease-in-out;
-                    transition: color 0.2s ease-in-out;
-                    -webkit-tap-highlight-color: transparent;
-                    border: 0;
-                    color: #999999;
-                    cursor: pointer;
-                    display: block;
-                    height: 3.25rem;
-                    line-height: 3.25rem;
-                    padding-right: 1.25rem;
-                    position: absolute;
-                    right: 0;
-                    text-align: right;
-                    top: 0;
-                    vertical-align: middle;
-                    width: 7rem;
-                }
-
-                    #menu .close:before {
-                        -moz-osx-font-smoothing: grayscale;
-                        -webkit-font-smoothing: antialiased;
-                        font-family: FontAwesome;
-                        font-style: normal;
-                        font-weight: normal;
-                        text-transform: none !important;
-                    }
-
-                    #menu .close:before {
-                        content: '\f00d';
-                        font-size: 1.25rem;
-                    }
-
-                    #menu .close:hover {
-                        color: #000;
-                    }
-
-                    @media screen and (max-width: 736px) {
-
-                        #menu .close {
-                            height: 4rem;
-                            line-height: 4rem;
-                        }
-
-                    }
-
-                #menu.visible {
-                    -moz-transform: translateX(0);
-                    -webkit-transform: translateX(0);
-                    -ms-transform: translateX(0);
-                    transform: translateX(0);
-                    box-shadow: 0 0 1.5rem 0 rgba(0, 0, 0, 0.2);
-                    visibility: visible;
-                }
-
-                @media screen and (max-width: 736px) {
-
-        #menu {
-                padding: 2.5rem 1.75rem;
-            }
-
-        }        
-        .bg {
-            /*background-image: url("images/bg2.jpg");*/
-            background-color: #000000;
-            height: 100%;
-            /*background-position: center;*/
-            background-repeat: no-repeat;
-            /*background-size: cover;*/
-        }
-        .container-fluid  {
-            margin-bottom: 50px;
-        }
     </style>
 </head>
+
 <body class="bg">
+
      <!-- Header -->
         <header id="header" class="alt">
-            <div class="logo"><a href="home.html">搜劇Film Seeker <span></span></a></div>
+            <div class="logo">
+                <a href="home.html">搜劇Film Seeker <span></span></a>
             </div>
-            <a href="#menu"></a>
         </header>
-            
-        <!-- Nav -->
-            <nav id="menu">
-                <ul class="links">
-                    <li><a href="home.html">首頁</a></li>
-                    <li><a href="member_login_php.php">登入/註冊</a></li>
-                    <li><a href="imageSearch.html">圖片搜尋</a></li>
-                    <li><a href="elements.html">關於我們</a></li>
-                    <li><a href="backstage.php">管理員</a></li>
-                    <li><a href="templated-privy/membersonly.php">會員功能</a></li>
-                    <li><a href="php/logOut.php">登出</a></li>
-                </ul>
-            </nav>
+    
     <div class="container-fluid" style="max-width: 1080px;">
-   
         <br><br><br>
         <div class="row">
             <div class="col-md-12" style="margin: auto; background: white; padding: 20px; box-shadow: 10px 10px 5px #888">
-
                 <div class="panel-heading">
                     <h2><a href="/">分析結果</a></h2>
                     <p style="font-style: italic;">選擇您滿意的搜尋結果 我們將給予最完整的影視資訊</p>
@@ -468,21 +316,15 @@ $web = $result->web();
                                 echo "image.php?token=$imagetoken";
                             }
                         ?>" alt="Analysed Image">
-                        
                     </div>
                     <div class="col-md-8 border" style="padding: 10px;">
                         <ul class="nav nav-pills nav-fill mb-3" id="pills-tab" role="tablist">
-                            
                             <li class="nav-item">
                                 <a href="#pills-web" role="tab" class="nav-link active" id="pills-web-tab" data-toggle="pill" aria-controls="pills-web" aria-selected="true">Web</a>
                             </li>
-
                         </ul>
                         <hr>
-
-
                         <div class="tab-content" id="pills-tabContent">
-                           
                             <div class="tab-pane fade show active" id="pills-web" role="tabpanel" aria-labelledby="pills-web-tab">
                                 <div class="row">
                                     <div class="col-12">
@@ -491,10 +333,6 @@ $web = $result->web();
                                     </div>
                                 </div>
                             </div>
-
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
