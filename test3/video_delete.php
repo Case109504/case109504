@@ -9,7 +9,7 @@ if ($_SESSION["accU"] == "") {
 ?>
 <html>
 	<head>
-		<title>明察秋毫 搜尋</title>
+		<title>搜劇Film Seeker</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -43,7 +43,7 @@ if ($_SESSION["accU"] == "") {
 
 		<!-- Header -->
 			<header id="header">
-				<div class="logo"><a href="home.html">明察秋毫 <span></span></a></div>
+				<div class="logo"><a href="home.html">搜劇Film Seeker <span></span></a></div>
 				<a href="#menu"></a>
 			</header>
 
@@ -94,15 +94,6 @@ if ($_SESSION["accU"] == "") {
 									<h1>影片簡介：</h1>									
 									<textarea style="height:150px;" name="introduction" id="introduction" value="" placeholder="" required><?php echo $row['introduction']?></textarea>
                                 </div>
-                                <?php 
-                                while($row = $result->fetch()){ 
-                                    echo
-                                        '<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
-                                            <h1>評論：</h1>									
-                                            <textarea style="height:150px;" name="comments_name" id="comments_name" value="" placeholder="" required>'.$row['comments_name'].'</textarea>
-                                        </div>'
-                                ;}
-                                ?>
 								<div class="12u$">
 									<ul class="actions">
 										<div align="right"  style="margin-right: 5%">

@@ -9,13 +9,20 @@ if ($_SESSION["accU"] == "") {
 ?>
 <html>
 	<head>
-		<title>明察秋毫 搜尋</title>
+		<title>搜劇Film Seeker</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="referrer" content="never">
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
 	<body class="subpage">
-		
+		<?php
+			$db = DB1();
+			$sql="SELECT * FROM testdb1.analy_pic";
+			$result = $db->query($sql);
+			$row = $result->fetch(PDO::FETCH_ASSOC);
+			$result->execute();
+		?>
 
 		<!-- Header -->
 			<header id="header">
@@ -40,7 +47,7 @@ if ($_SESSION["accU"] == "") {
 				<div class="inner">
 					<header class="align-center">
 						<p>你好，管理員<?php echo $_SESSION["accU"]; ?></p>
-						<h2>歡迎來到管理頁面</h2>
+						<h2>影片分析圖表</h2>
 					</header>
 				</div>
 			</section>
@@ -50,16 +57,35 @@ if ($_SESSION["accU"] == "") {
 				<div class="inner">
 					<div class="box">
 						<div class="content">
-							<header class="align-center">
-								<p>登入成功</p>
-								<h2>管理員登入</h2>
-							</header>
-							<body>
-								<h2>歡迎<?php echo $_SESSION["accU"]; ?></h2>
-								<h3><?php echo date('Y-M-D'); ?></h3>
-								<a href="video_select.php">資料查詢</a>
-								<input name="submit" type="button" id="submit" onclick="location.href='php/logOut.php'" value="登出" />
-							</body>
+						<head>
+							<meta charset="UTF-8">
+							<style>
+								table{
+									border-collapse: collapse;
+								}
+								th,td{
+									border:1px solid #ccccff;
+									padding: 5px;
+								}
+								td{
+									text-align: center;
+								}
+							</style>
+						</head>
+						<body>
+						<?php
+						while($row = $result->fetch()) {
+							echo '<div class="thumbnails">
+							<br/><h2>'.$row["discription"].'：</h2><br/>
+							<div class="image fit">
+                            <img src="'.$row["analyPic"].'" alt="" />
+							</div>
+							</div>';
+                        }
+						?>
+						</table>
+						</b>
+						</body>
 						</div>
 					</div>
 				</div>

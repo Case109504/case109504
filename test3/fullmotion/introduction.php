@@ -5,23 +5,14 @@ include '../php/DataBase.php';
 ?>
 <html lang = "zh-tw">
 	<head>
-		<title>Full Motion</title>
+		<title>搜劇Film Seeker</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="referrer" content="never">
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
 	<body id="top">
 	<?php
-		if (isset($_SESSION["acc"])&&$_SESSION["acc"]!="") {
-			if (isset($_GET["video_id"])) {
-				$acc = $_SESSION["acc"];
-				$video_id = $_GET["video_id"];
-            	$db = DB1();
-    			$sql = "INSERT INTO member_search_record(account,video_id,search_time) VALUES ('$acc','$video_id', NOW())";
-				$db->exec($sql)or die ("無法新增".mysqli_error($db)); //執行sql語法
-			}
-		}
-
 		$db = DB1();
 		$sql="SELECT * FROM testdb1.video
 		left join testdb1.area on video.area_id = area.area_id
@@ -53,14 +44,16 @@ include '../php/DataBase.php';
 					<div class="inner">
 
 					<!-- Boxes -->
-						<div class="thumbnails">
-
 							<?php 
                                 while($row = $result->fetch()){ 
-                                    echo '<div class="image fit">
-									<img src="'.$row["picture"].'" alt="" /></a>
-									</div>';
-									echo '<a href="../php/videoListAdd.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="button" data-poptrox="ignore" name="videoListAdd"">影片蒐藏</a>';
+									echo '<div class="thumbnails">
+											<div class="image">
+											<img src="'.$row["picture"].'" alt="" /></a>
+											</div>
+										</div>
+										<br/>';
+									echo '<div class="thumbnails">
+										<a href="../php/videoListAdd.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="button" data-poptrox="ignore" name="videoListAdd"">影片蒐藏</a>';
 									echo "<h3>影片名稱：" .$_GET["video_name"]."<br/>主演：";
 										$sql2="SELECT * FROM testdb1.video
 										left join testdb1.area on video.area_id = area.area_id
@@ -97,7 +90,7 @@ include '../php/DataBase.php';
 									while($row4 = $result4->fetch()){ 
 										echo $row4["director_name"]."\n";
 									}
-								echo "<br/>編劇：" .$row["video_id"]."<br/>劇別：" .$row["video_id"]."<br/>區域：" .$row["area_name"]."<br/><a href = '".$row["vlink"]."' data-poptrox='ignore'>影片來源：" .$row["vfrom"]."</a><br/>評分：<br/>";
+								echo "<br/>區域：" .$row["area_name"]."<br/><a href = '".$row["vlink"]."' data-poptrox='ignore'>影片來源：" .$row["vfrom"]."</a><br/>評分：<br/>";
 										$sql5="SELECT * FROM testdb1.score
 										left join testdb1.video on score.video_id = video.video_id
 										left join testdb1.video_from on score.vfrom_id = video_from.vfrom_id
@@ -106,7 +99,11 @@ include '../php/DataBase.php';
 										$row5 = $result5->fetch(PDO::FETCH_ASSOC);
 										$result5->execute();
 										while($row5 = $result5->fetch()){ 
-											echo $row5["vfrom"].'：'.$row5["score"].'<br />';
+											if($row5["vfrom"]=='愛奇藝'){
+												echo '暫無評分';
+											}else{
+												echo $row5["vfrom"].'：'.$row5["score"].'<br />';
+											}
 										}
 										$sql6="SELECT * FROM testdb1.video_comment
 										left join testdb1.video on video_comment.video_id = video.video_id
@@ -119,6 +116,7 @@ include '../php/DataBase.php';
 											echo '</h3><h3>來自'.$row6["vfrom"].'的評論：　'.$row6["video_comment"].'<br />';
 										}
 								}
+								echo "</div>";
 							?>
 							<!--<div class="image fit">
 								<img src="<?php echo $row['video_id']?>" alt="" /></a>
@@ -143,7 +141,7 @@ include '../php/DataBase.php';
 							
 							$cn->close();*/
 							?>
-						</div>
+						
 
 					</div>
 				</div>

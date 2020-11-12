@@ -9,7 +9,7 @@ if ($_SESSION["accU"] == "") {
 ?>
 <html>
 	<head>
-		<title>明察秋毫 搜尋</title>
+		<title>搜劇Film Seeker</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -26,7 +26,7 @@ if ($_SESSION["accU"] == "") {
 
 		<!-- Header -->
 			<header id="header">
-				<div class="logo"><a href="home.html">明察秋毫 <span></span></a></div>
+				<div class="logo"><a href="home.html">搜劇Film Seeker <span></span></a></div>
 				<a href="#menu"></a>
 			</header>
 
@@ -74,9 +74,11 @@ if ($_SESSION["accU"] == "") {
 						</head>
 						<body>
 						<input name="submit" type="button" id="submit" onclick="location.href='video_add.php'" value="新增影片" />
+						<input name="submit" type="button" id="submit" onclick="location.href='video_back.php'" value="分析總覽" />
 						<input name="submit" type="button" id="submit" onclick="location.href='php/logOut.php'" value="登出" />
 						<P></P>
-						<table>
+						<b>
+						<table style="color:black">
 							<tr><th>影片編號</th><th>影片繁中</th><th>影片英文</th><th>影片簡中</th><th>區域</th><th>介紹</th><th>修改/刪除</th></tr>
 						<?php
 						while($row = $result->fetch()) {
@@ -86,10 +88,11 @@ if ($_SESSION["accU"] == "") {
 							<td width='5%'>".$row["video_ch_name"]."</td>
 							<td width='10%'>".$row["area_name"]."</td>
 							<td width='60%'>".$row["introduction"]."</td>
-							<td width='10%'><a href='video_update.php?video_id=".$row["video_id"]."'>修改</a> <a href='video_delete.php?video_id=".$row["video_id"]."'>刪除</a></td></tr>";
+							<td width='10%'><a href='video_update.php?video_id=".$row["video_id"]."' class='button fit'>修改</a> <a href='video_delete.php?video_id=".$row["video_id"]."'class='button fit'>刪除</a></td></tr>";
 						}
 						?>
 						</table>
+						</b>
 						</body>
 						</div>
 					</div>

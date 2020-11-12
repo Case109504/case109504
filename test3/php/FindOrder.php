@@ -2,17 +2,19 @@
 
 include 'DataBase.php';
 
-function AddVideo($video_name, $type_id, $area_id) {
-    $db = DB();
-    $sql = "INSERT INTO Video(video_name,type_id,area_id) VALUES ('$video_name','$type_id','$area_id')";
+function AddVideo($video_name, $area_id, $introduction) {
+    $db = DB1();
+    $sql = "INSERT INTO video(video_name,area_id,introduction) VALUES ('$video_name','$area_id','$introduction')";
     $db->exec($sql)or die ("無法新增".mysqli_error($db)); //執行sql語法
     header("Location:video_select.php");
 }
 
-function UpdateVideo($video_id, $video_name, $type_id, $area_id) {
-    $db = DB();
-    $sql = "UPDATE Video SET video_name = '$video_name' WHERE (video_id = '$video_id')";
-    $db->exec($sql)or die ("無法更新".mysqli_error($db)); //執行sql語法
+function UpdateVideo($video_id, $video_name, $area_id, $introduction) {
+    $db = DB1();
+    $sql = "UPDATE video SET video_name = '$video_name' WHERE (video_id = '$video_id');
+    UPDATE video SET area_id = '$area_id' WHERE (video_id = '$video_id');
+    UPDATE video SET introduction = '$introduction' WHERE (video_id = '$video_id');";
+    $db->exec($sql);
     header("Location:video_select.php");
 }
 
@@ -26,7 +28,7 @@ function DeleteVideo($video_id) {
     DELETE FROM actor_record WHERE video_id = $video_id;
     DELETE FROM video WHERE video_id = $video_id;
     SET FOREIGN_KEY_CHECKS = 1;";
-    $db->exec($sql)or die ("無法刪除".mysqli_error($db)); //執行sql語法
+    $db->exec($sql);
     header("Location:video_select.php");
 }
 
@@ -35,6 +37,16 @@ function AddMember($member_name, $birthday, $gender, $account, $password) {
     $sql = "INSERT INTO member(member_name, birthday, gender, account, password) VALUES ('$member_name', $birthday, '$gender', '$account', '$password')";
     $db->exec($sql)or die ("無法新增".mysqli_error($db)); //執行sql語法
     header("Location:member_login_php.php");
+}
+
+function UpdateMember($member_name, $birthday, $gender, $account, $password) {
+    $db = DB1();
+    $sql = "UPDATE member SET member_name = '$member_name' WHERE (account = '$account');
+    UPDATE member SET birthday = $birthday WHERE (account = '$account');
+    UPDATE member SET gender = '$gender' WHERE (account = '$account');
+    UPDATE member SET password = '$password' WHERE (account = '$account');";
+    $db->exec($sql); //執行sql語法
+    header("Location:editinformation.php");
 }
 
 function FindUser ($acc , $password){
@@ -47,7 +59,7 @@ function FindUser ($acc , $password){
         $_SESSION["password"] = $password;
         
         
-        header('Location: backstage_login_php.php');
+        header('Location: video_select.php');
     }else{
         echo '<script>  swal({
             text: "查不到資料！  請檢查輸入資料是否正確！",

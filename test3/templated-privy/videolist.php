@@ -10,9 +10,10 @@ if ($_SESSION["acc"] == "") {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title></title>
+<title>搜劇Film Seeker</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
+<meta name="referrer" content="never">
 <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
 <link href="default.css" rel="stylesheet" type="text/css" media="all" />
 <link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
@@ -50,21 +51,26 @@ if ($_SESSION["acc"] == "") {
 	$result2 = $db->query($sql2);
 	$row2 = $result2->fetch(PDO::FETCH_ASSOC);
 	$result2->execute();
+
+	$sql4="SELECT * FROM testdb1.member
+	where member.account = '" . $_SESSION["acc"]."'";
+	$result4 = $db->query($sql4);
+	$row4 = $result4->fetch(PDO::FETCH_ASSOC);
+	$result4->execute();
 ?>
 <div id="page" class="container">
 <div id="header">
 		<div id="logo">
 			<img src="images/pic02.jpg" alt="" />
-			<h1><a href="#"><?php echo $_SESSION["acc"]; ?></a></h1>
+			<h1><a href="#"><?php echo $row4["member_name"]; ?></a></h1>
 			<span>與 <a href="../home.html" rel="nofollow">搜劇Film Seeker</a> 一同好劇</span>
 		</div>
 		<div id="menu">
 			<ul>
 				<li><a href="membersonly.php" accesskey="1" title="">會員專區</a></li>
 				<li><a href="samerecommend.php" accesskey="2" title="">同好推薦</a></li>
-				<li><a href="onlyrecommend.php" accesskey="3" title="">客製化推薦</a></li>
-				<li class="current_page_item"><a href="videolist.php" accesskey="4" title="">個人影片清單</a></li>
-				<li><a href="share.php" accesskey="5" title="">用戶分享</a></li>
+				<li><a href="onlyrecommend.php" accesskey="3" title="">個人推薦</a></li>
+				<li class="current_page_item"><a href="videolist.php" accesskey="4" title="">我的收藏</a></li>
 				<li><a href="editinformation.php" accesskey="6" title="">編輯個人資料</a></li>
 				<li><a href="../home.html" accesskey="7" title="">返回首頁</a></li>
 			</ul>
@@ -75,24 +81,16 @@ if ($_SESSION["acc"] == "") {
 			<img src="images/pic01.jpg" alt="" class="image-full" />
 		</div>
 		<div id="welcome">
-			<div class="title">
-				<h2>Fusce ultrices fringilla metus</h2>
-				<span class="byline">Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue</span>
-			</div>
-			<p>This is <strong>Privy</strong>, a free, fully standards-compliant CSS template designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>. The photos in this template are from <a href="http://fotogrph.com/"> Fotogrph</a>. This free template is released under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so you're pretty much free to do whatever you want with it (even use it commercially) provided you give us credit for it. Have fun :) </p>
-			<ul class="actions">
-				<li><a href="#" class="button">Etiam posuere</a></li>
-			</ul>
 		</div>
 		<div id="featured">
 			<div class="title">
-				<h2>Maecenas lectus sapien</h2>
-				<span class="byline">Integer sit amet aliquet pretium</span>
+				<h2>個人影片清單</h2>
+				<span class="byline">這裡存放您所收藏的所有影片</span>
 			</div>
 			<?php 
 							while($row = $result->fetch()){ 
 								echo '<div class="box">
-									<a href="introduction.php?video_name='.$row["video_name"].'" class="image fit" data-poptrox="ignore"><img src="'.$row["picture"].'" alt="" /></a>
+								<a href="../php/videoClickRecord.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="image fit" data-poptrox="ignore"><img src="'.$row["picture"].'" height=500px></a>
 									<div class="inner">
 										<h3>'.$row["video_name"].'</h3>
 										<h4>主演： ';
@@ -118,37 +116,18 @@ if ($_SESSION["acc"] == "") {
 										$row3 = $result3->fetch(PDO::FETCH_ASSOC);
 										$result3->execute();
 										while($row3 = $result3->fetch()){ 
-											echo $row3["vfrom"].'：'.$row3["score"].'<br />';
+											if($row3["vfrom"]=='愛奇藝'){
+												echo '暫無評分';
+											}else{
+												echo $row3["vfrom"].'：'.$row3["score"].'<br />';
 											}		
+										}
 								echo ' <br /></h4>
-										<a href="../fullmotion/introduction.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="button fit" data-poptrox="ignore">影片介紹</a>
 									</div>
 								</div>';
 								
 							}
 							?>
-			<ul class="style1">
-				<li class="first">
-					<p class="date"><a href="#">Jan<b>05</b></a></p>
-					<h3>Amet sed volutpat mauris</h3>
-					<p><a href="#">Consectetuer adipiscing elit. Nam pede erat, porta eu, lobortis eget, tempus et, tellus. Etiam neque. Vivamus consequat lorem at nisl. Nullam non wisi a sem semper eleifend. Etiam non felis. Donec ut ante.</a></p>
-				</li>
-				<li>
-					<p class="date"><a href="#">Jan<b>03</b></a></p>
-					<h3>Sagittis diam dolor amet</h3>
-					<p><a href="#">Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem. Mauris quam enim, molestie. Donec leo, vivamus fermentum nibh in augue praesent congue rutrum.</a></p>
-				</li>
-				<li>
-					<p class="date"><a href="#">Jan<b>01</b></a></p>
-					<h3>Amet sed volutpat mauris</h3>
-					<p><a href="#">Consectetuer adipiscing elit. Nam pede erat, porta eu, lobortis eget, tempus et, tellus. Etiam neque. Vivamus consequat lorem at nisl. Nullam non wisi a sem semper eleifend. Etiam non felis. Donec ut ante.</a></p>
-				</li>
-				<li>
-					<p class="date"><a href="#">Dec<b>31</b></a></p>
-					<h3>Sagittis diam dolor amet</h3>
-					<p><a href="#">Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem. Mauris quam enim, molestie. Donec leo, vivamus fermentum nibh in augue praesent congue rutrum.</a></p>
-				</li>
-			</ul>
 		</div>
 		<div id="copyright">
 			<span>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">Fotogrph</a></span>

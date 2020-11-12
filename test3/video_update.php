@@ -9,7 +9,7 @@ if ($_SESSION["accU"] == "") {
 ?>
 <html>
 	<head>
-		<title>明察秋毫 搜尋</title>
+		<title>搜劇Film Seeker</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -32,7 +32,7 @@ if ($_SESSION["accU"] == "") {
 			
 			
 			if (isset($_POST["next"])) {
-				UpdateVideo($_POST["video_id"], $_POST["video_name"], $_POST["type_id"], $_POST["area_id"]);
+				UpdateVideo($_POST["video_id"], $_POST["video_name"], $_POST["area_id"], $_POST["introduction"]);
 			}
 
 			$db = DB1();
@@ -53,7 +53,7 @@ if ($_SESSION["accU"] == "") {
 
 		<!-- Header -->
 			<header id="header">
-				<div class="logo"><a href="home.html">明察秋毫 <span></span></a></div>
+				<div class="logo"><a href="home.html">搜劇Film Seeker <span></span></a></div>
 				<a href="#menu"></a>
 			</header>
 
@@ -97,19 +97,32 @@ if ($_SESSION["accU"] == "") {
 									<input type="text" name="video_name" id="video_name" value="<?php echo $row['video_name']?>" placeholder="" required>
 								</div>  
 								<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
-									<h1>影片類型：</h1>									
-									<input type="text" name="type_id" id="type_id" value="<?php echo $row['type_id']?>" placeholder="" required>
-								</div>  
-								<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
 									<h1>影片國家：</h1>									
 									<input type="text" name="area_id" id="area_id" value="<?php echo $row['area_id']?>" placeholder="" required>
 								</div>  
+								<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
+									<h1>影片簡介：</h1>									
+									<textarea style="height:150px;" name="introduction" id="introduction" value="" placeholder="" required><?php echo $row['introduction']?></textarea>
+								</div> 
 								<div class="12u$">
 									<ul class="actions">
 										<div align="right"  style="margin-right: 5%">
 											<li><input type="submit" name="next" value="更新"></li>
 										</div>
 									</ul>
+								</div>
+								<div class="6u$ 12u$(small)"  style="margin-left: 20%">
+									<h1>影片國家編號對照表：</h1>	
+									<?php
+										$db = DB1();
+										$sql="SELECT * FROM testdb1.area";
+										$result = $db->query($sql);
+										$row = $result->fetch(PDO::FETCH_ASSOC);
+										$result->execute();
+										while($row = $result->fetch()) {
+											echo '編號：'.$row["area_id"].'　'.$row["area_name"].'<br/>';
+										}
+									?>
 								</div>
 							</form>
 						</body>

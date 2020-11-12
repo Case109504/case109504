@@ -4,9 +4,10 @@ include '../php/DataBase.php';
 ?>
 <html lang = "zh-tw">
 	<head>
-		<title>Full Motion</title>
+		<title>搜劇Film Seeker</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="referrer" content="never">
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
 	<body id="top">
@@ -54,7 +55,7 @@ include '../php/DataBase.php';
 							<?php 
 							while($row = $result->fetch()){ 
 								echo '<div class="box">
-									<a href="introduction.php?video_name='.$row["video_name"].'" class="image fit" data-poptrox="ignore"><img src="'.$row["picture"].'"  /></a>
+									<a href="../php/videoClickRecord.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="image fit" data-poptrox="ignore"><img src="'.$row["picture"].'" height=500px></a>
 									<div class="inner">
 										<h3>'.$row["video_name"].'</h3>
 										<h4>主演： ';
@@ -80,10 +81,14 @@ include '../php/DataBase.php';
 										$row3 = $result3->fetch(PDO::FETCH_ASSOC);
 										$result3->execute();
 										while($row3 = $result3->fetch()){ 
-											echo $row3["vfrom"].'：'.$row3["score"].'<br />';
-											}		
+											if($row3["vfrom"]=='愛奇藝'){
+												echo '暫無評分';
+											}else{
+												echo $row3["vfrom"].'：'.$row3["score"].'<br />';
+											}
+										}		
 								echo ' <br /></h4>
-										<a href="introduction.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="button fit" data-poptrox="ignore">影片介紹</a>
+										<a href="../php/videoClickRecord.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="button fit" data-poptrox="ignore">影片介紹</a>
 									</div>
 								</div>';
 								
@@ -121,9 +126,6 @@ include '../php/DataBase.php';
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script async src="https://cse.google.com/cse.js?cx=03d94254dfdc3a617"></script>
-			s<div class="gcse-searchresults-only"></div>
-
-
-
+			<div class="gcse-searchresults-only"></div>
 	</body>
 </html>

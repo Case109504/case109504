@@ -61,7 +61,9 @@
 								<h2>使用您的圖片搜尋</h2>
 							</header>
 								<label class="text-center image-preview-wrapper" for="file-uploader">
-									<img src="images/upload.png" alt="image-placehoder" class="img-thumbnail" data-target="image-preview">
+									<div class="image fit">
+										<img src="images/upload.png" alt="" />
+									</div>
 									<div class="spinner-wrapper position-absolute" data-target="spinner">
 									  <div class="spinner-border text-secondary" role="status">
 										<span class="sr-only">Loading...</span>
@@ -73,9 +75,9 @@
 									  <div class="custom-file">
 										<form action="check.php" method="post" enctype="multipart/form-data">
 										<input type="file" name="image" accept="image/*" class="form-control">
-                    					<br>
-                    					<button type="submit" style="border-radius: 0px;" class="btn btn-lg btn-block btn-outline-success">分析圖片</button>
-                
+										<br>
+										<br>
+                    					<a type="submit" style="background-color: black;" class="button special">分析圖片</a>
 										<label class="custom-file-label" for="customFile"></label>
 									  </div>
 									</div>
