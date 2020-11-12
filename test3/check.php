@@ -308,7 +308,7 @@ $web = $result->web();
             </div>
         </header>
     <div class="container-fluid" style="max-width: 1080px;">
-        <br><br><br>
+        <br><br><br><br>
         <div class="row">
             <div class="col-md-12" style="margin: auto; background: white; padding: 20px; box-shadow: 10px 10px 5px #888">
                 <div class="panel-heading">
