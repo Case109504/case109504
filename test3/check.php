@@ -304,7 +304,7 @@ $web = $result->web();
      <!-- Header -->
         <header id="header" class="alt">
             <div class="logo">
-                <a href="home.html">搜劇Film Seeker <span></span></a>
+                <a href="home.php">搜劇Film Seeker <span></span></a>
             </div>
         </header>
     <div class="container-fluid" style="max-width: 1080px;">

@@ -53,17 +53,16 @@ if ($_SESSION["accU"] == "") {
 
 		<!-- Header -->
 			<header id="header">
-				<div class="logo"><a href="home.html">搜劇Film Seeker <span></span></a></div>
+				<div class="logo"><a href="home.php">搜劇Film Seeker <span></span></a></div>
 				<a href="#menu"></a>
 			</header>
 
 		<!-- Nav -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="home.html">首頁</a></li>
+					<li><a href="home.php">首頁</a></li>
 					<li><a href="member_login_php.php">登入/註冊</a></li>
 					<li><a href="imageSearch.html">圖片搜尋</a></li>
-					<li><a href="elements.html">關於我們</a></li>
 					<li><a href="backstage.php">管理員</a></li>
 				</ul>
 			</nav>
