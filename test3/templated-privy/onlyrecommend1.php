@@ -42,8 +42,7 @@ if ($_SESSION["acc"] == "") {
 	left join testdb1.vtype_record on vtype.vtype_id = vtype_record.vtype_id
 	left join testdb1.video on video.video_id = vtype_record.video_id
 	left join testdb1.area on video.area_id = area.area_id
-	where account = '" . $_SESSION["acc"]."'
-	order by sort desc";
+	where account = '" . $_SESSION["acc"]."'";
 	$result = $db->query($sql);
 	$row = $result->fetch(PDO::FETCH_ASSOC);
 	$result->execute();

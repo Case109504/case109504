@@ -74,9 +74,7 @@ if ($_SESSION["acc"] == "") {
 			<?php 
 				$sql4="SELECT * FROM testdb1.type_sort
 				left join testdb1.vtype on type_sort.vtype_name = vtype.vtype_name
-				where account = '" . $_SESSION["acc"]."'
-				order by sort desc
-				limit 3";
+				where account = '" . $_SESSION["acc"]."'";
 				$result4 = $db->query($sql4);
 				$row4 = $result4->fetch(PDO::FETCH_ASSOC);
 				$result4->execute();
@@ -84,8 +82,7 @@ if ($_SESSION["acc"] == "") {
 					//echo "1<br/>";
 					$sql5="SELECT * FROM testdb1.type_sort
 					left join testdb1.vtype on type_sort.vtype_name = vtype.vtype_name
-					where account != '" . $_SESSION["acc"]."' and sort > 1
-					order by sort desc";
+					where account != '" . $_SESSION["acc"]."'";
 					$result5 = $db->query($sql5);
 					$row5 = $result5->fetch(PDO::FETCH_ASSOC);
 					$result5->execute();
