@@ -84,7 +84,7 @@ if ($_SESSION["acc"] == "") {
 		</div>
 		<div id="featured">
 			<div class="title">
-				<h2>個人影片清單</h2>
+				<h2>我的收藏</h2>
 				<span class="byline">這裡存放您所收藏的所有影片</span>
 			</div>
 			<?php 
