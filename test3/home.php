@@ -46,6 +46,7 @@ if (isset($_SESSION["acc"])&&$_SESSION["acc"]!="") {
 					<li><a href="home.php">首頁</a></li>
 					<li><a href="imageSearch.html">圖片搜尋</a></li>
 					<li><a href="templated-privy/membersonly.php">會員功能</a></li>
+					<li><a href="php/logOut.php">登出</a></li>
 				</ul>
 			</nav>
 
