@@ -48,7 +48,7 @@ $web = $result->web();
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-tw">
 <head>
     <meta charset="UTF-8">
     <title>搜尋結果</title>
