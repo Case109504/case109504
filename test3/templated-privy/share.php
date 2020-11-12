@@ -3,7 +3,7 @@
 session_start();
 include '../php/FindOrder.php';
 if ($_SESSION["acc"] == "") {
-    header('Location: ../home.html');
+    header('Location: ../home.php');
     $_SESSION["unLog"] = true;
 }
 ?>
@@ -39,7 +39,7 @@ if ($_SESSION["acc"] == "") {
 		<div id="logo">
 			<img src="images/pic02.jpg" alt="" />
 			<h1><a href="#"><?php echo $_SESSION["acc"]; ?></a></h1>
-			<span>與 <a href="../home.html" rel="nofollow">搜劇Film Seeker</a> 一同好劇</span>
+			<span>與 <a href="../home.php" rel="nofollow">搜劇Film Seeker</a> 一同好劇</span>
 		</div>
 		<div id="menu">
 			<ul>
@@ -49,7 +49,7 @@ if ($_SESSION["acc"] == "") {
 				<li><a href="videolist.php" accesskey="4" title="">個人影片清單</a></li>
 				<li class="current_page_item"><a href="share.php" accesskey="5" title="">用戶分享</a></li>
 				<li><a href="editinformation.php" accesskey="6" title="">編輯個人資料</a></li>
-				<li><a href="../home.html" accesskey="7" title="">返回首頁</a></li>
+				<li><a href="../home.php" accesskey="7" title="">返回首頁</a></li>
 			</ul>
 		</div>
 	</div>

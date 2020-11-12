@@ -39,7 +39,7 @@ include '../php/DataBase.php';
 						<header>
 							<?php echo '<h1>'.$_GET["area_name"].'</h1>'?>
 							<p>各劇種介紹與推薦欄位<br />
-							透過 <a href="../home.html">搜劇Film Seeker</a> 享受追劇的樂趣</p>
+							透過 <a href="../home.php">搜劇Film Seeker</a> 享受追劇的樂趣</p>
 						</header>
 						<a href="#main" class="more">更多推薦</a>
 					</div>

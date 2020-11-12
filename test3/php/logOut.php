@@ -2,4 +2,4 @@
 session_start();
 $_SESSION["acc"] = "";
 $_SESSION["accU"] = "";
-header('Location: ../home.html');
+header('Location: ../home.php');
