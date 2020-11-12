@@ -286,6 +286,146 @@ $web = $result->web();
                 }
 
             }        
+
+        /* Menu */
+
+        #menu {
+                -moz-transform: translateX(20rem);
+                -webkit-transform: translateX(20rem);
+                -ms-transform: translateX(20rem);
+                transform: translateX(20rem);
+                -moz-transition: -moz-transform 0.5s ease, box-shadow 0.5s ease, visibility 0.5s;
+                -webkit-transition: -webkit-transform 0.5s ease, box-shadow 0.5s ease, visibility 0.5s;
+                -ms-transition: -ms-transform 0.5s ease, box-shadow 0.5s ease, visibility 0.5s;
+                transition: transform 0.5s ease, box-shadow 0.5s ease, visibility 0.5s;
+                -webkit-overflow-scrolling: touch;
+                background: rgba(0, 0, 0, 0.95);
+                box-shadow: none;
+                color: #000;
+                height: 100%;
+                max-width: 80%;
+                overflow-y: auto;
+                padding: 3rem 2rem;
+                position: fixed;
+                right: 0;
+                top: 0;
+                visibility: hidden;
+                width: 20rem;
+                z-index: 10002;
+        }
+
+        #menu > ul {
+            margin: 0 0 1rem 0;
+        }
+
+        #menu > ul.links {
+            list-style: none;
+            padding: 0;
+        }
+
+        #menu > ul.links > li {
+            padding: 0;
+        }
+
+        #menu > ul.links > li > a:not(.button) {
+            border: 0;
+            border-top: solid 1px rgba(255, 255, 255, 0.125);
+            color: rgba(255, 255, 255, 0.5);
+            display: block;
+            line-height: 3.5rem;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        #menu > ul.links > li > a:not(.button):hover {
+            color: #FFF;
+        }
+
+                            #menu > ul.links > li > .button {
+                                display: block;
+                                margin: 0.5rem 0 0 0;
+                            }
+
+                            #menu > ul.links > li:first-child > a:not(.button) {
+                                border-top: 0 !important;
+                            }
+
+                #menu .close {
+                    text-decoration: none;
+                    -moz-transition: color 0.2s ease-in-out;
+                    -webkit-transition: color 0.2s ease-in-out;
+                    -ms-transition: color 0.2s ease-in-out;
+                    transition: color 0.2s ease-in-out;
+                    -webkit-tap-highlight-color: transparent;
+                    border: 0;
+                    color: #999999;
+                    cursor: pointer;
+                    display: block;
+                    height: 3.25rem;
+                    line-height: 3.25rem;
+                    padding-right: 1.25rem;
+                    position: absolute;
+                    right: 0;
+                    text-align: right;
+                    top: 0;
+                    vertical-align: middle;
+                    width: 7rem;
+                }
+
+                    #menu .close:before {
+                        -moz-osx-font-smoothing: grayscale;
+                        -webkit-font-smoothing: antialiased;
+                        font-family: FontAwesome;
+                        font-style: normal;
+                        font-weight: normal;
+                        text-transform: none !important;
+                    }
+
+                    #menu .close:before {
+                        content: '\f00d';
+                        font-size: 1.25rem;
+                    }
+
+                    #menu .close:hover {
+                        color: #000;
+                    }
+
+                    @media screen and (max-width: 736px) {
+
+                        #menu .close {
+                            height: 4rem;
+                            line-height: 4rem;
+                        }
+
+                    }
+
+                #menu.visible {
+                    -moz-transform: translateX(0);
+                    -webkit-transform: translateX(0);
+                    -ms-transform: translateX(0);
+                    transform: translateX(0);
+                    box-shadow: 0 0 1.5rem 0 rgba(0, 0, 0, 0.2);
+                    visibility: visible;
+                }
+
+                @media screen and (max-width: 736px) {
+
+        #menu {
+                padding: 2.5rem 1.75rem;
+            }
+
+        }        
+        .bg {
+            /*background-image: url("images/bg2.jpg");*/
+            background-color: #000000;
+            height: 100%;
+            /*background-position: center;*/
+            background-repeat: no-repeat;
+            /*background-size: cover;*/
+        }
+        .container-fluid  {
+            margin-bottom: 50px;
+        }
     </style>
 </head>
 <body class="bg">
