@@ -45,7 +45,6 @@ if ($result) {
 $faces = $result->faces();
 $web = $result->web();
 
-
 ?>
 <!DOCTYPE html>
 <html lang="zh-tw">
@@ -72,8 +71,8 @@ $web = $result->web();
         }
 
         header, menu{
-		display: block;
-	    }
+        display: block;
+        }
         /* Header */
 
         body.subpage {
@@ -480,7 +479,6 @@ $web = $result->web();
                         </ul>
                         <hr>
 
-
                         <div class="tab-content" id="pills-tabContent">
                            
                             <div class="tab-pane fade show active" id="pills-web" role="tabpanel" aria-labelledby="pills-web-tab">
@@ -503,3 +501,4 @@ $web = $result->web();
     </div>
 </body>
 </html>
+
