@@ -49,7 +49,7 @@ if ($_SESSION["acc"] == "") {
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="membersonly.php" accesskey="1" title="">會員專區</a></li>
+				<li class="current_page_item"><a href="membersonly.php" accesskey="1" title="">使用指南</a></li>
 				<li><a href="samerecommend.php" accesskey="2" title="">同好推薦</a></li>
 				<li><a href="onlyrecommend.php" accesskey="3" title="">個人推薦</a></li>
 				<li><a href="videolist.php" accesskey="4" title="">我的收藏</a></li>
@@ -64,7 +64,7 @@ if ($_SESSION["acc"] == "") {
 		</div>
 		<div id="welcome">
 			<div class="title">
-				<h2>會員專區</h2>
+				<h2>使用指南</h2>
 				<span class="byline"></span>
 			</div>
 			<p><strong></strong><a href="" rel="nofollow"></a><a href=""> </a><a href=""></a></p>

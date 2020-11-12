@@ -52,7 +52,7 @@ if ($_SESSION["acc"] == "") {
 		</div>
 		<div id="menu">
 			<ul>
-				<li><a href="membersonly.php" accesskey="1" title="">會員專區</a></li>
+				<li><a href="membersonly.php" accesskey="1" title="">使用指南</a></li>
 				<li><a href="samerecommend.php" accesskey="2" title="">同好推薦</a></li>
 				<li><a href="onlyrecommend.php" accesskey="3" title="">個人推薦</a></li>
 				<li><a href="videolist.php" accesskey="4" title="">我的收藏</a></li>
