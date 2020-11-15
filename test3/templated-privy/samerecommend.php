@@ -71,24 +71,26 @@ if ($_SESSION["acc"] == "") {
 				<h2>與您興趣相同的會員也在看這些</h2>
 				<span class="byline">可能出現不同的類型影片</span>
 			</div>
-			<?php 
-				$sql4="SELECT * FROM testdb1.type_sort
+			<?php
+				$sql5="SELECT * FROM testdb1.type_sort
 				left join testdb1.vtype on type_sort.vtype_name = vtype.vtype_name
-				where account = '" . $_SESSION["acc"]."'";
-				$result4 = $db->query($sql4);
-				$row4 = $result4->fetch(PDO::FETCH_ASSOC);
-				$result4->execute();
-				while($row4 = $result4->fetch()){ 
+				where account != '" . $_SESSION["acc"]."'";
+				$result5 = $db->query($sql5);
+				$row5 = $result5->fetch(PDO::FETCH_ASSOC);
+				$result5->execute();
+				while($row5 = $result5->fetch()){  
 					//echo "1<br/>";
-					$sql5="SELECT * FROM testdb1.type_sort
+					$cunt = 0;
+					$sql4="SELECT * FROM testdb1.type_sort
 					left join testdb1.vtype on type_sort.vtype_name = vtype.vtype_name
-					where account != '" . $_SESSION["acc"]."'";
-					$result5 = $db->query($sql5);
-					$row5 = $result5->fetch(PDO::FETCH_ASSOC);
-					$result5->execute();
-					while($row5 = $result5->fetch()){ 
+					where account = '" . $_SESSION["acc"]."'";
+					$result4 = $db->query($sql4);
+					$row4 = $result4->fetch(PDO::FETCH_ASSOC);
+					$result4->execute();
+					while($row4 = $result4->fetch()){ 
+						$cunt++;
 						//echo "2<br/>".$row4["vtype_name"].$row5["vtype_name"];
-						if($row4["vtype_id"]==$row5["vtype_id"]){
+						if($row4["vtype_id"]==$row5["vtype_id"]&&$cunt==1){
 							$sql="SELECT * FROM testdb1.member_video_list
 							left join testdb1.member on member.account = member_video_list.account
 							left join testdb1.video on video.video_id = member_video_list.video_id
