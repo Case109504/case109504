@@ -37,7 +37,7 @@ if ($_SESSION["acc"] == "") {
 <div id="page" class="container">
 	<div id="header">
 		<div id="logo">
-			<img src="images/pic02.jpg" alt="" />
+			<img src="images/pic02.png" alt="" />
 			<h1><a href="#"><?php echo $_SESSION["acc"]; ?></a></h1>
 			<span>與 <a href="../home.php" rel="nofollow">搜劇Film Seeker</a> 一同好劇</span>
 		</div>
@@ -55,7 +55,7 @@ if ($_SESSION["acc"] == "") {
 	</div>
 	<div id="main">
 		<div id="banner">
-			<img src="images/pic01.jpg" alt="" class="image-full" />
+			<img src="images/pic01.png" alt="" class="image-full" />
 		</div>
 		<div id="welcome">
 			<div class="title">
