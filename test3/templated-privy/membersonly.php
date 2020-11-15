@@ -67,7 +67,10 @@ if ($_SESSION["acc"] == "") {
 				<h2>使用指南</h2>
 				<span class="byline"></span>
 			</div>
-			<p><strong></strong><a href="" rel="nofollow"></a><a href=""> </a><a href=""></a></p>
+			<p>1.同好推薦：推薦可能與您有相同喜好的會員的影片清單。</p>
+			<p>2.個人推薦：依照您所點擊的影片，分析按照類型、導演、地區排列進行推薦。</p>
+			<p>3.我的收藏：您曾經所收藏過的影片。</p>
+			<p>4.編輯個人資料：可編輯名字、生日、性別、密碼。</p>
 			<ul class="actions">
 				<li><a href="#" class="button"></a></li>
 			</ul>
