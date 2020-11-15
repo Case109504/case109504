@@ -57,12 +57,12 @@ include '../php/DataBase.php';
 								echo '<div class="box">
 								<a href="../php/videoClickRecord.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="image fit" data-poptrox="ignore"><img src="'.$row["picture"].'" height=500px></a>
 										<h3>'.$row["video_name"].'</h3>
-										<p>主演： ';
+										<h4>主演： ';
 										$sql2="SELECT * FROM testdb1.video
 										left join testdb1.area on video.area_id = area.area_id
 										left join testdb1.actor_record on video.video_id = actor_record.video_id
 										left join testdb1.actor on actor_record.actor_id = actor.actor_id
-										where video_name = '" . $row["video_name"]."'limit 5";
+										where video_name = '" . $row["video_name"]."'";
 										
 										$result2 = $db->query($sql2);
 										$row2 = $result2->fetch(PDO::FETCH_ASSOC);
@@ -70,8 +70,8 @@ include '../php/DataBase.php';
 								while($row2 = $result2->fetch()){ 
 								echo $row2["actor_name"].'<br />';
 								}
-								echo '</p>
-										<p>評分： ';
+								echo '</h4>
+										<h4>評分： ';
 										$sql3="SELECT * FROM testdb1.score
 										left join testdb1.video on score.video_id = video.video_id
 										left join testdb1.video_from on score.vfrom_id = video_from.vfrom_id
@@ -86,8 +86,8 @@ include '../php/DataBase.php';
 												echo $row3["vfrom"].'：'.$row3["score"].'<br />';
 											}
 										}		
-								echo ' <br /></p>
-										<a href="introduction.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="button fit" data-poptrox="ignore">影片介紹</a>
+								echo ' <br /></h4>
+								<a href="../php/videoClickRecord.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="button fit" data-poptrox="ignore">影片介紹</a>
 									</div>
 								</div>';
 								
