@@ -90,11 +90,9 @@ if ($_SESSION["acc"] == "") {
 							<h4>主演： ';
 							$sql2="SELECT * FROM testdb1.video
 							left join testdb1.area on video.area_id = area.area_id
-							left join testdb1.vtype_record on video.video_id = vtype_record.video_id
-							left join testdb1.vtype on vtype_record.vtype_id = vtype.vtype_id
 							left join testdb1.actor_record on video.video_id = actor_record.video_id
 							left join testdb1.actor on actor_record.actor_id = actor.actor_id
-							where vtype_name = '" . $row["vtype_name"]."' and video_name = '" . $row["video_name"]."'
+							where video_name = '" . $row["video_name"]."'
 							limit 5";
 							$result2 = $db->query($sql2);
 							$row2 = $result2->fetch(PDO::FETCH_ASSOC);
