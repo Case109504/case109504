@@ -12,6 +12,7 @@ if (isset($_SESSION["acc"])&&$_SESSION["acc"]!="") {
         while($row = $result->fetch()){ 
             if($_GET["video_id"]==$row["video_id"]){
                 $_SESSION["sure"] = 0;
+                echo '<script language="JavaScript">;alert("已有該影片紀錄");location.href="../fullmotion/introduction.php?video_name='.$_GET["video_name"].'&video_id='.$_GET["video_id"].'&area_name='.$_GET["area_name"].'";</script>';
             }else{
                 $_SESSION["sure"] = 1;
             }
@@ -25,6 +26,7 @@ if (isset($_SESSION["acc"])&&$_SESSION["acc"]!="") {
         }
         
     }
+}else{
+    echo '<script language="JavaScript">;alert("未登入使用者");location.href="../fullmotion/introduction.php?video_name='.$_GET["video_name"].'&video_id='.$_GET["video_id"].'&area_name='.$_GET["area_name"].'";</script>';
 }
-header('Location: ../fullmotion/introduction.php?video_name='.$_GET["video_name"].'&video_id='.$_GET["video_id"].'&area_name='.$_GET["area_name"].'');
 ?>

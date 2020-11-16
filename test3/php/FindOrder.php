@@ -34,9 +34,16 @@ function DeleteVideo($video_id) {
 
 function AddMember($member_name, $birthday, $gender, $account, $password) {
     $db = DB1();
-    $sql = "INSERT INTO member(member_name, birthday, gender, account, password) VALUES ('$member_name', $birthday, '$gender', '$account', '$password')";
-    $db->exec($sql)or die ("無法新增".mysqli_error($db)); //執行sql語法
-    header("Location:member_login_php.php");
+    $sql = "SELECT * FROM testdb1.member WHERE account='".$account."'";
+    $result = $db->query($sql);
+    $row = $result->fetch(PDO::FETCH_ASSOC);
+    if($row>1){
+        echo '<script language="JavaScript">;alert("已有該帳號");</script>';
+    }else{
+        $sql2 = "INSERT INTO member(member_name, birthday, gender, account, password) VALUES ('$member_name', $birthday, '$gender', '$account', '$password')";
+        $db->exec($sql2)or die ("無法新增".mysqli_error($db)); //執行sql語法
+        header("Location:member_login_php.php");
+    }
 }
 
 function UpdateMember($member_name, $birthday, $gender, $account, $password) {
@@ -58,8 +65,7 @@ function FindUser ($acc , $password){
         $_SESSION["accU"] = $acc;
         $_SESSION["password"] = $password;
         
-        
-        header('Location: video_select.php');
+        echo '<script language="JavaScript">;alert("您已登入");location.href="video_select.php";</script>';
     }else{
         echo '<script>  swal({
             text: "查不到資料！  請檢查輸入資料是否正確！",
@@ -80,8 +86,7 @@ function FindMember ($acc , $password){
         $_SESSION["acc"] = $acc;
         $_SESSION["password"] = $password;
         
-        
-        header('Location: home.php');
+        echo '<script language="JavaScript">;alert("您已登入");location.href="home.php";</script>';
     }else{
         echo '<script>  swal({
             text: "查不到資料！  請檢查輸入資料是否正確！",

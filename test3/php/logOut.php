@@ -2,4 +2,4 @@
 session_start();
 $_SESSION["acc"] = "";
 $_SESSION["accU"] = "";
-header('Location: ../home.php');
+echo '<script language="JavaScript">;alert("您已登出");location.href="../home.php";</script>';
