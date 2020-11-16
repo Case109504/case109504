@@ -43,14 +43,6 @@ if ($_SESSION["acc"] == "") {
 	$result = $db->query($sql);
 	$row = $result->fetch(PDO::FETCH_ASSOC);
 	$result->execute();
-	$sql2="SELECT * FROM testdb1.video
-	left join testdb1.area on video.area_id = area.area_id
-	left join testdb1.actor_record on video.video_id = actor_record.video_id
-	left join testdb1.actor on actor_record.actor_id = actor.actor_id
-	where area_name = '" . $row["area_name"]."' and video_name = '" . $row["video_name"]."'";
-	$result2 = $db->query($sql2);
-	$row2 = $result2->fetch(PDO::FETCH_ASSOC);
-	$result2->execute();
 
 	$sql4="SELECT * FROM testdb1.member
 	where member.account = '" . $_SESSION["acc"]."'";
