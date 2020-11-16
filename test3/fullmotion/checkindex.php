@@ -56,14 +56,15 @@ include '../php/DataBase.php';
 							while($row = $result->fetch()){ 
 								echo '<div class="box">
 								<a href="../php/videoClickRecord.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="image fit" data-poptrox="ignore"><img src="'.$row["picture"].'" height=500px></a>
+								<div class="inner">
 										<h3>'.$row["video_name"].'</h3>
 										<h4>主演： ';
 										$sql2="SELECT * FROM testdb1.video
 										left join testdb1.area on video.area_id = area.area_id
 										left join testdb1.actor_record on video.video_id = actor_record.video_id
 										left join testdb1.actor on actor_record.actor_id = actor.actor_id
-										where video_name = '" . $row["video_name"]."'";
-										
+										where video_name = '" . $row["video_name"]."'
+										limit 5";
 										$result2 = $db->query($sql2);
 										$row2 = $result2->fetch(PDO::FETCH_ASSOC);
 										$result2->execute();
