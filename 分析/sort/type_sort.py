@@ -9,7 +9,7 @@ from DictTransform import *
 
 # from datetime import datetime, timedelta
 # 使用 connect 方法，傳入數據庫地址，賬號密碼，數據庫名就可以得到你的數據庫對象
-
+mydb = pymysql.connect("140.131.115.87", "root", "109504109504", "testdb1")
 # 接著我們獲取 cursor 來操作我們的 avIdol 這個數據庫
 cursor = mydb.cursor()
 
@@ -69,8 +69,7 @@ for k, v in listToDict(allList,key=0,value=[4]).items():
 print(finaldict)
 
 # ------------------------------------------------------------------------------------
-
-for k, v in finaldict.items(): 
+for k, v in finaldict.items():  
 
   # 插入一條記錄
     sql = "SELECT  *  FROM  testdb1.type_sort where  account = '{}' ;".format(k)
@@ -83,23 +82,40 @@ for k, v in finaldict.items():
         row = cursor.fetchone()
         print( 'get row' )  
         if row is not None:
-            print("已有這筆資料")
-        else:
-          for x in v:
-            print( "insert into testdb1.type_sort account,vtype,sort values (%s, %s,%s")
-            val = (k,x[0],x[1])
-            print(val)
-            if val[2] == 0:
-                print('False')
-            else:
-                cursor.execute("insert into testdb1.type_sort (account,vtype_name,sort) values (%s, %s,%s)",val)
-                mydb.commit()
-                print('成功新增資料')
+            print( "DELETE FROM testdb1.type_sort WHERE account=%s")
+            val = (k)
+            cursor.execute("DELETE FROM testdb1.type_sort WHERE account=%s",val)
+            mydb.commit()
+            print('')
     except Exception as e:
       print(e)
 
-    mydb.rollback()       
-      
+      mydb.rollback()       
 
+
+# ------------------------------------------------------------------------------------
+for k, v in finaldict.items():  
+
+  # 插入一條記錄
+    sql = "SELECT  *  FROM  testdb1.type_sort where  account = '{}' ;".format(k)
+    try:
+        print( 'sql execute start' )
+        cursor.execute(sql)
+        print( 'sql execute end' )    
+        mydb.commit()
+        print( 'mydb commit end' )
+        row = cursor.fetchone()
+        print( 'get row' )  
+
+        for x in v:
+          print( "insert into testdb1.type_sort account,vtype,sort values (%s, %s,%s)")
+          val = (k,x[0],x[1])
+          cursor.execute("insert into testdb1.type_sort (account,vtype_name,sort) values (%s, %s,%s)",val)
+          mydb.commit()
+          print('成功新增資料')
+    except Exception as e:
+      print(e)
+
+      mydb.rollback()     
        
 mydb.close()   
