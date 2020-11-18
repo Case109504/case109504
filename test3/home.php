@@ -575,7 +575,7 @@ if (isset($_SESSION["acc"])&&$_SESSION["acc"]!="") {
 					</ul>
 				</div>
 				<div class="copyright">
-					&copy; 搜劇 Film Seeker.
+					&copy; 搜劇Film Seeker.
 				</div>
 			</footer>
 
@@ -1162,7 +1162,7 @@ if (isset($_SESSION["acc"])&&$_SESSION["acc"]!="") {
 					</ul>
 				</div>
 				<div class="copyright">
-					&copy; 搜劇 Film Seeker.
+					&copy; 搜劇Film Seeker.
 				</div>
 			</footer>
 

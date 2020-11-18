@@ -106,7 +106,7 @@ include 'php/FindOrder.php';
 					</ul>
 				</div>
 				<div class="copyright">
-					&copy; 搜劇 Film Seeker.
+					&copy; 搜劇Film Seeker.
 				</div>
 			</footer>
 
