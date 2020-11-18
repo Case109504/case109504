@@ -120,7 +120,7 @@ include 'php/FindOrder.php';
 					</ul>
 				</div>
 				<div class="copyright">
-					&copy; Untitled. All rights reserved.
+					&copy; 搜劇 Film Seeker.
 				</div>
 			</footer>
 

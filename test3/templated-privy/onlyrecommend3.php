@@ -124,7 +124,7 @@ if ($_SESSION["acc"] == "") {
 				?>
 		</div>
 		<div id="copyright">
-			<span>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">Fotogrph</a></span>
+			<span>&copy; 搜劇 Film Seeker. | Photos by <a href="http://fotogrph.com/">Fotogrph</a></span>
 		</div>
 	</div>
 </div>
