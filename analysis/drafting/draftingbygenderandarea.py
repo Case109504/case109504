@@ -1,5 +1,3 @@
-# !/usr/bin/python 
-# coding:utf-8 
 import numpy as np
 import pymysql
 import matplotlib.pyplot as plt
@@ -11,12 +9,12 @@ from DictTransform import *
 
 # from datetime import datetime, timedelta
 # 使用 connect 方法，傳入數據庫地址，賬號密碼，數據庫名就可以得到你的數據庫對象
-mydb = pymysql.connect("140.131.115.87", "root", "109504109504", "testdb1")
+
 # 接著我們獲取 cursor 來操作我們的 avIdol 這個數據庫
 cursor = mydb.cursor()
 
 
-cursor.execute("SELECT member_search_record.account,member_table.gender,area.area_name,vtype.vtype_name FROM testdb1.member_search_record  left join video on video.video_id=member_search_record.video_id  left join vtype_record on vtype_record.video_id=video.video_id  left join vtype on vtype.vtype_id=vtype_record.vtype_id  left join member on member.account=member_search_record.account left join area on area.area_id=video.area_id")
+cursor.execute("SELECT member_search_record.account,member.gender,area.area_name,vtype.vtype_name FROM testdb1.member_search_record  left join video on video.video_id=member_search_record.video_id  left join vtype_record on vtype_record.video_id=video.video_id  left join vtype on vtype.vtype_id=vtype_record.vtype_id  left join member on member.account=member_search_record.account left join area on area.area_id=video.area_id")
 searchlist = cursor.fetchall()
 allList=[]
 for x in searchlist:
@@ -69,7 +67,7 @@ plt.xlabel( 'area' )
 plt.ylabel( 'search time')
 plt.margins( x = 0, y = 0 )
 fig = plt.gcf()
-fig.savefig('case109504\test3\images\gender & area.png', dpi=100)
+fig.savefig('case109504\\test3\\images\\gender & area.png', dpi=100)
 plt.show()
 
 

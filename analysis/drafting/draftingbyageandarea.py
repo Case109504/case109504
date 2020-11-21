@@ -11,7 +11,7 @@ from DictTransform import *
 from tkinter import _flatten
 # from datetime import datetime, timedelta
 # 使用 connect 方法，傳入數據庫地址，賬號密碼，數據庫名就可以得到你的數據庫對象
-mydb = pymysql.connect("140.131.115.87", "root", "109504109504", "testdb1")
+
 # 接著我們獲取 cursor 來操作我們的 avIdol 這個數據庫
 cursor = mydb.cursor()
 
@@ -137,7 +137,7 @@ ax.set_xticks(ind)
 ax.set_xticklabels(sort_arealist)
 plt.xticks(rotation=90)
 fig = plt.gcf()
-fig.savefig('case109504\test3\images\age & area.png', dpi=100)
+fig.savefig('case109504\\test3\\images\\age & area.png', dpi=100)
 plt.show()
 
 
