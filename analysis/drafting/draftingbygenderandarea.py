@@ -67,7 +67,7 @@ plt.xlabel( 'area' )
 plt.ylabel( 'search time')
 plt.margins( x = 0, y = 0 )
 fig = plt.gcf()
-fig.savefig('case109504\\test3\\images\\gender & area.png', dpi=100)
+fig.savefig('/opt/lampp/htdocs/case109504/analysis/image/gender&area.png', dpi=100)
 plt.show()
 
 

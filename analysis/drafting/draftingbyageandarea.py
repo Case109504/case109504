@@ -137,7 +137,7 @@ ax.set_xticks(ind)
 ax.set_xticklabels(sort_arealist)
 plt.xticks(rotation=90)
 fig = plt.gcf()
-fig.savefig('case109504\\test3\\images\\age & area.png', dpi=100)
+fig.savefig('/opt/lampp/htdocs/case109504/analysis/image/age&area.png', dpi=100)
 plt.show()
 
 
