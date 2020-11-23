@@ -1,6 +1,7 @@
+#!/usr/bin/python 
+# coding:utf-8 
 import numpy as np
 import pymysql
-import matplotlib
 import matplotlib.pyplot as plt
 from pylab import savefig
 import os
@@ -10,52 +11,43 @@ from DictTransform import *
 from tkinter import _flatten
 # from datetime import datetime, timedelta
 # 使用 connect 方法，傳入數據庫地址，賬號密碼，數據庫名就可以得到你的數據庫對象
-mydb = pymysql.connect("140.131.115.87", "root", "109504109504", "testdb1")
+
 # 接著我們獲取 cursor 來操作我們的 avIdol 這個數據庫
 cursor = mydb.cursor()
 
 
-cursor.execute("SELECT member_search_record.account,year(FROM_DAYS(DATEDIFF(NOW(),member.birthday)) ),vtype.vtype_name FROM testdb1.member_search_record  left join video on video.video_id=member_search_record.video_id  left join vtype_record on vtype_record.video_id=video.video_id  left join vtype on vtype.vtype_id=vtype_record.vtype_id  left join member on member.account=member_search_record.account left join area on area.area_id=video.area_id")
+cursor.execute("SELECT member_search_record.account,year(FROM_DAYS(DATEDIFF(NOW(),member.birthday)) ),area.area_name,vtype.vtype_name FROM testdb1.member_search_record  left join video on video.video_id=member_search_record.video_id  left join vtype_record on vtype_record.video_id=video.video_id  left join vtype on vtype.vtype_id=vtype_record.vtype_id  left join member on member.account=member_search_record.account left join area on area.area_id=video.area_id")
 searchlist = cursor.fetchall()
 allList=[]
-usersearchtypelist=[]
 for x in searchlist:
     allList += [x]
-    usersearchtypelist+=[x[2]]
 print(allList)
-print(usersearchtypelist)
 
 
 
-cursor.execute("SELECT vtype_name FROM testdb1.vtype")
-vytypeList = cursor.fetchall()
-typeList=[]
-for x in vytypeList:
-    typeList += (x)
-typeList = list( set( typeList ) )
-print(typeList)
-
+cursor.execute("SELECT area_name FROM testdb1.area")
+allareaList = cursor.fetchall()
+areaList=[]
+for x in allareaList:
+    areaList += (x)
+areaList = list( set( areaList ) )
+print(areaList)
 
 
 
 finaldict={}
 for k, v in listToDict(allList,key=1,value=[2]).items():
     finalkey=k
-    typeDict = { k:0 for k in typeList }
+    areaDict = { k:0 for k in areaList }
     for x in v:
-      typeDict[x] += 1
-    sort_type=sorted(typeDict.items(),key=lambda x:x[0],reverse=True)
+      areaDict[x] += 1
+    sort_type=sorted(areaDict.items(),key=lambda x:x[0],reverse=True)
     for i in sort_type:
       finaldict[finalkey]=sort_type
 print(finaldict)
 
-
-
-sort_typelist=sorted(typeList,key=lambda x:x[0],reverse=True)
-print(sort_typelist)
-
-
-
+sort_arealist=sorted(areaList,key=lambda x:x[0],reverse=True)
+print(sort_arealist)
 
 kidfinaldict={}
 for i in range(10):
@@ -82,7 +74,7 @@ for i in range(21,30):
 print(adultfinaldict)
 
 middleagefinaldict={}
-for i in range(31,100):
+for i in range(31,60):
     try:
         middleagefinaldict=finaldict[i]
     except:
@@ -123,7 +115,7 @@ print(finmiddleagefinallist)
     
 plt.rcParams['font.sans-serif'] = ['Taipei Sans TC Beta']
 
-ind = np.arange(len(typeList))  # the x locations for the groups 
+ind = np.arange(len(sort_arealist))  # the x locations for the groups 
 width = 0.2  # the width of the bars
 fig, ax = plt.subplots(figsize=[16,8])
 
@@ -137,20 +129,17 @@ ax.bar( ind + width*0, finadultfinallist ,  label="壯年 21~30", align = "edge"
 
 ax.bar( ind + width*1, finmiddleagefinallist,  label="中年以上 30~" , align = "edge", width = width,color=['midnightblue'])
 
-plt.legend()
-ax.set_xlabel('type')
+plt.legend()         
+ax.set_xlabel('area')
 ax.set_ylabel('search time')
-ax.set_title('age & type')
+ax.set_title('age & area')
 ax.set_xticks(ind)
-ax.set_xticklabels(sort_typelist)
+ax.set_xticklabels(sort_arealist)
 plt.xticks(rotation=90)
 fig = plt.gcf()
-fig.savefig('case109504\test3\images\age & type.png', dpi=100)
+fig.savefig('/opt/lampp/htdocs/case109504/analysis/image/age&area.png', dpi=100)
 plt.show()
 
 
-
+          
 mydb.close()    
-
-
-
