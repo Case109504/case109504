@@ -16,27 +16,6 @@ if (isset($_SESSION["acc"])&&$_SESSION["acc"]!="") {
 		<!-- Header -->
 			<header id="header" class="alt">
 				<div class="logo"><a href="home.php">搜劇Film Seeker <span></span></a></div>
-			<!-- Search -->
-
-					<!--<form role="search" method="get" id="searchform1" class="search-form" action="/http://140.131.115.87/case109504/test3/fullmotion/inddex.php">
-			
-						<input type="hidden" name="cx" value="03d94254dfdc3a617"/>
-						<input type="text" name="q"  size="31" placeholder="搜尋..." value="" class="csetext">
-						<input type="submit" name="sa" value="搜尋" class="search_btn"> 
-					
-					</form>-->
-
-					<div class="container-1">
-						<span class="icon"><i class="fas fa-search"></i></span>
-						<input type="search" id="search" placeholder="Search..." />
-					</div> 
-				  </div>
-
-				<!--<div class="container-2" style="vertical-align: center">
-					
-					<input type="search" id="search" placeholder="Search"  />
-				</div>-->
-				
 				<a href="#menu"></a>
 			</header>
 
