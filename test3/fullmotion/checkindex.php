@@ -47,47 +47,49 @@ include '../php/DataBase.php';
 							<?php 
 							while($row = $result->fetch()){ 
 								echo '<div class="box">
-								<a href="../php/videoClickRecord.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="image fit" data-poptrox="ignore"><img src="'.$row["picture"].'" height=500px></a>
-								<div class="inner">
-										<h3>'.$row["video_name"].'</h3>
-										<h4>主演： ';
-										$sql2="SELECT * FROM testdb1.video
-										left join testdb1.area on video.area_id = area.area_id
-										left join testdb1.actor_record on video.video_id = actor_record.video_id
-										left join testdb1.actor on actor_record.actor_id = actor.actor_id
-										where video_name = '" . $row["video_name"]."'
-										limit 5";
-										$result2 = $db->query($sql2);
-										$row2 = $result2->fetch(PDO::FETCH_ASSOC);
-										$result2->execute();
-								while($row2 = $result2->fetch()){ 
-								echo $row2["actor_name"].'<br />';
-								}
-								echo '</h4>
-										<h4>評分： ';
-										$sql3="SELECT * FROM testdb1.score
-										left join testdb1.video on score.video_id = video.video_id
-										left join testdb1.video_from on score.vfrom_id = video_from.vfrom_id
-										where video_name = '" . $row["video_name"]."'";
-										$result3 = $db->query($sql3);
-										$row3 = $result3->fetch(PDO::FETCH_ASSOC);
-										$result3->execute();
-										while($row3 = $result3->fetch()){ 
-											if($row3["vfrom"]=='愛奇藝'){
-												echo '暫無評分';
-											}else{
-												echo $row3["vfrom"].'：'.$row3["score"].'<br />';
+									<a href="../php/videoClickRecord.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="image fit" data-poptrox="ignore"><img src="'.$row["picture"].'" height=500px></a>
+									<div class="inner">
+										<div style="height:400px; padding-bottom:100px;">
+											<h3>'.$row["video_name"].'</h3>
+											<h4>主演： ';
+											$sql2="SELECT * FROM testdb1.video
+											left join testdb1.area on video.area_id = area.area_id
+											left join testdb1.actor_record on video.video_id = actor_record.video_id
+											left join testdb1.actor on actor_record.actor_id = actor.actor_id
+											where video_name = '" . $row["video_name"]."'
+											limit 5";
+											$result2 = $db->query($sql2);
+											$row2 = $result2->fetch(PDO::FETCH_ASSOC);
+											$result2->execute();
+											while($row2 = $result2->fetch()){ 
+												echo $row2["actor_name"].'<br />';
 											}
-										}		
-								echo ' <br /></h4>
-								<a href="../php/videoClickRecord.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="button fit" data-poptrox="ignore">影片介紹</a>
+											echo '</h4>
+											<h4>評分： ';
+											$sql3="SELECT * FROM testdb1.score
+											left join testdb1.video on score.video_id = video.video_id
+											left join testdb1.video_from on score.vfrom_id = video_from.vfrom_id
+											where video_name = '" . $row["video_name"]."'";
+											$result3 = $db->query($sql3);
+											$row3 = $result3->fetch(PDO::FETCH_ASSOC);
+											$result3->execute();
+											while($row3 = $result3->fetch()){ 
+												if($row3["vfrom"]=='愛奇藝'){
+													echo '暫無評分';
+												}else{
+													echo $row3["vfrom"].'：'.$row3["score"].'<br />';
+												}
+											}		
+											echo ' <br /></h4>
+										</div>
+										<div style="position:relative; margin-top:-100px;">
+											<a href="../php/videoClickRecord.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="button fit" data-poptrox="ignore">影片介紹</a>
+										</div>	
 									</div>
 								</div>';
 								
 							}
-							?>
-							
-							
+							?>	
 
 						</div>
 
@@ -106,7 +108,7 @@ include '../php/DataBase.php';
 							<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
 							<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
 						</ul>
-						<p class="copyright">&copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com/">Unsplash</a>. Videos: <a href="http://coverr.co/">Coverr</a>.</p>
+						<p class="copyright">&copy; 搜劇Film Seeker.</p>
 					</div>
 				</footer>
 
