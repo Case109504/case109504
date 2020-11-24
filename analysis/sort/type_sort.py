@@ -14,7 +14,7 @@ mydb = pymysql.connect("140.131.115.87", "root", "109504109504", "testdb1")
 cursor = mydb.cursor()
 
 
-cursor.execute("SELECT account FROM testdb1.member_search_record")
+cursor.execute("SELECT account FROM testdb1.member_search_recordSELECT * from testdb1.member_search_record where search_time between  (SELECT DATE_ADD(now(),INTERVAL -1 MONTH)) and now();")
 clicklist = cursor.fetchall()
 userList=[]
 for x in clicklist: 
