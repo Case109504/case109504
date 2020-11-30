@@ -9,12 +9,12 @@ from DictTransform import *
 
 # from datetime import datetime, timedelta
 # 使用 connect 方法，傳入數據庫地址，賬號密碼，數據庫名就可以得到你的數據庫對象
-mydb = pymysql.connect("140.131.115.87", "root", "109504109504", "testdb1")
+
 # 接著我們獲取 cursor 來操作我們的 avIdol 這個數據庫
 cursor = mydb.cursor()
 
 
-cursor.execute("SELECT account FROM testdb1.member_search_recordSELECT * from testdb1.member_search_record where search_time between  (SELECT DATE_ADD(now(),INTERVAL -1 MONTH)) and now();")
+cursor.execute("SELECT account FROM testdb1.member_search_record")
 clicklist = cursor.fetchall()
 userList=[]
 for x in clicklist: 
@@ -34,7 +34,7 @@ for x in userList:
 # print(userfinish)
 
 
-cursor.execute("SELECT member_search_record.account,member_search_record.video_id,video.video_name,director.director_name FROM testdb1.member_search_record  left join video on video.video_id=member_search_record.video_id  left join vtype_record on vtype_record.video_id=video.video_id  left join  director_record on director_record.video_id=video.video_id  left join  director on director_record.director_id=director.director_id")
+cursor.execute("SELECT member_search_record.account,member_search_record.video_id,video.video_name,director.director_name FROM testdb1.member_search_record  left join video on video.video_id=member_search_record.video_id  left join vtype_record on vtype_record.video_id=video.video_id  left join  director_record on director_record.video_id=video.video_id  left join  director on director_record.director_id=director.director_id where search_time between  (SELECT DATE_ADD(now(),INTERVAL -1 MONTH)) and now()")
 searchlist = cursor.fetchall()
 allList=[]
 usersearchdirlist=[]
@@ -61,7 +61,10 @@ for k, v in listToDict(allList,key=0,value=[3]).items():
     finalkey=k
     dirDict = { k:0 for k in dirList }
     for x in v:
-      dirDict[x] += 1
+      try:
+            dirDict[x] += 1
+      except KeyError:
+            print("")
     sort_dir=sorted(dirDict.items(),key=lambda x:x[1],reverse=True)
     for i in sort_dir:
       # print(k,i[0],i[1]) 

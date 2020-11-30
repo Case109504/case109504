@@ -1,5 +1,3 @@
-#!/usr/bin/python 
-# coding:utf-8 
 import numpy as np
 import pymysql
 import matplotlib.pyplot as plt
@@ -16,7 +14,7 @@ from tkinter import _flatten
 cursor = mydb.cursor()
 
 
-cursor.execute("SELECT member_search_record.account,year(FROM_DAYS(DATEDIFF(NOW(),member.birthday)) ),area.area_name,vtype.vtype_name FROM testdb1.member_search_record  left join video on video.video_id=member_search_record.video_id  left join vtype_record on vtype_record.video_id=video.video_id  left join vtype on vtype.vtype_id=vtype_record.vtype_id  left join member on member.account=member_search_record.account left join area on area.area_id=video.area_id")
+cursor.execute("SELECT member_search_record.account,year(FROM_DAYS(DATEDIFF(NOW(),member.birthday)) ),area.area_name,vtype.vtype_name FROM testdb1.member_search_record  left join video on video.video_id=member_search_record.video_id  left join vtype_record on vtype_record.video_id=video.video_id  left join vtype on vtype.vtype_id=vtype_record.vtype_id  left join member on member.account=member_search_record.account left join area on area.area_id=video.area_id where search_time between  (SELECT DATE_ADD(now(),INTERVAL -1 MONTH)) and now()")
 searchlist = cursor.fetchall()
 allList=[]
 for x in searchlist:
@@ -121,13 +119,13 @@ fig, ax = plt.subplots(figsize=[16,8])
 
 
 
-ax.bar( ind - width*2, finkidfinallist ,  label="幼兒 0~10", align = "edge", width = width,color=['lightsteelblue'])
+ax.bar( ind - width*2, finkidfinallist ,  label="幼兒 0~10", align = "edge", width = width,color=['#ffd195'])
 
-ax.bar( ind - width*1, finteenfinallist ,  label="青少年 11~20", align = "edge", width = width,color=['royalblue'])
+ax.bar( ind - width*1, finteenfinallist ,  label="青少年 11~20", align = "edge", width = width,color=['#f7a992'])
 
-ax.bar( ind + width*0, finadultfinallist ,  label="壯年 21~30", align = "edge", width = width,color=['blue'])
+ax.bar( ind + width*0, finadultfinallist ,  label="壯年 21~30", align = "edge", width = width,color=['#82a0c2'])
 
-ax.bar( ind + width*1, finmiddleagefinallist,  label="中年以上 30~" , align = "edge", width = width,color=['midnightblue'])
+ax.bar( ind + width*1, finmiddleagefinallist,  label="中年以上 30~" , align = "edge", width = width,color=['#4c364d'])
 
 plt.legend()         
 ax.set_xlabel('area')

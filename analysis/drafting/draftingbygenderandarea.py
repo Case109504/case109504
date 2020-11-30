@@ -14,7 +14,7 @@ from DictTransform import *
 cursor = mydb.cursor()
 
 
-cursor.execute("SELECT member_search_record.account,member.gender,area.area_name,vtype.vtype_name FROM testdb1.member_search_record  left join video on video.video_id=member_search_record.video_id  left join vtype_record on vtype_record.video_id=video.video_id  left join vtype on vtype.vtype_id=vtype_record.vtype_id  left join member on member.account=member_search_record.account left join area on area.area_id=video.area_id")
+cursor.execute("SELECT member_search_record.account,gender,area.area_name,vtype.vtype_name FROM testdb1.member_search_record  left join video on video.video_id=member_search_record.video_id  left join vtype_record on vtype_record.video_id=video.video_id  left join vtype on vtype.vtype_id=vtype_record.vtype_id  left join member on member.account=member_search_record.account left join area on area.area_id=video.area_id where search_time between  (SELECT DATE_ADD(now(),INTERVAL -1 MONTH)) and now()")
 searchlist = cursor.fetchall()
 allList=[]
 for x in searchlist:

@@ -1,5 +1,3 @@
-# !/usr/bin/python 
-# coding:utf-8 
 import numpy as np
 import pymysql
 import matplotlib.pyplot as plt
@@ -16,7 +14,7 @@ from DictTransform import *
 cursor = mydb.cursor()
 
 
-cursor.execute("SELECT member_search_record.account,member.gender,vtype.vtype_name FROM testdb1.member_search_record  left join video on video.video_id=member_search_record.video_id  left join vtype_record on vtype_record.video_id=video.video_id  left join vtype on vtype.vtype_id=vtype_record.vtype_id  left join member on member.account=member_search_record.account")
+cursor.execute("SELECT member_search_record.account,member.gender,vtype.vtype_name FROM testdb1.member_search_record  left join video on video.video_id=member_search_record.video_id  left join vtype_record on vtype_record.video_id=video.video_id  left join vtype on vtype.vtype_id=vtype_record.vtype_id  left join member on member.account=member_search_record.account where search_time between  (SELECT DATE_ADD(now(),INTERVAL -1 MONTH)) and now()")
 searchlist = cursor.fetchall()
 allList=[]
 for x in searchlist:
@@ -39,7 +37,10 @@ for k, v in listToDict(allList,key=1,value=[2]).items():
     finalkey=k
     typeDict = { k:0 for k in typeList }
     for x in v:
-      typeDict[x] += 1 
+      try:
+            typeDict[x] += 1
+      except KeyError:
+            print("") 
       finaldict[finalkey]=typeDict
 print(finaldict)
 
