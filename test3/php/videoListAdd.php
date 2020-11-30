@@ -23,6 +23,7 @@ if (isset($_SESSION["acc"])&&$_SESSION["acc"]!="") {
             $db = DB1();
             $sql = "INSERT INTO member_video_list(account,video_id) VALUES ('$acc','$video_id')";
             $db->exec($sql);
+            echo '<script language="JavaScript">;alert("已加入影片清單");location.href="../fullmotion/introduction.php?video_name='.$_GET["video_name"].'&video_id='.$_GET["video_id"].'&area_name='.$_GET["area_name"].'";</script>';
         }
         
     }
