@@ -1,6 +1,7 @@
 <?php
 session_start();
 include '../php/DataBase.php';
+$_SESSION["sure"] = 0;
 if (isset($_SESSION["acc"])&&$_SESSION["acc"]!="") {
     if (isset($_GET["video_id"])) {
         $db = DB1();
