@@ -53,8 +53,9 @@ include '../php/DataBase.php';
 										</div>
 										<br/>';
 									echo '<div class="thumbnails">
-										<a href="../php/videoListAdd.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="button" data-poptrox="ignore" name="videoListAdd"">影片收藏</a>';
-									echo "<h3>影片名稱：" .$_GET["video_name"]."<br/>主演：";
+										<a href="../php/videoListAdd.php?video_name='.$row["video_name"].'&video_id='.$row["video_id"].'&area_name='.$row["area_name"].'" class="button" data-poptrox="ignore" name="videoListAdd"">影片收藏</a>
+										</div>';
+									echo "<div><h3>影片名稱：" .$_GET["video_name"]."<br/>主演：";
 										$sql2="SELECT * FROM testdb1.video
 										left join testdb1.area on video.area_id = area.area_id
 										left join testdb1.actor_record on video.video_id = actor_record.video_id
