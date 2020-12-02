@@ -67,38 +67,36 @@ include 'php/FindOrder.php';
 							</header>
 							<body>
 								<form method="post" action="">
-
-									<div class="6u 12u$(small)" style="margin-left: 20%"> 
+									<div class="6u 12u$(small)" style="margin-left: 20%; width:50%;"> 
 										<h1>名字：</h1>
 										<input type="text" name="member_name" id="member_name" value="" placeholder="" required>
 									</div>
-									<br/>
-									<div class="6u 12u$(small)" style="margin-left: 20%"> 
+									<br>
+									<div class="6u 12u$(small)" style="margin-left: 20%; width:50%;"> 
 										<h1>生日（西元年月日ex：20200101）：</h1>
 										<input type="text" name="birthday" id="birthday" value="" placeholder="" pattern="[0-9]{8}" maxlength="8" required>
 									</div>
-									<br/>
-									<div class="6u 12u$(small)" style="margin-left: 20%"> 
+									<br>
+									<div class="6u 12u$(small)" style="margin-left: 20%; width:50%;"> 
 										<h1>性別（男/女）：</h1>
 										<input type="text" name="gender" id="gender" value="" placeholder="" required>
 									</div>
-									<br/>
-									<div class="6u 12u$(small)" style="margin-left: 20%"> 
+									<br>
+									<div class="6u 12u$(small)" style="margin-left: 20%; width:50%;"> 
 										<h1>帳號：</h1>
 										<input type="text" name="account" id="account" value="" placeholder="" pattern="[a-zA-Z0-9]{,45}" maxlength="45" required>
 									</div>
-									<br/>
-									<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
+									<br>
+									<div class="6u$ 12u$(small)"  style="margin-left: 20%; width:50%;"> 
 										<h1>密碼：</h1>									
 										<input type="password" name="password" id="password" value="" placeholder="" pattern="[a-zA-Z0-9]{,45}" maxlength="45" required>
 									</div>  
-
+									<br>
+									<br>
 									<div class="12u$">
 										<ul class="actions">
-											<div align="right"  style="margin-right: 5%">
-
+											<div align="right"  style="margin-right: 5%; width:50%;">
 												<li><input type="submit" name="next" value="註冊"></li>
-												
 											</div>
 										</ul>
 									</div>

@@ -80,19 +80,23 @@ if ($_SESSION["accU"] == "") {
 									<h1>影片編號：</h1>
 									<input type="text" name="video_id" id="video_id" value="<?php echo $_GET['video_id']?>" placeholder="" required>
 								</div>
-								<br/>
+								<br>
 								<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
 									<h1>影片名稱：</h1>									
 									<input type="text" name="video_name" id="video_name" value="<?php echo $row['video_name']?>" placeholder="" required>
-								</div>  
+								</div> 
+								<br> 
 								<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
 									<h1>影片區域：</h1>									
 									<input type="text" name="area_name" id="area_name" value="<?php echo $row['area_name']?>" placeholder="" required>
-								</div>  
+								</div>
+								<br>  
 								<div class="6u$ 12u$(small)"  style="margin-left: 20%"> 
 									<h1>影片簡介：</h1>									
 									<textarea style="height:150px;" name="introduction" id="introduction" value="" placeholder="" required><?php echo $row['introduction']?></textarea>
-                                </div>
+								</div>
+								<br>
+								<br>
 								<div class="12u$">
 									<ul class="actions">
 										<div align="right"  style="margin-right: 5%">
