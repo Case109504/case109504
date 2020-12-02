@@ -49,9 +49,8 @@ if ($_SESSION["accU"] == "") {
 			<nav id="menu">
 				<ul class="links">
 					<li><a href="home.php">首頁</a></li>
-					<li><a href="member_login_php.php">登入/註冊</a></li>
 					<li><a href="imageSearch.html">圖片搜尋</a></li>
-					
+					<li><a href="member_login_php.php">會員登入/註冊</a></li>
 					<li><a href="backstage.php">管理員</a></li>
 				</ul>
 			</nav>
@@ -75,12 +74,12 @@ if ($_SESSION["accU"] == "") {
 						</head>
 						<body>
 							<form method="post" action="">
-								<div class="6u$ 12u$(small)"  style="margin-left: 20%; width:50%;"> 
+								<div class="6u$ 12u$(small)"  style="margin-left: 20%; width:60%;"> 
 									<h1>影片名稱：</h1>									
 									<input type="text" name="video_name" id="video_name" value="" placeholder="" required>
 								</div> 
 								<br> 
-								<div class="6u$ 12u$(small)"  style="margin-left: 20%; width:50%;"> 
+								<div class="6u$ 12u$(small)"  style="margin-left: 20%; width:60%;"> 
 									<h1>影片區域：</h1>		
 									<select name="area_id">
 										<?php 
@@ -91,7 +90,7 @@ if ($_SESSION["accU"] == "") {
 									</select>
 								</div> 
 								<br> 
-								<div class="6u$ 12u$(small)"  style="margin-left: 20%; width:50%;"> 
+								<div class="6u$ 12u$(small)"  style="margin-left: 20%; width:60%;"> 
 									<h1>影片介紹：</h1>									
 									<textarea style="height:150px;" name="introduction" id="introduction" value="" placeholder="" required></textarea>
 								</div>
@@ -99,7 +98,7 @@ if ($_SESSION["accU"] == "") {
 								<br>  
 								<div class="12u$">
 									<ul class="actions">
-										<div align="right"  style="margin-right: 5%; width:50%;">
+										<div align="right"  style="margin-right: 5%;">
 											<li><input type="submit" name="next" value="新增"></li>
 										</div>
 									</ul>
