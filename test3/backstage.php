@@ -64,12 +64,12 @@ include 'php/FindOrder.php';
 							</header>
 							<body>
 								<form method="post" action="">
-									<div class="6u 12u$(small)" style="margin-left: 20%; width:50%;"> 
+									<div class="6u 12u$(small)" style="margin-left: 20%; width:60%;"> 
 										<h1>帳號：</h1>
 										<input type="text" name="account" id="account" value="" placeholder="" required>
 									</div>
 									<br>
-									<div class="6u$ 12u$(small)"  style="margin-left: 20%; width:50%;"> 
+									<div class="6u$ 12u$(small)"  style="margin-left: 20%; width:60%;"> 
 										<h1>密碼：</h1>									
 										<input type="password" name="password" id="password" value="" placeholder="" required>
 									</div>  
@@ -77,7 +77,7 @@ include 'php/FindOrder.php';
 									<br>
 									<div class="12u$">
 										<ul class="actions">
-											<div align="right"  style="margin-right: 5%; width:50%;">
+											<div align="right"  style="margin-right: 5%;">
 												<li><input type="submit" name="next" value="登入"></li>
 											</div>
 										</ul>
