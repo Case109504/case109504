@@ -32,7 +32,7 @@ if ($_SESSION["accU"] == "") {
 			
 			
 			if (isset($_POST["next"])) {
-				UpdateVideo($_POST["video_id"], $_POST["video_name"], $_POST["area_id"], $_POST["introduction"]);
+				UpdateVideo($_POST["video_id"], $_POST["video_name"], $_POST["video_eg_name"], $_POST["video_ch_name"], $_POST["area_id"], $_POST["introduction"]);
 			}
 
 			$db = DB1();
@@ -93,6 +93,16 @@ if ($_SESSION["accU"] == "") {
 								<div class="6u$ 12u$(small)"  style="margin-left: 20%; width:60%;"> 
 									<h1>影片名稱：</h1>									
 									<input type="text" name="video_name" id="video_name" value="<?php echo $row['video_name']?>" placeholder="" required>
+								</div>
+								<br>  
+								<div class="6u$ 12u$(small)"  style="margin-left: 20%; width:60%;"> 
+									<h1>影片名稱（英文或其他）：</h1>									
+									<input type="text" name="video_eg_name" id="video_eg_name" value="<?php echo $row['video_eg_name']?>" placeholder="">
+								</div>
+								<br>  
+								<div class="6u$ 12u$(small)"  style="margin-left: 20%; width:60%;"> 
+									<h1>影片名稱（簡中）：</h1>									
+									<input type="text" name="video_ch_name" id="video_ch_name" value="<?php echo $row['video_ch_name']?>" placeholder="">
 								</div>
 								<br>  
 								<div class="6u$ 12u$(small)"  style="margin-left: 20%; width:60%;"> 

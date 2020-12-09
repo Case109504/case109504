@@ -87,11 +87,6 @@ if ($_SESSION["accU"] == "") {
 								</div> 
 								<br> 
 								<div class="6u$ 12u$(small)"  style="margin-left: 20%; width:60%;"> 
-									<h1>影片區域：</h1>									
-									<input type="text" name="area_name" id="area_name" value="<?php echo $row['area_name']?>" placeholder="" required>
-								</div>
-								<br>  
-								<div class="6u$ 12u$(small)"  style="margin-left: 20%; width:60%;"> 
 									<h1>影片簡介：</h1>									
 									<textarea style="height:150px;" name="introduction" id="introduction" value="" placeholder="" required><?php echo $row['introduction']?></textarea>
 								</div>

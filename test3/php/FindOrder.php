@@ -2,16 +2,18 @@
 
 include 'DataBase.php';
 
-function AddVideo($video_name, $area_id, $introduction) {
+function AddVideo($video_name, $video_eg_name, $video_ch_name, $area_id, $introduction) {
     $db = DB1();
-    $sql = "INSERT INTO video(video_name,area_id,introduction) VALUES ('$video_name','$area_id','$introduction')";
+    $sql = "INSERT INTO video(video_name,video_eg_name,video_ch_name,area_id,introduction) VALUES ('$video_name','$video_eg_name','$video_ch_name','$area_id','$introduction')";
     $db->exec($sql)or die ("無法新增".mysqli_error($db)); //執行sql語法
     header("Location:video_select.php");
 }
 
-function UpdateVideo($video_id, $video_name, $area_id, $introduction) {
+function UpdateVideo($video_id, $video_name, $video_eg_name, $video_ch_name, $area_id, $introduction) {
     $db = DB1();
     $sql = "UPDATE video SET video_name = '$video_name' WHERE (video_id = '$video_id');
+    UPDATE video SET video_eg_name = '$video_eg_name' WHERE (video_id = '$video_id');
+    UPDATE video SET video_ch_name = '$video_ch_name' WHERE (video_id = '$video_id');
     UPDATE video SET area_id = '$area_id' WHERE (video_id = '$video_id');
     UPDATE video SET introduction = '$introduction' WHERE (video_id = '$video_id');";
     $db->exec($sql);
