@@ -91,12 +91,12 @@ if ($_SESSION["accU"] == "") {
 								</div>
 								<br>
 								<div class="6u$ 12u$(small)"  style="margin-left: 20%; width:60%;"> 
-									<h1>影片名稱：</h1>									
+									<h1>影片名稱：（如有特殊符號如：' 請在前面加上\）</h1>									
 									<input type="text" name="video_name" id="video_name" value="<?php echo $row['video_name']?>" placeholder="" required>
 								</div>
 								<br>  
 								<div class="6u$ 12u$(small)"  style="margin-left: 20%; width:60%;"> 
-									<h1>影片名稱（英文或其他）：</h1>									
+									<h1>影片名稱（英文或其他）：（如有特殊符號如：' 請在前面加上\）</h1>									
 									<input type="text" name="video_eg_name" id="video_eg_name" value="<?php echo $row['video_eg_name']?>" placeholder="">
 								</div>
 								<br>  
@@ -111,7 +111,7 @@ if ($_SESSION["accU"] == "") {
 								</div>
 								<br>  
 								<div class="6u$ 12u$(small)"  style="margin-left: 20%; width:60%;"> 
-									<h1>影片簡介：</h1>									
+									<h1>影片簡介：（如有特殊符號如：' 請在前面加上\）</h1>									
 									<textarea style="height:150px;" name="introduction" id="introduction" value="" placeholder="" required><?php echo $row['introduction']?></textarea>
 								</div>
 								<br>
